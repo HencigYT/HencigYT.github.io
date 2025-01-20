@@ -10,25 +10,30 @@
             font-family: Arial, sans-serif;
             color: #fff;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #004d00, #007d00);
+            animation: backgroundFlow 10s infinite alternate;
         }
 
-        /* A videó beállítása a háttérhez */
-        .video-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1; /* Háttér mögé kerül */
+        @keyframes backgroundFlow {
+            0% {
+                background: linear-gradient(135deg, #004d00, #007d00);
+            }
+            50% {
+                background: linear-gradient(135deg, #006400, #00a000);
+            }
+            100% {
+                background: linear-gradient(135deg, #004d00, #007d00);
+            }
         }
 
         .container {
             text-align: center;
             max-width: 600px;
-            margin: auto;
-            z-index: 1; /* Előtérbe kerül */
-            position: relative;
+            z-index: 1;
         }
 
         .name {
@@ -67,7 +72,7 @@
             margin-top: 20px;
             font-size: 1rem;
             text-align: left;
-            background: rgba(0, 0, 0, 0.5); /* Átlátszó háttér */
+            background: rgba(0, 0, 0, 0.5);
             padding: 10px;
             border-radius: 10px;
             display: inline-block;
@@ -130,12 +135,6 @@
     </style>
 </head>
 <body>
-    <!-- Háttér videó -->
-    <video class="video-bg" autoplay loop muted>
-        <source src="https://cdn.discordapp.com/attachments/1022946545005514892/1330926584001204244/AbstractLineBackground_jmlgyt.mp4" type="video/mp4">
-        Az Ön böngészője nem támogatja a videó lejátszást.
-    </video>
-
     <div class="container">
         <div class="name">Hencig</div>
         <div class="intro">
