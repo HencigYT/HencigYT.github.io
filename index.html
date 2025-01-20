@@ -15,7 +15,6 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            flex-direction: column;
         }
 
         .container {
@@ -118,29 +117,6 @@
             bottom: 10px;
             font-size: 0.9rem;
         }
-
-        /* Gombok stílusa */
-        .music-button {
-            background-color: #777;
-            color: white;
-            padding: 15px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 5px;
-            margin: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .music-button:hover {
-            background-color: #666;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-        }
-
-        /* Elrejtett audio lejátszók */
-        audio {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -149,18 +125,6 @@
         <div class="intro">
             Szia! Hencig vagyok, feltörekvő Minecraft tartalomgyártó, az 1.8-as PvP a kedvencem, és hentai enjoyer vagyok.
         </div>
-        <!-- Az új zenelejátszó gombok -->
-        <div class="music-buttons">
-            <button class="music-button" id="party-button">PARTY</button>
-            <button class="music-button" id="disco-button">DISCO</button>
-            <button class="music-button" id="koncert-button">KONCERT</button>
-        </div>
-
-        <!-- Elrejtett audio elemek a lejátszáshoz -->
-        <audio id="party-audio" src="https://replay.dropbox.com/share/gx0uJFSPQXAxt9YM?variant=v2&media_type=audio" preload="auto"></audio>
-        <audio id="disco-audio" src="https://replay.dropbox.com/share/AHNUfnQgpwuq5Q0F?variant=v2&media_type=audio" preload="auto"></audio>
-        <audio id="koncert-audio" src="https://replay.dropbox.com/share/bNBL7ocUh4dCIHvl?variant=v2&media_type=audio" preload="auto"></audio>
-
         <div class="specs">
             <strong>Alkatrészek:</strong>
             <ul>
@@ -200,34 +164,5 @@
             </a>
         </div>
     </div>
-
-    <script>
-        let currentAudio = null;
-
-        // Gombokhoz tartozó események
-        document.getElementById("party-button").addEventListener("click", function() {
-            if (currentAudio) {
-                currentAudio.pause();
-            }
-            currentAudio = document.getElementById("party-audio");
-            currentAudio.play();
-        });
-
-        document.getElementById("disco-button").addEventListener("click", function() {
-            if (currentAudio) {
-                currentAudio.pause();
-            }
-            currentAudio = document.getElementById("disco-audio");
-            currentAudio.play();
-        });
-
-        document.getElementById("koncert-button").addEventListener("click", function() {
-            if (currentAudio) {
-                currentAudio.pause();
-            }
-            currentAudio = document.getElementById("koncert-audio");
-            currentAudio.play();
-        });
-    </script>
 </body>
 </html>
