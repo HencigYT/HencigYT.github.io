@@ -8,19 +8,20 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #004d00, #007d00);
             color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            animation: backgroundAnimation 10s ease-in-out infinite; /* Smooth background animation */
+            animation: backgroundAnimation 33.33ms infinite linear; /* Continuous animation at 30FPS */
         }
 
         @keyframes backgroundAnimation {
             0% { background: linear-gradient(135deg, #004d00, #007d00); }
+            25% { background: linear-gradient(135deg, #006400, #00b300); }
             50% { background: linear-gradient(135deg, #007d00, #004d00); }
+            75% { background: linear-gradient(135deg, #00b300, #006400); }
             100% { background: linear-gradient(135deg, #004d00, #007d00); }
         }
 
@@ -43,7 +44,7 @@
         .name {
             font-size: 4rem;
             font-weight: bold;
-            animation: glow 1.5s ease-in-out infinite alternate, slideIn 2s ease-out forwards; /* Added slide in effect */
+            animation: glow 1.5s ease-in-out infinite alternate, slideIn 2s ease-out forwards;
         }
 
         @keyframes glow {
@@ -70,7 +71,7 @@
             margin: 20px 0;
             font-size: 1.2rem;
             opacity: 0;
-            animation: fadeInText 2s ease-out 1s forwards; /* Fade in text */
+            animation: fadeInText 2s ease-out 1s forwards;
         }
 
         @keyframes fadeInText {
@@ -122,7 +123,7 @@
             border-radius: 5px;
             transition: all 0.3s;
             opacity: 0;
-            animation: fadeInText 2s ease-out 3s forwards; /* Fade in social links */
+            animation: fadeInText 2s ease-out 3s forwards;
         }
 
         .social a.youtube {
@@ -161,7 +162,7 @@
             bottom: 10px;
             font-size: 0.9rem;
             opacity: 0;
-            animation: fadeInText 2s ease-out 4s forwards; /* Fade in footer */
+            animation: fadeInText 2s ease-out 4s forwards;
         }
     </style>
 </head>
