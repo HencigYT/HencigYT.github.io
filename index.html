@@ -9,42 +9,26 @@
             margin: 0;
             font-family: Arial, sans-serif;
             color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             overflow: hidden;
-            background: linear-gradient(135deg, #004d00, #007d00);
-            background-size: 400% 400%; /* Larger background for smooth movement */
-            animation: backgroundAnimation 15s ease infinite; /* Smooth, continuous background animation */
         }
 
-        @keyframes backgroundAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+        /* A videó beállítása a háttérhez */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Háttér mögé kerül */
         }
 
         .container {
             text-align: center;
             max-width: 600px;
-            opacity: 0;
-            animation: fadeIn 3s forwards; /* Fade in animation for container */
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            margin: auto;
+            z-index: 1; /* Előtérbe kerül */
+            position: relative;
         }
 
         .name {
@@ -76,29 +60,18 @@
         .intro {
             margin: 20px 0;
             font-size: 1.2rem;
-            opacity: 0;
-            animation: fadeInText 2s ease-out 1s forwards;
-        }
-
-        @keyframes fadeInText {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            animation: fadeIn 2s ease-out forwards;
         }
 
         .specs {
             margin-top: 20px;
             font-size: 1rem;
             text-align: left;
-            background: rgba(0, 128, 0, 0.8);
+            background: rgba(0, 0, 0, 0.5); /* Átlátszó háttér */
             padding: 10px;
             border-radius: 10px;
             display: inline-block;
-            opacity: 0;
-            animation: fadeInText 2s ease-out 2s forwards;
+            animation: fadeIn 2s ease-out forwards;
         }
 
         .specs a {
@@ -128,35 +101,11 @@
             padding: 10px 20px;
             border-radius: 5px;
             transition: all 0.3s;
-            opacity: 0;
-            animation: fadeInText 2s ease-out 3s forwards;
+            background: rgba(0, 0, 0, 0.5);
         }
 
-        .social a.youtube {
-            background: #ff0000;
-            box-shadow: 0 0 10px #ff0000;
-        }
-
-        .social a.youtube:hover {
-            box-shadow: 0 0 20px #ff0000;
-        }
-
-        .social a.discord {
-            background: #5865f2;
-            box-shadow: 0 0 10px #5865f2;
-        }
-
-        .social a.discord:hover {
-            box-shadow: 0 0 20px #5865f2;
-        }
-
-        .social a.twitch {
-            background: #9146ff;
-            box-shadow: 0 0 10px #9146ff;
-        }
-
-        .social a.twitch:hover {
-            box-shadow: 0 0 20px #9146ff;
+        .social a:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .social img {
@@ -167,12 +116,26 @@
             position: absolute;
             bottom: 10px;
             font-size: 0.9rem;
-            opacity: 0;
-            animation: fadeInText 2s ease-out 4s forwards;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Háttér videó -->
+    <video class="video-bg" autoplay loop muted>
+        <source src="https://cdn.discordapp.com/attachments/1022946545005514892/1330926584001204244/AbstractLineBackground_jmlgyt.mp4" type="video/mp4">
+        Az Ön böngészője nem támogatja a videó lejátszást.
+    </video>
+
     <div class="container">
         <div class="name">Hencig</div>
         <div class="intro">
@@ -192,13 +155,13 @@
             </ul>
         </div>
         <div class="social">
-            <a href="https://www.youtube.com/@Hencig_YT" target="_blank" class="youtube">
+            <a href="https://www.youtube.com/@Hencig_YT" target="_blank">
                 <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
             </a>
-            <a href="https://discord.com/invite/F8pz3SKvc5" target="_blank" class="discord">
+            <a href="https://discord.com/invite/F8pz3SKvc5" target="_blank">
                 <img src="https://static.vecteezy.com/system/resources/previews/018/930/604/non_2x/discord-logo-discord-icon-transparent-free-png.png" alt="Discord"> Discord
             </a>
-            <a href="https://www.twitch.tv/hencig_yt" target="_blank" class="twitch">
+            <a href="https://www.twitch.tv/hencig_yt" target="_blank">
                 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
             </a>
         </div>
