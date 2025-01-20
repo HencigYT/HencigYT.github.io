@@ -15,6 +15,7 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            flex-direction: column;
         }
 
         .container {
@@ -52,13 +53,6 @@
             display: inline-block;
         }
 
-        .social {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
         footer {
             position: absolute;
             bottom: 10px;
@@ -67,12 +61,12 @@
 
         /* A zene lejátszás gombjai */
         .music-buttons {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
         }
 
         .music-buttons button {
@@ -112,7 +106,33 @@
         <div class="intro">
             Szia! Hencig vagyok, feltörekvő Minecraft tartalomgyártó, az 1.8-as PvP a kedvencem, és hentai enjoyer vagyok.
         </div>
-        <!-- A többi tartalom marad változatlan -->
+        <div class="specs">
+            <strong>Alkatrészek:</strong>
+            <ul>
+                <li><strong>Alaplap:</strong> <a href="https://www.alza.hu/gigabyte-z790-aorus-elite-ax-d7507291.htm" target="_blank">Gigabyte Z790 Aorus Elite AX</a></li>
+                <li><strong>Processzor:</strong> <a href="https://www.alza.hu/intel-core-i7-14700k-d7950854.htm" target="_blank">Intel Core i7-14700K</a></li>
+                <li><strong>RAM:</strong> <a href="https://ipon.hu/shop/termek/kingston-fury-32gb-fury-beast-rgb-ddr5-6000mhz-cl40-kit-kf560c40bbak2-32/2013008" target="_blank">Kingston Fury Beast RGB DDR5 32GB 6000MHz</a></li>
+                <li><strong>Videókártya:</strong> <a href="https://m.alza.hu/gainward-geforce-rtx-4070-super-ghost-12gb-gddr6x-d9358302.htm" target="_blank">Gainward GeForce RTX 4070 Super Ghost 12GB</a></li>
+                <li><strong>Áramellátó:</strong> <a href="https://www.arukereso.hu/tapegyseg-c3158/be-quiet/700w-bronze-system-power-9-700w-cm-bronze-bn303-p487033422/" target="_blank">Be Quiet! System Power 9 700W CM Bronze</a></li>
+                <li><strong>SSD:</strong> <a href="https://www.alza.hu/kingston-nv2-2tb-d7373901.htm" target="_blank">Kingston NV2 2TB</a></li>
+                <li><strong>Gépház:</strong> <a href="https://www.pcx.hu/kolink-observatory-hf-uveg-ablakos-fekete-szamitogephaz-observatory-hf-gb--941901" target="_blank">Kolink Observatory HF</a></li>
+                <li><strong>Processzor hűtő:</strong> <a href="https://ipon.hu/shop/termek/deepcool-ld360-fekete/2261268" target="_blank">DeepCool LD360</a></li>
+            </ul>
+        </div>
+        <div class="specs">
+            <strong>Eszközök:</strong>
+            <ul>
+                <li><strong>Egér:</strong> <a href="https://ipon.hu/shop/termek/glorious-model-d-wireless-fekete/1954865?gad_source=1" target="_blank">Glorious Model D Wireless (fekete)</a></li>
+                <li><strong>Egér (másodlagos):</strong> <a href="https://www.bloody.com/en/product.php?pid=10&id=98" target="_blank">Bloody J95s</a></li>
+                <li><strong>Billentyűzet:</strong> <a href="https://endorfy.com/en/product/thock-75-wireless-hu-black/" target="_blank">Endorfy Thock 75 Wireless</a></li>
+                <li><strong>Mikrofon:</strong> <a href="https://www.alza.hu/hyperx-quadcast-s-d6876015.htm?kampan=adw3_audio-video_pla_all_obecna_audio-video-mikrofony_c_9198825___580389083183_~132051087723~&gad_source=1" target="_blank">HyperX QuadCast S</a></li>
+                <li><strong>Monitor:</strong> <a href="https://www.asus.com/displays-desktops/monitors/tuf-gaming/tuf-gaming-vg249q1a/" target="_blank">ASUS TUF Gaming VG249Q1A</a></li>
+                <li><strong>Monitor (másodlagos):</strong> <a href="https://support.hp.com/hu-hu/product/details/hp-elitedisplay-e240-23.8-inch-monitor/model/7840094" target="_blank">HP EliteDisplay E240</a></li>
+                <li><strong>Kamera:</strong> <a href="https://mstore.hu/xiaomi-imilab-w88s-webkamera_55835" target="_blank">Xiaomi IMILAB W88S</a></li>
+                <li><strong>Asztal:</strong> <a href="https://huzaro.hu/gamer-iroasztalok/272-huzaro-hero-47-gaming-desk-black-5903796011319.html" target="_blank">Huzaro Hero 1.7</a></li>
+                <li><strong>Telefon:</strong> <a href="https://www.arukereso.hu/mobiltelefon-c3277/xiaomi/redmi-note-12s-256gb-8gb-ram-dual-p952837914/" target="_blank">Xiaomi Redmi Note 12S</a></li>
+            </ul>
+        </div>
     </div>
 
     <!-- Zene lejátszó gombok -->
