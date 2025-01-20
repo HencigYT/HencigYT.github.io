@@ -14,15 +14,21 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            animation: backgroundAnimation 33.33ms infinite linear; /* Continuous animation at 30FPS */
+            background: linear-gradient(135deg, #004d00, #007d00);
+            background-size: 400% 400%; /* Larger background for smooth movement */
+            animation: backgroundAnimation 15s ease infinite; /* Smooth, continuous background animation */
         }
 
         @keyframes backgroundAnimation {
-            0% { background: linear-gradient(135deg, #004d00, #007d00); }
-            25% { background: linear-gradient(135deg, #006400, #00b300); }
-            50% { background: linear-gradient(135deg, #007d00, #004d00); }
-            75% { background: linear-gradient(135deg, #00b300, #006400); }
-            100% { background: linear-gradient(135deg, #004d00, #007d00); }
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .container {
