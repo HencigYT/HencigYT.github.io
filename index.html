@@ -8,52 +8,44 @@
         /* Alapstílusok */
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e0f7fa, #80cbc4);
-            color: #333;
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: hidden;
-            animation: gradientAnimation 10s ease infinite;
-        }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         /* Konténer */
         .container {
             text-align: center;
             max-width: 800px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
         }
 
         /* Cím */
         .name {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: bold;
-            color: #00796b;
+            color: #0f0;
             margin-bottom: 20px;
-            animation: fadeIn 2s ease-in-out;
+            animation: glow 1.5s infinite alternate;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0; }
+            100% { text-shadow: 0 0 20px #0f0, 0 0 40px #0f0, 0 0 60px #0f0; }
         }
 
         /* Bevezető szöveg */
         .intro {
-            font-size: 1.2rem;
-            color: #555;
+            font-size: 1.1rem;
+            color: #ccc;
             margin-bottom: 30px;
             line-height: 1.6;
         }
@@ -62,14 +54,14 @@
         .specs {
             margin: 20px 0;
             padding: 20px;
-            background: rgba(0, 128, 118, 0.1);
+            background: rgba(0, 50, 0, 0.3);
             border-radius: 10px;
             text-align: left;
         }
 
         .specs h2 {
             font-size: 1.5rem;
-            color: #00796b;
+            color: #0f0;
             margin-bottom: 15px;
         }
 
@@ -81,17 +73,17 @@
         .specs li {
             margin: 10px 0;
             font-size: 1rem;
-            color: #555;
+            color: #ccc;
         }
 
         .specs a {
-            color: #00796b;
+            color: #0f0;
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .specs a:hover {
-            color: #004d40;
+            color: #fff;
         }
 
         /* Közösségi média gombok */
@@ -105,37 +97,19 @@
         .social a {
             text-decoration: none;
             font-size: 1rem;
-            color: #fff;
+            color: #000;
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 25px;
-            border-radius: 30px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: #0f0;
             transition: all 0.3s;
         }
 
-        .social a.youtube {
-            background: #ff0000;
-        }
-
-        .social a.youtube:hover {
-            background: #cc0000;
-        }
-
-        .social a.discord {
-            background: #5865f2;
-        }
-
-        .social a.discord:hover {
-            background: #4752c4;
-        }
-
-        .social a.twitch {
-            background: #9146ff;
-        }
-
-        .social a.twitch:hover {
-            background: #7c3ac9;
+        .social a:hover {
+            background: #0c0;
+            box-shadow: 0 0 10px #0f0;
         }
 
         .social img {
@@ -147,7 +121,7 @@
             position: absolute;
             bottom: 20px;
             font-size: 0.9rem;
-            color: #00796b;
+            color: #0f0;
         }
     </style>
 </head>
