@@ -16,8 +16,10 @@
             align-items: center;
             min-height: 100vh;
             overflow-y: auto;
+            position: relative;
         }
 
+        /* Vibráló effekt (flicker) */
         @keyframes flicker {
             0% { opacity: 0.27861; }
             5% { opacity: 0.34769; }
@@ -42,6 +44,7 @@
             100% { opacity: 0.24387; }
         }
 
+        /* Szöveg árnyék animáció */
         @keyframes textShadow {
             0% { text-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
             5% { text-shadow: 0.7928974010788217px 0 1px rgba(0,30,255,0.5), -0.7928974010788217px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
@@ -66,6 +69,7 @@
             100% { text-shadow: 0.5px 0 1px rgba(0,30,255,0.5), -0.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
         }
 
+        /* Vibráló effekt alkalmazása */
         body::after {
             content: " ";
             display: block;
@@ -108,6 +112,8 @@
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
             margin: 20px;
+            position: relative;
+            z-index: 3; /* A konténer legyen a vibráló effekt felett */
         }
 
         /* Cím */
@@ -202,6 +208,9 @@
         /* Támogatás gomb */
         .support {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
         }
 
         .support a {
@@ -268,11 +277,11 @@
             <a href="https://discord.com/invite/F8pz3SKvc5" target="_blank" class="discord">
                 <img src="https://static.vecteezy.com/system/resources/previews/018/930/604/non_2x/discord-logo-discord-icon-transparent-free-png.png" alt="Discord"> Discord
             </a>
+        </div>
+        <div class="support">
             <a href="https://www.twitch.tv/hencig_yt" target="_blank" class="twitch">
                 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
             </a>
-        </div>
-        <div class="support">
             <a href="https://streamelements.com/hencigyt/tip" target="_blank">
                 <img src="https://cdn-icons-png.flaticon.com/512/648/648176.png" alt="Támogatás"> Támogatás
             </a>
