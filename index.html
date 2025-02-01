@@ -6,16 +6,20 @@
     <title>Hencig - Információk</title>
     <style>
         /* Alapstílusok */
-        body {
+        html, body {
             margin: 0;
+            padding: 0;
+            height: 100%;
             font-family: 'Arial', sans-serif;
             background: #000;
             color: #fff;
+            overflow: auto; /* Engedélyezzük a görgetést */
+        }
+
+        body {
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: auto;
+            align-items: flex-start; /* Tartalom a tetején kezdődik */
             padding: 20px;
         }
 
@@ -141,10 +145,10 @@
 
         /* Lábléc */
         footer {
-            position: fixed;
-            bottom: 20px;
+            margin-top: 30px; /* Lábléc a tartalom alatt */
             font-size: 0.9rem;
             color: #0f0;
+            text-align: center;
         }
 
         /* Media Query-k */
@@ -240,6 +244,9 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
             </a>
         </div>
+        <footer>
+            &copy; 2023 Hencig. Minden jog fenntartva.
+        </footer>
     </div>
 </body>
 </html>
