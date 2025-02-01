@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hencig - InformĂĄciĂłk</title>
+    <title>Hencig - Információk</title>
     <style>
-        /* AlapstĂ­lusok */
+        /* Alapstílusok */
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
@@ -14,172 +14,92 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-y: auto;
         }
 
         @keyframes flicker {
-    0% {
-      opacity: 0.27861;
-    }
-    5% {
-      opacity: 0.34769;
-    }
-    10% {
-      opacity: 0.23604;
-    }
-    15% {
-      opacity: 0.90626;
-    }
-    20% {
-      opacity: 0.18128;
-    }
-    25% {
-      opacity: 0.83891;
-    }
-    30% {
-      opacity: 0.65583;
-    }
-    35% {
-      opacity: 0.67807;
-    }
-    40% {
-      opacity: 0.26559;
-    }
-    45% {
-      opacity: 0.84693;
-    }
-    50% {
-      opacity: 0.96019;
-    }
-    55% {
-      opacity: 0.08594;
-    }
-    60% {
-      opacity: 0.20313;
-    }
-    65% {
-      opacity: 0.71988;
-    }
-    70% {
-      opacity: 0.53455;
-    }
-    75% {
-      opacity: 0.37288;
-    }
-    80% {
-      opacity: 0.71428;
-    }
-    85% {
-      opacity: 0.70419;
-    }
-    90% {
-      opacity: 0.7003;
-    }
-    95% {
-      opacity: 0.36108;
-    }
-    100% {
-      opacity: 0.24387;
-    }
-  }
-  @keyframes textShadow {
-    0% {
-      text-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    5% {
-      text-shadow: 0.7928974010788217px 0 1px rgba(0,30,255,0.5), -0.7928974010788217px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    10% {
-      text-shadow: 0.02px 0 1px rgba(0,30,255,0.5), -0.02956275843481219px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    15% {
-      text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.40218538552878136px 0 0px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    20% {
-      text-shadow: 0px 0 1px rgba(0,30,255,0.5), -3.4794037899852017px 0 0px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    25% {
-      text-shadow: 0.6125630401149584px 0 1px rgba(0,30,255,0.5), -0.6125630401149584px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    30% {
-      text-shadow: 0.7015590085143956px 0 1px rgba(0,30,255,0.5), -0.7015590085143956px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    35% {
-      text-shadow: 0.896914047650351px 0 1px rgba(0,30,255,0.5), -0.896914047650351px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    40% {
-      text-shadow: 0.870905614848819px 0 1px rgba(0,30,255,0.5), -0.870905614848819px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    45% {
-      text-shadow: 0.131056963361899px 0 1px rgba(0,30,255,0.5), -0.231056963361899px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    50% {
-      text-shadow: 0.08084290417898504px 0 1px rgba(0,30,255,0.5), -0.08084290417898504px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    55% {
-      text-shadow: 0.2758461067427543px 0 1px rgba(0,30,255,0.5), -0.3758461067427543px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    60% {
-      text-shadow: 0.102193051050636px 0 1px rgba(0,30,255,0.5), -0.202193051050636px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    65% {
-      text-shadow: 0.3638780614874975px 0 1px rgba(0,30,255,0.5), -0.8638780614874975px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    70% {
-      text-shadow: 0.48874025155497314px 0 1px rgba(0,30,255,0.5), -0.48874025155497314px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    75% {
-      text-shadow: 0.8948491305757957px 0 1px rgba(0,30,255,0.5), -0.8948491305757957px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    80% {
-      text-shadow: 0.0833037308038857px 0 1px rgba(0,30,255,0.5), -0.0833037308038857px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    85% {
-      text-shadow: 0.09769827255241735px 0 1px rgba(0,30,255,0.5), -0.09769827255241735px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    90% {
-      text-shadow: 1.743339761481782px 0 1px rgba(0,30,255,0.5), -0.443339761481782px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    95% {
-      text-shadow: 0.1px 0 1px rgba(0,30,255,0.5), -0.1841838852799786px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-    100% {
-      text-shadow: 0.5px 0 1px rgba(0,30,255,0.5), -0.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
-    }
-  }
-  body::after {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(18, 16, 16, 0.1);
-    opacity: 0;
-    z-index: 2;
-    pointer-events: none;
-    animation: flicker 0.15s infinite;
-  }
-  body::before {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    z-index: 2;
-    background-size: 100% 2px, 3px 100%;
-    pointer-events: none;
-  }
-  body {
-    animation: textShadow 1.6s infinite;
-  }
+            0% { opacity: 0.27861; }
+            5% { opacity: 0.34769; }
+            10% { opacity: 0.23604; }
+            15% { opacity: 0.90626; }
+            20% { opacity: 0.18128; }
+            25% { opacity: 0.83891; }
+            30% { opacity: 0.65583; }
+            35% { opacity: 0.67807; }
+            40% { opacity: 0.26559; }
+            45% { opacity: 0.84693; }
+            50% { opacity: 0.96019; }
+            55% { opacity: 0.08594; }
+            60% { opacity: 0.20313; }
+            65% { opacity: 0.71988; }
+            70% { opacity: 0.53455; }
+            75% { opacity: 0.37288; }
+            80% { opacity: 0.71428; }
+            85% { opacity: 0.70419; }
+            90% { opacity: 0.7003; }
+            95% { opacity: 0.36108; }
+            100% { opacity: 0.24387; }
+        }
 
-        /* KontĂŠner */
+        @keyframes textShadow {
+            0% { text-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            5% { text-shadow: 0.7928974010788217px 0 1px rgba(0,30,255,0.5), -0.7928974010788217px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            10% { text-shadow: 0.02px 0 1px rgba(0,30,255,0.5), -0.02956275843481219px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            15% { text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.40218538552878136px 0 0px rgba(255,0,80,0.3), 0 0 3px; }
+            20% { text-shadow: 0px 0 1px rgba(0,30,255,0.5), -3.4794037899852017px 0 0px rgba(255,0,80,0.3), 0 0 3px; }
+            25% { text-shadow: 0.6125630401149584px 0 1px rgba(0,30,255,0.5), -0.6125630401149584px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            30% { text-shadow: 0.7015590085143956px 0 1px rgba(0,30,255,0.5), -0.7015590085143956px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            35% { text-shadow: 0.896914047650351px 0 1px rgba(0,30,255,0.5), -0.896914047650351px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            40% { text-shadow: 0.870905614848819px 0 1px rgba(0,30,255,0.5), -0.870905614848819px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            45% { text-shadow: 0.131056963361899px 0 1px rgba(0,30,255,0.5), -0.231056963361899px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            50% { text-shadow: 0.08084290417898504px 0 1px rgba(0,30,255,0.5), -0.08084290417898504px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            55% { text-shadow: 0.2758461067427543px 0 1px rgba(0,30,255,0.5), -0.3758461067427543px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            60% { text-shadow: 0.102193051050636px 0 1px rgba(0,30,255,0.5), -0.202193051050636px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            65% { text-shadow: 0.3638780614874975px 0 1px rgba(0,30,255,0.5), -0.8638780614874975px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            70% { text-shadow: 0.48874025155497314px 0 1px rgba(0,30,255,0.5), -0.48874025155497314px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            75% { text-shadow: 0.8948491305757957px 0 1px rgba(0,30,255,0.5), -0.8948491305757957px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            80% { text-shadow: 0.0833037308038857px 0 1px rgba(0,30,255,0.5), -0.0833037308038857px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            85% { text-shadow: 0.09769827255241735px 0 1px rgba(0,30,255,0.5), -0.09769827255241735px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            90% { text-shadow: 1.743339761481782px 0 1px rgba(0,30,255,0.5), -0.443339761481782px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            95% { text-shadow: 0.1px 0 1px rgba(0,30,255,0.5), -0.1841838852799786px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+            100% { text-shadow: 0.5px 0 1px rgba(0,30,255,0.5), -0.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px; }
+        }
+
+        body::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(18, 16, 16, 0.1);
+            opacity: 0;
+            z-index: 2;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
+        }
+
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        body {
+            animation: textShadow 1.6s infinite;
+        }
+
+        /* Konténer */
         .container {
             text-align: center;
             max-width: 800px;
@@ -187,9 +107,10 @@
             background: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            margin: 20px;
         }
 
-        /* CĂ­m */
+        /* Cím */
         .name {
             font-size: 3rem;
             font-weight: bold;
@@ -203,7 +124,7 @@
             100% { text-shadow: 0 0 20px #0f0, 0 0 40px #0f0, 0 0 60px #0f0; }
         }
 
-        /* BevezetĹ szĂśveg */
+        /* Bevezető szöveg */
         .intro {
             font-size: 1.1rem;
             color: #ccc;
@@ -211,7 +132,7 @@
             line-height: 1.6;
         }
 
-        /* SpecifikĂĄciĂłk */
+        /* Specifikációk */
         .specs {
             margin: 20px 0;
             padding: 20px;
@@ -247,12 +168,13 @@
             color: #fff;
         }
 
-        /* KĂśzĂśssĂŠgi mĂŠdia gombok */
+        /* Közösségi média gombok */
         .social {
             margin-top: 30px;
             display: flex;
             justify-content: center;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         .social a {
@@ -277,12 +199,31 @@
             height: 20px;
         }
 
-        /* LĂĄblĂŠc */
-        footer {
-            position: absolute;
-            bottom: 20px;
-            font-size: 0.9rem;
-            color: #0f0;
+        /* Támogatás gomb */
+        .support {
+            margin-top: 20px;
+        }
+
+        .support a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: #0f0;
+            transition: all 0.3s;
+        }
+
+        .support a:hover {
+            background: #0c0;
+            box-shadow: 0 0 10px #0f0;
+        }
+
+        .support img {
+            height: 20px;
         }
     </style>
 </head>
@@ -290,31 +231,31 @@
     <div class="container">
         <div class="name">Hencig</div>
         <div class="intro">
-            LĂŠci iratkozzatok fel YouTube-on, mert tĂśrĂśltĂŠk az elĹzĹ csatornĂĄm :(
+            Léci iratkozzatok fel YouTube-on, mert törölték az előző csatornámat :(
             <br>R.I.P 900sub channel
         </div>
         <div class="specs">
-            <h2>SzĂĄmĂ­tĂłgĂŠp alkatrĂŠszek</h2>
+            <h2>Számítógép alkatrészek</h2>
             <ul>
                 <li><strong>Alaplap:</strong> <a href="https://www.alza.hu/gigabyte-z790-aorus-elite-ax-d7507291.htm" target="_blank">Gigabyte Z790 Aorus Elite AX</a></li>
                 <li><strong>Processzor:</strong> <a href="https://www.alza.hu/intel-core-i7-14700k-d7950854.htm" target="_blank">Intel Core i7-14700K</a></li>
                 <li><strong>RAM:</strong> <a href="https://ipon.hu/shop/termek/kingston-fury-32gb-fury-beast-rgb-ddr5-6000mhz-cl40-kit-kf560c40bbak2-32/2013008" target="_blank">Kingston Fury Beast RGB DDR5 32GB 6000MHz</a></li>
-                <li><strong>VideĂłkĂĄrtya:</strong> <a href="https://m.alza.hu/gainward-geforce-rtx-4070-super-ghost-12gb-gddr6x-d9358302.htm" target="_blank">Gainward GeForce RTX 4070 Super Ghost 12GB</a></li>
-                <li><strong>ĂramellĂĄtĂł:</strong> <a href="https://www.arukereso.hu/tapegyseg-c3158/be-quiet/700w-bronze-system-power-9-700w-cm-bronze-bn303-p487033422/" target="_blank">Be Quiet! System Power 9 700W CM Bronze</a></li>
+                <li><strong>Videókártya:</strong> <a href="https://m.alza.hu/gainward-geforce-rtx-4070-super-ghost-12gb-gddr6x-d9358302.htm" target="_blank">Gainward GeForce RTX 4070 Super Ghost 12GB</a></li>
+                <li><strong>Áramellátó:</strong> <a href="https://www.arukereso.hu/tapegyseg-c3158/be-quiet/700w-bronze-system-power-9-700w-cm-bronze-bn303-p487033422/" target="_blank">Be Quiet! System Power 9 700W CM Bronze</a></li>
                 <li><strong>SSD:</strong> <a href="https://www.alza.hu/kingston-nv2-2tb-d7373901.htm" target="_blank">Kingston NV2 2TB</a></li>
-                <li><strong>GĂŠphĂĄz:</strong> <a href="https://www.pcx.hu/kolink-observatory-hf-uveg-ablakos-fekete-szamitogephaz-observatory-hf-gb--941901" target="_blank">Kolink Observatory HF</a></li>
-                <li><strong>Processzor hĹątĹ:</strong> <a href="https://ipon.hu/shop/termek/deepcool-ld360-fekete/2261268" target="_blank">DeepCool LD360</a></li>
+                <li><strong>Gépház:</strong> <a href="https://www.pcx.hu/kolink-observatory-hf-uveg-ablakos-fekete-szamitogephaz-observatory-hf-gb--941901" target="_blank">Kolink Observatory HF</a></li>
+                <li><strong>Processzor hűtő:</strong> <a href="https://ipon.hu/shop/termek/deepcool-ld360-fekete/2261268" target="_blank">DeepCool LD360</a></li>
             </ul>
         </div>
         <div class="specs">
-            <h2>EszkĂśzĂśk</h2>
+            <h2>Eszközök</h2>
             <ul>
-                <li><strong>EgĂŠr:</strong> <a href="https://ipon.hu/shop/termek/glorious-model-d-wireless-fekete/1954865?gad_source=1" target="_blank">Glorious Model D Wireless (fekete)</a></li>
-                <li><strong>EgĂŠr (mĂĄsodlagos):</strong> <a href="https://www.bloody.com/en/product.php?pid=10&id=98" target="_blank">Bloody A90</a></li>
-                <li><strong>BillentyĹązet:</strong> <a href="https://endorfy.com/en/product/thock-75-wireless-hu-black/" target="_blank">Endorfy Thock 75 Wireless</a></li>
+                <li><strong>Egér:</strong> <a href="https://ipon.hu/shop/termek/glorious-model-d-wireless-fekete/1954865?gad_source=1" target="_blank">Glorious Model D Wireless (fekete)</a></li>
+                <li><strong>Egér (másodlagos):</strong> <a href="https://www.bloody.com/en/product.php?pid=10&id=98" target="_blank">Bloody A90</a></li>
+                <li><strong>Billentyűzet:</strong> <a href="https://endorfy.com/en/product/thock-75-wireless-hu-black/" target="_blank">Endorfy Thock 75 Wireless</a></li>
                 <li><strong>Mikrofon:</strong> <a href="https://www.alza.hu/hyperx-quadcast-s-d6876015.htm?kampan=adw3_audio-video_pla_all_obecna_audio-video-mikrofony_c_9198825___580389083183_~132051087723~&gad_source=1" target="_blank">HyperX QuadCast S</a></li>
                 <li><strong>Monitor:</strong> <a href="https://www.asus.com/displays-desktops/monitors/tuf-gaming/tuf-gaming-vg249q1a/" target="_blank">ASUS TUF Gaming VG249Q1A</a></li>
-                <li><strong>Monitor (mĂĄsodlagos):</strong> <a href="https://support.hp.com/hu-hu/product/details/hp-elitedisplay-e240-23.8-inch-monitor/model/7840094" target="_blank">HP EliteDisplay E240</a></li>
+                <li><strong>Monitor (másodlagos):</strong> <a href="https://support.hp.com/hu-hu/product/details/hp-elitedisplay-e240-23.8-inch-monitor/model/7840094" target="_blank">HP EliteDisplay E240</a></li>
                 <li><strong>Kamera:</strong> <a href="https://mstore.hu/xiaomi-imilab-w88s-webkamera_55835" target="_blank">Xiaomi IMILAB W88S</a></li>
                 <li><strong>Asztal:</strong> <a href="https://huzaro.hu/gamer-iroasztalok/272-huzaro-hero-47-gaming-desk-black-5903796011319.html" target="_blank">Huzaro Hero 4.7</a></li>
                 <li><strong>Telefon:</strong> <a href="https://www.arukereso.hu/mobiltelefon-c3277/xiaomi/redmi-note-12s-256gb-8gb-ram-dual-p952837914/" target="_blank">Xiaomi Redmi Note 12S</a></li>
@@ -329,6 +270,11 @@
             </a>
             <a href="https://www.twitch.tv/hencig_yt" target="_blank" class="twitch">
                 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
+            </a>
+        </div>
+        <div class="support">
+            <a href="https://streamelements.com/hencigyt/tip" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/648/648176.png" alt="Támogatás"> Támogatás
             </a>
         </div>
     </div>
