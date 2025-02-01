@@ -6,21 +6,17 @@
     <title>Hencig - Információk</title>
     <style>
         /* Alapstílusok */
-        html, body {
+        body {
             margin: 0;
-            padding: 0;
-            height: 100%;
             font-family: 'Arial', sans-serif;
             background: #000;
             color: #fff;
-            overflow: auto; /* Engedélyezzük a görgetést */
-        }
-
-        body {
             display: flex;
             justify-content: center;
             align-items: flex-start; /* Tartalom a tetején kezdődik */
-            padding: 20px;
+            min-height: 100vh; /* Teljes magasság */
+            overflow: auto; /* Görgetés engedélyezése */
+            padding: 20px; /* Padding a tartalom körül */
         }
 
         @keyframes flicker {
@@ -52,11 +48,12 @@
             background: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            margin: 20px 0; /* Margin a görgetéshez */
         }
 
         /* Cím */
         .name {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: bold;
             color: #0f0;
             margin-bottom: 20px;
@@ -70,7 +67,7 @@
 
         /* Bevezető szöveg */
         .intro {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #ccc;
             margin-bottom: 30px;
             line-height: 1.6;
@@ -118,7 +115,6 @@
             display: flex;
             justify-content: center;
             gap: 15px;
-            flex-wrap: wrap;
         }
 
         .social a {
@@ -149,53 +145,6 @@
             font-size: 0.9rem;
             color: #0f0;
             text-align: center;
-        }
-
-        /* Media Query-k */
-        @media (max-width: 768px) {
-            .name {
-                font-size: 2rem;
-            }
-
-            .intro {
-                font-size: 0.9rem;
-            }
-
-            .specs h2 {
-                font-size: 1.2rem;
-            }
-
-            .specs li {
-                font-size: 0.9rem;
-            }
-
-            .social a {
-                font-size: 0.9rem;
-                padding: 8px 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .name {
-                font-size: 1.5rem;
-            }
-
-            .intro {
-                font-size: 0.8rem;
-            }
-
-            .specs h2 {
-                font-size: 1rem;
-            }
-
-            .specs li {
-                font-size: 0.8rem;
-            }
-
-            .social a {
-                font-size: 0.8rem;
-                padding: 6px 12px;
-            }
         }
     </style>
 </head>
