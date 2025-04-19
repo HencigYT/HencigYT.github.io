@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hencig vagyok!</title>
+    <title>Hencig</title>
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/HencigYT/Hencig/refs/heads/main/48d0e079b22728cde4e1db2429ed9a57.png">
     <style>
         /* Alapstílusok */
@@ -196,6 +196,33 @@
             width: 24px;
             height: 24px;
         }
+
+        /* Nyelvválasztó */
+        .language-switcher {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .language-switcher img {
+            width: 32px;
+            height: 24px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .language-switcher img:hover {
+            transform: scale(1.1);
+        }
+
+        .language-switcher img.active {
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px #4CAF50;
+        }
     </style>
 </head>
 <body>
@@ -210,6 +237,12 @@
         <img src="https://cdn-icons-png.flaticon.com/512/7960/7960808.png" alt="Némítás">
     </div>
 
+    <!-- Nyelvválasztó -->
+    <div class="language-switcher">
+        <img src="magyar.png" alt="Magyar" id="huFlag" class="active">
+        <img src="angol.png" alt="English" id="enFlag">
+    </div>
+
     <!-- Háttérzene -->
     <audio id="backgroundMusic" loop>
         <source src="zene.mp3" type="audio/mpeg">
@@ -219,61 +252,174 @@
         <div class="sidebar">
             <div class="name">Hencig</div>
             
-            <div class="platforms-header">Platformok:</div>
+            <div class="platforms-header" id="platformsHeader">Platformok:</div>
             <div class="social-links">
                 <a href="https://discord.com/invite/F8pz3SKvc5" target="_blank">
-                    <img src="discord1.png" alt="Discord"> Discord
+                    <img src="discord1.png" alt="Discord"> <span class="discord-text">Discord</span>
                 </a>
                 <a href="https://www.youtube.com/channel/UCp7PxfyhJmZxT7meb7AprDg" target="_blank">
-                    <img src="youtube1.png" alt="YouTube"> YouTube
+                    <img src="youtube1.png" alt="YouTube"> <span class="youtube-text">YouTube</span>
                 </a>
                 <a href="https://www.twitch.tv/hencig_" target="_blank">
-                    <img src="twitch1.png" alt="Twitch"> Twitch
+                    <img src="twitch1.png" alt="Twitch"> <span class="twitch-text">Twitch</span>
                 </a>
                 <a href="https://steamcommunity.com/id/hencig" target="_blank">
-                    <img src="steam1.png" alt="Steam"> Steam
+                    <img src="steam1.png" alt="Steam"> <span class="steam-text">Steam</span>
                 </a>
                 <a href="https://paypal.me/BenceSzarvas562?country.x=HU&locale.x=hu_HU" target="_blank">
-                    <img src="támogatás1.png" alt="Támogatás"> Támogatás
+                    <img src="támogatás1.png" alt="Támogatás"> <span class="support-text">Támogatás</span>
                 </a>
             </div>
         </div>
         
         <div class="content">
-            <!-- ESZKÖZÖK került felülre -->
+            <!-- ESZKÖZÖK -->
             <div class="specs">
-                <h2>Eszközök</h2>
-                <ul>
-                    <li><strong>Egér:</strong> <a href="https://ipon.hu/shop/termek/glorious-model-d-wireless-fekete/1954865?gad_source=1" target="_blank">Glorious Model D Wireless (fekete)</a></li>
-                    <li><strong>Egér (másodlagos):</strong> <a href="https://www.bloody.com/en/product.php?pid=10&id=98" target="_blank">Bloody A90</a></li>
-                    <li><strong>Billentyűzet:</strong> <a href="https://endorfy.com/en/product/thock-75-wireless-hu-black/" target="_blank">Endorfy Thock 75 Wireless</a></li>
-                    <li><strong>Mikrofon:</strong> <a href="https://www.alza.hu/hyperx-quadcast-s-d6876015.htm?kampan=adw3_audio-video_pla_all_obecna_audio-video-mikrofony_c_9198825___580389083183_~132051087723~&gad_source=1" target="_blank">HyperX QuadCast S</a></li>
-                    <li><strong>Monitor:</strong> <a href="https://www.asus.com/displays-desktops/monitors/tuf-gaming/tuf-gaming-vg249q1a/" target="_blank">ASUS TUF Gaming VG249Q1A</a></li>
-                    <li><strong>Monitor (másodlagos):</strong> <a href="https://support.hp.com/hu-hu/product/details/hp-elitedisplay-e240-23.8-inch-monitor/model/7840094" target="_blank">HP EliteDisplay E240</a></li>
-                    <li><strong>Kamera:</strong> <a href="https://mstore.hu/xiaomi-imilab-w88s-webkamera_55835" target="_blank">Xiaomi IMILAB W88S</a></li>
-                    <li><strong>Asztal:</strong> <a href="https://huzaro.hu/gamer-iroasztalok/272-huzaro-hero-47-gaming-desk-black-5903796011319.html" target="_blank">Huzaro Hero 4.7</a></li>
-                    <li><strong>Telefon:</strong> <a href="https://www.arukereso.hu/mobiltelefon-c3277/xiaomi/redmi-note-12s-256gb-8gb-ram-dual-p952837914/" target="_blank">Xiaomi Redmi Note 12S</a></li>
+                <h2 id="devicesTitle">Eszközök</h2>
+                <ul id="devicesList">
+                    <li><strong id="mouseLabel">Egér:</strong> <a href="https://ipon.hu/shop/termek/glorious-model-d-wireless-fekete/1954865?gad_source=1" target="_blank">Glorious Model D Wireless (fekete)</a></li>
+                    <li><strong id="mouse2Label">Egér (másodlagos):</strong> <a href="https://www.bloody.com/en/product.php?pid=10&id=98" target="_blank">Bloody A90</a></li>
+                    <li><strong id="keyboardLabel">Billentyűzet:</strong> <a href="https://endorfy.com/en/product/thock-75-wireless-hu-black/" target="_blank">Endorfy Thock 75 Wireless</a></li>
+                    <li><strong id="micLabel">Mikrofon:</strong> <a href="https://www.alza.hu/hyperx-quadcast-s-d6876015.htm?kampan=adw3_audio-video_pla_all_obecna_audio-video-mikrofony_c_9198825___580389083183_~132051087723~&gad_source=1" target="_blank">HyperX QuadCast S</a></li>
+                    <li><strong id="monitorLabel">Monitor:</strong> <a href="https://www.asus.com/displays-desktops/monitors/tuf-gaming/tuf-gaming-vg249q1a/" target="_blank">ASUS TUF Gaming VG249Q1A</a></li>
+                    <li><strong id="monitor2Label">Monitor (másodlagos):</strong> <a href="https://support.hp.com/hu-hu/product/details/hp-elitedisplay-e240-23.8-inch-monitor/model/7840094" target="_blank">HP EliteDisplay E240</a></li>
+                    <li><strong id="cameraLabel">Kamera:</strong> <a href="https://mstore.hu/xiaomi-imilab-w88s-webkamera_55835" target="_blank">Xiaomi IMILAB W88S</a></li>
+                    <li><strong id="deskLabel">Asztal:</strong> <a href="https://huzaro.hu/gamer-iroasztalok/272-huzaro-hero-47-gaming-desk-black-5903796011319.html" target="_blank">Huzaro Hero 4.7</a></li>
+                    <li><strong id="phoneLabel">Telefon:</strong> <a href="https://www.arukereso.hu/mobiltelefon-c3277/xiaomi/redmi-note-12s-256gb-8gb-ram-dual-p952837914/" target="_blank">Xiaomi Redmi Note 12S</a></li>
                 </ul>
             </div>
             
-            <!-- SZÁMÍTÓGÉP ALKATRÉSZEK került alulra -->
+            <!-- SZÁMÍTÓGÉP ALKATRÉSZEK -->
             <div class="specs">
-                <h2>Számítógép alkatrészek</h2>
-                <ul>
-                    <li><strong>Alaplap:</strong> <a href="https://www.alza.hu/gigabyte-z790-aorus-elite-ax-d7507291.htm" target="_blank">Gigabyte Z790 Aorus Elite AX</a></li>
-                    <li><strong>Processzor:</strong> <a href="https://www.alza.hu/intel-core-i7-14700k-d7950854.htm" target="_blank">Intel Core i7-14700K</a></li>
-                    <li><strong>RAM:</strong> <a href="https://ipon.hu/shop/termek/kingston-fury-32gb-fury-beast-rgb-ddr5-6000mhz-cl40-kit-kf560c40bbak2-32/2013008" target="_blank">Kingston Fury Beast RGB DDR5 32GB 6000MHz</a></li>
-                    <li><strong>Videókártya:</strong> <a href="https://m.alza.hu/gainward-geforce-rtx-4070-super-ghost-12gb-gddr6x-d9358302.htm" target="_blank">Gainward GeForce RTX 4070 Super Ghost 12GB</a></li>
-                    <li><strong>Áramellátó:</strong> <a href="https://www.arukereso.hu/tapegyseg-c3158/be-quiet/700w-bronze-system-power-9-700w-cm-bronze-bn303-p487033422/" target="_blank">Be Quiet! System Power 9 700W CM Bronze</a></li>
-                    <li><strong>SSD:</strong> <a href="https://www.alza.hu/kingston-nv2-2tb-d7373901.htm" target="_blank">Kingston NV2 2TB</a></li>
-                    <li><strong>Gépház:</strong> <a href="https://www.pcx.hu/kolink-observatory-hf-uveg-ablakos-fekete-szamitogephaz-observatory-hf-gb--941901" target="_blank">Kolink Observatory HF</a></li>
-                    <li><strong>Processzor hűtő:</strong> <a href="https://ipon.hu/shop/termek/deepcool-ld360-fekete/2261268" target="_blank">DeepCool LD360</a></li>
+                <h2 id="partsTitle">Számítógép alkatrészek</h2>
+                <ul id="partsList">
+                    <li><strong id="motherboardLabel">Alaplap:</strong> <a href="https://www.alza.hu/gigabyte-z790-aorus-elite-ax-d7507291.htm" target="_blank">Gigabyte Z790 Aorus Elite AX</a></li>
+                    <li><strong id="cpuLabel">Processzor:</strong> <a href="https://www.alza.hu/intel-core-i7-14700k-d7950854.htm" target="_blank">Intel Core i7-14700K</a></li>
+                    <li><strong id="ramLabel">RAM:</strong> <a href="https://ipon.hu/shop/termek/kingston-fury-32gb-fury-beast-rgb-ddr5-6000mhz-cl40-kit-kf560c40bbak2-32/2013008" target="_blank">Kingston Fury Beast RGB DDR5 32GB 6000MHz</a></li>
+                    <li><strong id="gpuLabel">Videókártya:</strong> <a href="https://m.alza.hu/gainward-geforce-rtx-4070-super-ghost-12gb-gddr6x-d9358302.htm" target="_blank">Gainward GeForce RTX 4070 Super Ghost 12GB</a></li>
+                    <li><strong id="psuLabel">Áramellátó:</strong> <a href="https://www.arukereso.hu/tapegyseg-c3158/be-quiet/700w-bronze-system-power-9-700w-cm-bronze-bn303-p487033422/" target="_blank">Be Quiet! System Power 9 700W CM Bronze</a></li>
+                    <li><strong id="ssdLabel">SSD:</strong> <a href="https://www.alza.hu/kingston-nv2-2tb-d7373901.htm" target="_blank">Kingston NV2 2TB</a></li>
+                    <li><strong id="caseLabel">Gépház:</strong> <a href="https://www.pcx.hu/kolink-observatory-hf-uveg-ablakos-fekete-szamitogephaz-observatory-hf-gb--941901" target="_blank">Kolink Observatory HF</a></li>
+                    <li><strong id="coolerLabel">Processzor hűtő:</strong> <a href="https://ipon.hu/shop/termek/deepcool-ld360-fekete/2261268" target="_blank">DeepCool LD360</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
     <script>
+        // Nyelvi tartalmak
+        const translations = {
+            hu: {
+                platforms: "Platformok:",
+                discord: "Discord",
+                youtube: "YouTube",
+                twitch: "Twitch",
+                steam: "Steam",
+                support: "Támogatás",
+                devicesTitle: "Eszközök",
+                mouse: "Egér:",
+                mouse2: "Egér (másodlagos):",
+                keyboard: "Billentyűzet:",
+                mic: "Mikrofon:",
+                monitor: "Monitor:",
+                monitor2: "Monitor (másodlagos):",
+                camera: "Kamera:",
+                desk: "Asztal:",
+                phone: "Telefon:",
+                partsTitle: "Számítógép alkatrészek",
+                motherboard: "Alaplap:",
+                cpu: "Processzor:",
+                ram: "RAM:",
+                gpu: "Videókártya:",
+                psu: "Áramellátó:",
+                ssd: "SSD:",
+                case: "Gépház:",
+                cooler: "Processzor hűtő:"
+            },
+            en: {
+                platforms: "Platforms:",
+                discord: "Discord",
+                youtube: "YouTube",
+                twitch: "Twitch",
+                steam: "Steam",
+                support: "Support",
+                devicesTitle: "Devices",
+                mouse: "Mouse:",
+                mouse2: "Mouse (secondary):",
+                keyboard: "Keyboard:",
+                mic: "Microphone:",
+                monitor: "Monitor:",
+                monitor2: "Monitor (secondary):",
+                camera: "Camera:",
+                desk: "Desk:",
+                phone: "Phone:",
+                partsTitle: "Computer Components",
+                motherboard: "Motherboard:",
+                cpu: "Processor:",
+                ram: "RAM:",
+                gpu: "Graphics card:",
+                psu: "Power supply:",
+                ssd: "SSD:",
+                case: "Case:",
+                cooler: "CPU cooler:"
+            }
+        };
+
+        // Alapértelmezett nyelv beállítása (angol)
+        let currentLanguage = 'en';
+
+        // Nyelv váltás
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            
+            // Frissítjük az aktív flag stílusát
+            document.getElementById('huFlag').classList.toggle('active', lang === 'hu');
+            document.getElementById('enFlag').classList.toggle('active', lang === 'en');
+            
+            // Szövegek frissítése
+            document.getElementById('platformsHeader').textContent = translations[lang].platforms;
+            document.querySelector('.discord-text').textContent = translations[lang].discord;
+            document.querySelector('.youtube-text').textContent = translations[lang].youtube;
+            document.querySelector('.twitch-text').textContent = translations[lang].twitch;
+            document.querySelector('.steam-text').textContent = translations[lang].steam;
+            document.querySelector('.support-text').textContent = translations[lang].support;
+            
+            document.getElementById('devicesTitle').textContent = translations[lang].devicesTitle;
+            document.getElementById('mouseLabel').textContent = translations[lang].mouse;
+            document.getElementById('mouse2Label').textContent = translations[lang].mouse2;
+            document.getElementById('keyboardLabel').textContent = translations[lang].keyboard;
+            document.getElementById('micLabel').textContent = translations[lang].mic;
+            document.getElementById('monitorLabel').textContent = translations[lang].monitor;
+            document.getElementById('monitor2Label').textContent = translations[lang].monitor2;
+            document.getElementById('cameraLabel').textContent = translations[lang].camera;
+            document.getElementById('deskLabel').textContent = translations[lang].desk;
+            document.getElementById('phoneLabel').textContent = translations[lang].phone;
+            
+            document.getElementById('partsTitle').textContent = translations[lang].partsTitle;
+            document.getElementById('motherboardLabel').textContent = translations[lang].motherboard;
+            document.getElementById('cpuLabel').textContent = translations[lang].cpu;
+            document.getElementById('ramLabel').textContent = translations[lang].ram;
+            document.getElementById('gpuLabel').textContent = translations[lang].gpu;
+            document.getElementById('psuLabel').textContent = translations[lang].psu;
+            document.getElementById('ssdLabel').textContent = translations[lang].ssd;
+            document.getElementById('caseLabel').textContent = translations[lang].case;
+            document.getElementById('coolerLabel').textContent = translations[lang].cooler;
+        }
+
+        // Oldal betöltésekor ellenőrizzük a preferált nyelvet
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('preferredLanguage');
+            if (savedLanguage) {
+                currentLanguage = savedLanguage;
+            }
+            switchLanguage(currentLanguage);
+            
+            // Flag eseményfigyelők
+            document.getElementById('huFlag').addEventListener('click', () => switchLanguage('hu'));
+            document.getElementById('enFlag').addEventListener('click', () => switchLanguage('en'));
+        });
+
         // Háttérzene kezelése
         const audio = document.getElementById('backgroundMusic');
         const audioControl = document.getElementById('audioControl');
