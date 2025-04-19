@@ -206,11 +206,11 @@
 
     <!-- Hang vezérlő -->
     <div class="audio-control" id="audioControl">
-        <img src="https://cdn-icons-png.flaticon.com/512/3669/3669483.png" alt="Hang">
+        <img src="https://cdn-icons-png.flaticon.com/512/7960/7960808.png" alt="Némítás">
     </div>
 
     <!-- Háttérzene -->
-    <audio id="backgroundMusic" loop>
+    <audio id="backgroundMusic" loop autoplay>
         <source src="zene.mp3" type="audio/mpeg">
     </audio>
 
@@ -276,28 +276,50 @@
         // Háttérzene kezelése
         const audio = document.getElementById('backgroundMusic');
         const audioControl = document.getElementById('audioControl');
-        let isPlaying = false;
+        let isPlaying = true; // Alapból már játszik
 
-        // Alapból kikapcsolva a hang, de betöltve
+        // Alapból bekapcsolva a hang
         audio.volume = 0.5;
-        audio.pause();
+        
+        // Próbáljuk meg elindítani a zenét
+        function startAudio() {
+            audio.play().then(() => {
+                console.log("Audio playback started successfully");
+                isPlaying = true;
+                audioControl.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/7960/7960808.png" alt="Némítás">';
+            }).catch(e => {
+                console.log("Audio playback error:", e);
+                // Ha nem sikerül, megpróbáljuk a felhasználói interakció után
+                document.addEventListener('click', function firstInteraction() {
+                    audio.play().then(() => {
+                        isPlaying = true;
+                        audioControl.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/7960/7960808.png" alt="Némítás">';
+                    });
+                    document.removeEventListener('click', firstInteraction);
+                });
+            });
+        }
 
+        // Oldal betöltésekor próbáljuk elindítani a zenét
+        window.addEventListener('DOMContentLoaded', startAudio);
+
+        // Hang vezérlő gomb
         audioControl.addEventListener('click', function() {
             if (isPlaying) {
                 audio.pause();
                 audioControl.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/3669/3669483.png" alt="Hang">';
             } else {
-                audio.play().catch(e => console.log("Audio play error:", e));
+                audio.play();
                 audioControl.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/7960/7960808.png" alt="Némítás">';
             }
             isPlaying = !isPlaying;
         });
 
-        // Videó háttér autoplay engedélyezése
+        // Videó háttér autoplay
         document.addEventListener('DOMContentLoaded', function() {
             const video = document.getElementById('video-background');
-            video.muted = true; // Mute-olva, hogy mindenhol működjön az autoplay
-            video.play().catch(e => console.log("Autoplay nem engedélyezett:", e));
+            video.muted = true;
+            video.play().catch(e => console.log("Video autoplay error:", e));
         });
     </script>
 </body>
