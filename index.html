@@ -210,7 +210,7 @@
     </div>
 
     <!-- Háttérzene -->
-    <audio id="backgroundMusic" loop autoplay>
+    <audio id="backgroundMusic" loop>
         <source src="zene.mp3" type="audio/mpeg">
     </audio>
 
@@ -224,19 +224,19 @@
             
             <div class="social-links">
                 <a href="https://www.youtube.com/channel/UCp7PxfyhJmZxT7meb7AprDg" target="_blank">
-                    <img src="youtube.png" alt="YouTube"> YouTube
+                    <img src="youtube1.png" alt="YouTube"> YouTube
                 </a>
                 <a href="https://discord.com/invite/F8pz3SKvc5" target="_blank">
-                    <img src="discord.png" alt="Discord"> Discord
+                    <img src="discord1.png" alt="Discord"> Discord
                 </a>
                 <a href="https://steamcommunity.com/id/hencig" target="_blank">
-                    <img src="steam.png" alt="Steam"> Steam
+                    <img src="steam1.png" alt="Steam"> Steam
                 </a>
                 <a href="https://www.twitch.tv/hencig_" target="_blank">
-                    <img src="twitch.png" alt="Twitch"> Twitch
+                    <img src="twitch1.png" alt="Twitch"> Twitch
                 </a>
                 <a href="https://paypal.me/BenceSzarvas562?country.x=HU&locale.x=hu_HU" target="_blank">
-                    <img src="https://cdn-icons-png.flaticon.com/512/648/648176.png" alt="Támogatás"> Támogatás
+                    <img src="támogatás1.png" alt="Támogatás"> Támogatás
                 </a>
             </div>
         </div>
@@ -276,7 +276,7 @@
         // Háttérzene kezelése
         const audio = document.getElementById('backgroundMusic');
         const audioControl = document.getElementById('audioControl');
-        let isPlaying = true; // Alapból már játszik
+        let isPlaying = false;
 
         // Alapból bekapcsolva a hang
         audio.volume = 0.5;
@@ -290,21 +290,34 @@
             }).catch(e => {
                 console.log("Audio playback error:", e);
                 // Ha nem sikerül, megpróbáljuk a felhasználói interakció után
-                document.addEventListener('click', function firstInteraction() {
+                const startOnInteraction = () => {
                     audio.play().then(() => {
                         isPlaying = true;
                         audioControl.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/7960/7960808.png" alt="Némítás">';
                     });
-                    document.removeEventListener('click', firstInteraction);
-                });
+                    document.removeEventListener('click', startOnInteraction);
+                    document.removeEventListener('keydown', startOnInteraction);
+                    document.removeEventListener('touchstart', startOnInteraction);
+                };
+                
+                document.addEventListener('click', startOnInteraction);
+                document.addEventListener('keydown', startOnInteraction);
+                document.addEventListener('touchstart', startOnInteraction);
             });
         }
 
         // Oldal betöltésekor próbáljuk elindítani a zenét
-        window.addEventListener('DOMContentLoaded', startAudio);
+        window.addEventListener('load', () => {
+            startAudio();
+            
+            // Alternatív megoldás, ha a load esemény után sem indul el
+            setTimeout(startAudio, 1000);
+        });
 
         // Hang vezérlő gomb
-        audioControl.addEventListener('click', function() {
+        audioControl.addEventListener('click', function(e) {
+            e.stopPropagation(); // Megakadályozzuk, hogy ez triggerelje a startOnInteraction-t
+            
             if (isPlaying) {
                 audio.pause();
                 audioControl.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/3669/3669483.png" alt="Hang">';
