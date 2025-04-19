@@ -10,7 +10,6 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background: #000;
             color: #fff;
             display: flex;
             justify-content: center;
@@ -18,6 +17,21 @@
             min-height: 100vh;
             overflow-y: auto;
             position: relative;
+            background: url('gephatter.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Blúros háttér effekt */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            filter: blur(5px);
+            z-index: -1;
         }
 
         /* Vibráló effekt (flicker) */
@@ -81,23 +95,9 @@
             right: 0;
             background: rgba(18, 16, 16, 0.1);
             opacity: 0;
-            z-index: 2;
+            z-index: 1;
             pointer-events: none;
             animation: flicker 0.15s infinite;
-        }
-
-        body::before {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 2;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
         }
 
         body {
@@ -109,12 +109,14 @@
             text-align: center;
             max-width: 800px;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
             margin: 20px;
             position: relative;
-            z-index: 3; /* A konténer legyen a vibráló effekt felett */
+            z-index: 2;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(0, 255, 0, 0.2);
         }
 
         /* Cím */
@@ -146,6 +148,7 @@
             background: rgba(0, 50, 0, 0.3);
             border-radius: 10px;
             text-align: left;
+            border: 1px solid rgba(0, 255, 0, 0.1);
         }
 
         .specs h2 {
@@ -173,6 +176,7 @@
 
         .specs a:hover {
             color: #fff;
+            text-shadow: 0 0 5px #0f0;
         }
 
         /* Közösségi média gombok */
@@ -195,11 +199,13 @@
             border-radius: 5px;
             background: #0f0;
             transition: all 0.3s;
+            box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
         }
 
         .social a:hover {
             background: #0c0;
-            box-shadow: 0 0 10px #0f0;
+            box-shadow: 0 0 15px #0f0;
+            transform: translateY(-2px);
         }
 
         .social img {
@@ -225,11 +231,13 @@
             border-radius: 5px;
             background: #0f0;
             transition: all 0.3s;
+            box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
         }
 
         .support a:hover {
             background: #0c0;
-            box-shadow: 0 0 10px #0f0;
+            box-shadow: 0 0 15px #0f0;
+            transform: translateY(-2px);
         }
 
         .support img {
@@ -246,15 +254,15 @@
         </div>
         <div class="social">
             <a href="https://www.youtube.com/channel/UCp7PxfyhJmZxT7meb7AprDg" target="_blank" class="youtube">
-                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
+                <img src="youtube.png" alt="YouTube"> YouTube
             </a>
             <a href="https://discord.com/invite/F8pz3SKvc5" target="_blank" class="discord">
-                <img src="https://static.vecteezy.com/system/resources/previews/018/930/604/non_2x/discord-logo-discord-icon-transparent-free-png.png" alt="Discord"> Discord
+                <img src="discord.png" alt="Discord"> Discord
             </a>
         </div>
         <div class="support">
             <a href="https://www.twitch.tv/hencig_" target="_blank" class="twitch">
-                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
+                <img src="twitch.png" alt="Twitch"> Twitch
             </a>
             <a href="https://paypal.me/BenceSzarvas562?country.x=HU&locale.x=hu_HU" target="_blank">
                 <img src="https://cdn-icons-png.flaticon.com/512/648/648176.png" alt="Támogatás"> Támogatás
