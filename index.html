@@ -91,38 +91,17 @@
         }
 
         .profile-pic img {
+            width: 100%;
             max-width: 100%;
             height: auto;
-            max-height: 200px;
             border-radius: 10px;
             border: 2px solid #4CAF50;
             box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
         }
 
-        /* Profilkép a tartalom bal oldalán (asztali nézetben) */
-        @media (min-width: 768px) {
-            .content::before {
-                content: "";
-                position: absolute;
-                left: -220px;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 200px;
-                height: 200px;
-                background-image: url('hencigpfp.png');
-                background-size: contain;
-                background-repeat: no-repeat;
-                background-position: center;
-                border-radius: 10px;
-                border: 2px solid #4CAF50;
-                box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
-                z-index: 1;
-            }
-            
-            /* Elrejtjük a sidebar-beli profilképet asztali nézetben */
-            .profile-pic {
-                display: none;
-            }
+        /* Elrejtjük a tartalom bal oldalán lévő profilkép placeholder-t */
+        .content::before {
+            display: none;
         }
 
         /* Platformok fejléc */
@@ -208,24 +187,6 @@
             text-decoration: underline;
         }
 
-        /* Hang vezérlő */
-        .audio-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(20, 40, 20, 0.7);
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            border: 1px solid rgba(76, 175, 80, 0.5);
-        }
-
-        .audio-control img {
-            width: 24px;
-            height: 24px;
-        }
-
         /* Nyelvválasztó */
         .language-switcher {
             position: fixed;
@@ -261,21 +222,11 @@
     </video>
     <div class="overlay"></div>
 
-    <!-- Hang vezérlő -->
-    <div class="audio-control" id="audioControl">
-        <img src="https://cdn-icons-png.flaticon.com/512/7960/7960808.png" alt="Némítás">
-    </div>
-
     <!-- Nyelvválasztó -->
     <div class="language-switcher">
         <img src="magyar1.png" alt="Magyar" id="huFlag">
         <img src="angol1.png" alt="English" id="enFlag" class="active">
     </div>
-
-    <!-- Háttérzene -->
-    <audio id="backgroundMusic" loop>
-        <source src="zene.mp3" type="audio/mpeg">
-    </audio>
 
     <div class="container">
         <div class="sidebar">
@@ -302,7 +253,7 @@
                 </a>
             </div>
 
-            <!-- Profilkép a platformok alatt (mobil nézetben) -->
+            <!-- Profilkép a platformok alatt -->
             <div class="profile-pic">
                 <img src="hencigpfp.png" alt="Hencig profil">
             </div>
@@ -343,7 +294,6 @@
     </div>
 
     <script>
-        // [A nyelvváltó és audio kezelő scriptje változatlan marad]
         // Nyelvi tartalmak
         const translations = {
             hu: {
@@ -455,61 +405,6 @@
             // Flag eseményfigyelők
             document.getElementById('huFlag').addEventListener('click', () => switchLanguage('hu'));
             document.getElementById('enFlag').addEventListener('click', () => switchLanguage('en'));
-        });
-
-        // Háttérzene kezelése
-        const audio = document.getElementById('backgroundMusic');
-        const audioControl = document.getElementById('audioControl');
-        let isPlaying = false;
-
-        // Alapból bekapcsolva a hang
-        audio.volume = 0.5;
-        
-        // Próbáljuk meg elindítani a zenét
-        function startAudio() {
-            audio.play().then(() => {
-                console.log("Audio playback started successfully");
-                isPlaying = true;
-                audioControl.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/7960/7960808.png" alt="Némítás">';
-            }).catch(e => {
-                console.log("Audio playback error:", e);
-                // Ha nem sikerül, megpróbáljuk a felhasználói interakció után
-                const startOnInteraction = () => {
-                    audio.play().then(() => {
-                        isPlaying = true;
-                        audioControl.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/7960/7960808.png" alt="Némítás">';
-                    });
-                    document.removeEventListener('click', startOnInteraction);
-                    document.removeEventListener('keydown', startOnInteraction);
-                    document.removeEventListener('touchstart', startOnInteraction);
-                };
-                
-                document.addEventListener('click', startOnInteraction);
-                document.addEventListener('keydown', startOnInteraction);
-                document.addEventListener('touchstart', startOnInteraction);
-            });
-        }
-
-        // Oldal betöltésekor próbáljuk elindítani a zenét
-        window.addEventListener('load', () => {
-            startAudio();
-            
-            // Alternatív megoldás, ha a load esemény után sem indul el
-            setTimeout(startAudio, 1000);
-        });
-
-        // Hang vezérlő gomb
-        audioControl.addEventListener('click', function(e) {
-            e.stopPropagation(); // Megakadályozzuk, hogy ez triggerelje a startOnInteraction-t
-            
-            if (isPlaying) {
-                audio.pause();
-                audioControl.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/3669/3669483.png" alt="Hang">';
-            } else {
-                audio.play();
-                audioControl.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/7960/7960808.png" alt="Némítás">';
-            }
-            isPlaying = !isPlaying;
         });
 
         // Videó háttér autoplay
