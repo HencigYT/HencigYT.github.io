@@ -62,10 +62,14 @@
             .sidebar {
                 position: sticky;
                 top: 20px;
+                display: flex;
+                flex-direction: column;
             }
             
             .content {
                 padding-top: 20px;
+                display: flex;
+                flex-direction: column;
             }
         }
 
@@ -81,18 +85,42 @@
             max-height: 120px;
         }
 
-        /* Profilkép a tartalomban */
-        .profile-pic {
+        /* Profilkép a platformok alatt */
+        .profile-pic-sidebar {
             text-align: center;
-            margin: 30px 0;
+            margin: 20px 0;
         }
 
-        .profile-pic img {
+        .profile-pic-sidebar img {
             max-width: 100%;
             height: auto;
             max-height: 200px;
             border-radius: 10px;
             border: 2px solid #4CAF50;
+        }
+
+        /* Profilkép a tartalom mellett (asztali nézetben) */
+        .profile-pic-content {
+            display: none;
+            text-align: center;
+            margin-left: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .profile-pic-sidebar {
+                display: none;
+            }
+            .profile-pic-content {
+                display: block;
+                position: fixed;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                max-width: 200px;
+            }
+            .profile-pic-content img {
+                max-height: 300px;
+            }
         }
 
         /* Platformok fejléc */
@@ -115,7 +143,7 @@
 
         @media (min-width: 768px) {
             .social-links {
-                margin-bottom: 50px;
+                margin-bottom: 20px;
             }
         }
 
@@ -262,7 +290,7 @@
     <div class="container">
         <div class="sidebar">
             <div class="logo">
-                <img src="hencig.png" alt="Hencig">
+                <img src="Hencig.png" alt="Hencig">
             </div>
             
             <div class="platforms-header" id="platformsHeader">Platformok:</div>
@@ -283,9 +311,19 @@
                     <img src="támogatás1.png" alt="Támogatás"> <span class="support-text">Támogatás</span>
                 </a>
             </div>
+
+            <!-- Profilkép a platformok alatt (mobil nézet) -->
+            <div class="profile-pic-sidebar">
+                <img src="hencigpfp.png" alt="Hencig profil">
+            </div>
         </div>
         
         <div class="content">
+            <!-- Profilkép a tartalom mellett (asztali nézet) -->
+            <div class="profile-pic-content">
+                <img src="hencigpfp.png" alt="Hencig profil">
+            </div>
+
             <!-- ESZKÖZÖK -->
             <div class="specs">
                 <h2 id="devicesTitle">Eszközök</h2>
@@ -300,11 +338,6 @@
                     <li><strong id="deskLabel">Asztal:</strong> <a href="https://huzaro.hu/gamer-iroasztalok/272-huzaro-hero-47-gaming-desk-black-5903796011319.html" target="_blank">Huzaro Hero 4.7</a></li>
                     <li><strong id="phoneLabel">Telefon:</strong> <a href="https://www.arukereso.hu/mobiltelefon-c3277/xiaomi/redmi-note-12s-256gb-8gb-ram-dual-p952837914/" target="_blank">Xiaomi Redmi Note 12S</a></li>
                 </ul>
-            </div>
-            
-            <!-- Profilkép a két szekció között -->
-            <div class="profile-pic">
-                <img src="hencigpfp.png" alt="Hencig profil">
             </div>
             
             <!-- SZÁMÍTÓGÉP ALKATRÉSZEK -->
@@ -325,6 +358,7 @@
     </div>
 
     <script>
+        // [A nyelvváltó és audio kezelő scriptje változatlan marad]
         // Nyelvi tartalmak
         const translations = {
             hu: {
