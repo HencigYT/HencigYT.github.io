@@ -62,9 +62,8 @@
             .sidebar {
                 position: sticky;
                 top: 20px;
-                /* Módosított magasság, hogy ne legyen görgetés */
-                height: auto;
-                overflow-y: visible;
+                height: calc(100vh - 40px);
+                overflow-y: auto;
             }
             
             .content {
@@ -85,21 +84,24 @@
             max-height: 120px;
         }
 
-        /* Profilkép (különálló elem) */
-        .profile-container {
-            width: 100%;
-            max-width: 300px; /* Ugyanolyan széles mint a platform gombok */
-            margin: 20px auto;
+        /* Profilkép a platformok alatt */
+        .profile-pic {
             text-align: center;
+            margin: 30px 0;
         }
 
-        .profile-container img {
+        .profile-pic img {
             width: 100%;
             max-width: 100%;
             height: auto;
             border-radius: 10px;
             border: 2px solid #4CAF50;
             box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+        }
+
+        /* Elrejtjük a tartalom bal oldalán lévő profilkép placeholder-t */
+        .content::before {
+            display: none;
         }
 
         /* Platformok fejléc */
@@ -112,7 +114,7 @@
             padding-bottom: 10px;
         }
 
-        /* Közösségi média gombok */
+        /* Közösségi média gombok - MÓDOSÍTOTT */
         .social-links {
             display: flex;
             flex-direction: column;
@@ -126,8 +128,9 @@
             color: #fff;
             display: flex;
             align-items: center;
+            justify-content: center; /* Szöveg középre igazítva */
             gap: 12px;
-            padding: 12px 20px;
+            padding: 15px 25px; /* Nagyobb padding a gombok hosszabbításához */
             border-radius: 8px;
             background: rgba(76, 175, 80, 0.3);
             transition: all 0.3s;
@@ -250,11 +253,11 @@
                     <img src="támogatás1.png" alt="Támogatás"> <span class="support-text">Támogatás</span>
                 </a>
             </div>
-        </div>
-        
-        <!-- Profilkép külön konténerben -->
-        <div class="profile-container">
-            <img src="hencigpfp.png" alt="Hencig profil">
+
+            <!-- Profilkép a platformok alatt -->
+            <div class="profile-pic">
+                <img src="hencigpfp.png" alt="Hencig profil">
+            </div>
         </div>
         
         <div class="content">
