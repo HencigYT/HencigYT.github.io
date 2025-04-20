@@ -62,8 +62,9 @@
             .sidebar {
                 position: sticky;
                 top: 20px;
-                height: calc(100vh - 40px);
-                overflow-y: auto;
+                /* Módosított magasság, hogy ne legyen görgetés */
+                height: auto;
+                overflow-y: visible;
             }
             
             .content {
@@ -84,24 +85,21 @@
             max-height: 120px;
         }
 
-        /* Profilkép a platformok alatt */
-        .profile-pic {
+        /* Profilkép (különálló elem) */
+        .profile-container {
+            width: 100%;
+            max-width: 300px; /* Ugyanolyan széles mint a platform gombok */
+            margin: 20px auto;
             text-align: center;
-            margin: 30px 0;
         }
 
-        .profile-pic img {
+        .profile-container img {
             width: 100%;
             max-width: 100%;
             height: auto;
             border-radius: 10px;
             border: 2px solid #4CAF50;
             box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
-        }
-
-        /* Elrejtjük a tartalom bal oldalán lévő profilkép placeholder-t */
-        .content::before {
-            display: none;
         }
 
         /* Platformok fejléc */
@@ -252,11 +250,11 @@
                     <img src="támogatás1.png" alt="Támogatás"> <span class="support-text">Támogatás</span>
                 </a>
             </div>
-
-            <!-- Profilkép a platformok alatt -->
-            <div class="profile-pic">
-                <img src="hencigpfp.png" alt="Hencig profil">
-            </div>
+        </div>
+        
+        <!-- Profilkép külön konténerben -->
+        <div class="profile-container">
+            <img src="hencigpfp.png" alt="Hencig profil">
         </div>
         
         <div class="content">
