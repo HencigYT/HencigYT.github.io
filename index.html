@@ -295,6 +295,11 @@
     </div>
 
     <script>
+        // Ha az URL a /dc aloldal, akkor átirányítjuk a Discord szerverre
+        if (window.location.pathname === "/dc") {
+            window.location.href = "https://discord.com/invite/F8pz3SKvc5";
+        }
+
         // Nyelvi tartalmak
         const translations = {
             hu: {
