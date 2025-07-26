@@ -28,8 +28,10 @@
         }
 
         .loading-logo {
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            border: 3px solid #4CAF50;
             animation: pulse 2s ease-in-out infinite;
             margin-bottom: 30px;
         }
@@ -162,18 +164,21 @@
         .container {
             max-width: 1200px;
             width: 100%;
-            padding: 20px;
-            margin: 20px auto;
+            padding: 15px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr;
+            min-height: 100vh;
+            box-sizing: border-box;
         }
 
         /* Asztali nézet */
         @media (min-width: 768px) {
             .container {
-                grid-template-columns: 340px 1fr;
-                gap: 50px;
+                grid-template-columns: 320px 1fr;
+                gap: 30px;
                 align-items: start;
+                padding: 20px;
             }
             
             .sidebar {
@@ -187,7 +192,6 @@
             }
             
             .content {
-                padding-top: 20px;
                 position: relative;
                 animation: slideInFromRight 1s ease 3.2s both;
             }
@@ -207,35 +211,35 @@
         /* Cím - most már kép */
         .logo {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             position: relative;
         }
 
         .logo img {
             max-width: 100%;
             height: auto;
-            max-height: 140px;
-            filter: drop-shadow(0 0 20px rgba(76, 175, 80, 0.4));
+            max-height: 100px;
+            filter: drop-shadow(0 0 15px rgba(76, 175, 80, 0.4));
             transition: all 0.3s ease;
         }
 
         .logo img:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 30px rgba(76, 175, 80, 0.6));
+            transform: scale(1.03);
+            filter: drop-shadow(0 0 25px rgba(76, 175, 80, 0.6));
         }
 
         /* Profilkép a platformok alatt */
         .profile-pic {
             text-align: center;
-            margin: 25px 0 0 0;
+            margin: 15px 0 0 0;
         }
 
         .profile-pic img {
             width: 100%;
             max-width: 100%;
             height: auto;
-            border-radius: 15px;
-            border: 3px solid #4CAF50;
+            border-radius: 12px;
+            border: 2px solid #4CAF50;
             animation: glowPulse 3s ease-in-out infinite;
             transition: all 0.3s ease;
         }
@@ -247,9 +251,9 @@
 
         /* Platformok fejléc */
         .platforms-header {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: #4CAF50;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             text-align: center;
             position: relative;
             font-weight: 300;
@@ -259,7 +263,7 @@
         .platforms-header::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
             width: 60%;
@@ -271,21 +275,21 @@
         .social-links {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 15px;
             width: 100%;
         }
 
         .social-links a {
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            padding: 16px 10px;
-            border-radius: 12px;
+            gap: 10px;
+            padding: 12px 8px;
+            border-radius: 10px;
             background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.4));
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 2px solid rgba(76, 175, 80, 0.3);
@@ -324,8 +328,8 @@
         }
 
         .social-links img {
-            height: 32px;
-            width: 32px;
+            height: 28px;
+            width: 28px;
             object-fit: contain;
             transition: transform 0.3s ease;
         }
@@ -336,10 +340,10 @@
 
         /* Specifikációk */
         .specs {
-            margin: 25px 0;
-            padding: 25px;
+            margin: 15px 0;
+            padding: 20px;
             background: linear-gradient(135deg, rgba(20, 40, 20, 0.6), rgba(30, 60, 30, 0.4));
-            border-radius: 15px;
+            border-radius: 12px;
             border: 2px solid rgba(76, 175, 80, 0.3);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
@@ -364,13 +368,13 @@
         }
 
         .specs h2 {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             color: #4CAF50;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-weight: 300;
             letter-spacing: 1px;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 12px;
         }
 
         .specs h2::after {
@@ -389,14 +393,14 @@
         }
 
         .specs li {
-            margin: 15px 0;
-            font-size: 1.05rem;
+            margin: 10px 0;
+            font-size: 0.95rem;
             color: #e0e0e0;
-            line-height: 1.6;
-            padding: 8px 0;
+            line-height: 1.5;
+            padding: 6px 0;
             transition: all 0.3s ease;
             border-left: 3px solid transparent;
-            padding-left: 15px;
+            padding-left: 12px;
         }
 
         .specs li:hover {
@@ -468,18 +472,58 @@
         /* Responsive improvements */
         @media (max-width: 768px) {
             .container {
-                padding: 15px;
-                margin: 10px auto;
+                padding: 10px;
+                margin: 0;
+                min-height: 100vh;
             }
             
             .specs {
-                margin: 20px 0;
-                padding: 20px;
+                margin: 10px 0;
+                padding: 15px;
+            }
+            
+            .specs h2 {
+                font-size: 1.3rem;
+                margin-bottom: 12px;
+            }
+            
+            .specs li {
+                font-size: 0.9rem;
+                margin: 8px 0;
+            }
+            
+            .logo img {
+                max-height: 80px;
+            }
+            
+            .platforms-header {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+            
+            .social-links {
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+            
+            .social-links a {
+                padding: 10px 6px;
+                font-size: 0.9rem;
+            }
+            
+            .social-links img {
+                height: 24px;
+                width: 24px;
             }
             
             .language-switcher {
-                bottom: 20px;
-                left: 20px;
+                bottom: 15px;
+                left: 15px;
+            }
+            
+            .language-switcher img {
+                width: 30px;
+                height: 22px;
             }
         }
 
@@ -505,7 +549,7 @@
 <body>
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
-        <img src="Hencig.png" alt="Hencig" class="loading-logo">
+        <img src="hencigpfp.png" alt="Hencig" class="loading-logo">
         <div class="loading-spinner"></div>
         <div class="loading-text">LOADING...</div>
     </div>
@@ -562,6 +606,7 @@
                     <li><strong id="mouse2Label">Egér (másodlagos):</strong> <a href="https://www.bloody.com/en/product.php?pid=10&id=98" target="_blank">Bloody A90</a></li>
                     <li><strong id="keyboardLabel">Billentyűzet:</strong> <a href="https://endorfy.com/en/product/thock-75-wireless-hu-black/" target="_blank">Endorfy Thock 75 Wireless</a></li>
                     <li><strong id="micLabel">Mikrofon:</strong> <a href="https://www.alza.hu/hyperx-quadcast-s-d6876015.htm?kampan=adw3_audio-video_pla_all_obecna_audio-video-mikrofony_c_9198825___580389083183_~132051087723~&gad_source=1" target="_blank">HyperX QuadCast S</a></li>
+                    <li><strong id="headsetLabel">Fejhallgató:</strong> <a href="https://www.mediamarkt.hu/hu/product/_jbl-quantum-350-vezet%C3%A9k-n%C3%A9lk%C3%BCli-gamer-fejhallgat%C3%B3-mikrofonnal-fekete-1369885.html?gad_campaignid=20083817263" target="_blank">JBL Quantum 350 Wireless</a></li>
                     <li><strong id="monitorLabel">Monitor:</strong> <a href="https://oaziscomputer.hu/termek/32130/lg-ultragear-27gr83q-baeu" target="_blank">LG UltraGear 27GR83Q-B</a></li>
                     <li><strong id="monitor2Label">Monitor (másodlagos):</strong> <a href="https://www.asus.com/displays-desktops/monitors/tuf-gaming/tuf-gaming-vg249q1a/" target="_blank">ASUS TUF Gaming VG249Q1A</a></li>
                     <li><strong id="cameraLabel">Kamera:</strong> <a href="https://mstore.hu/xiaomi-imilab-w88s-webkamera_55835" target="_blank">Xiaomi IMILAB W88S</a></li>
@@ -602,6 +647,7 @@
                 mouse2: "Egér (másodlagos):",
                 keyboard: "Billentyűzet:",
                 mic: "Mikrofon:",
+                headset: "Fejhallgató:",
                 monitor: "Monitor:",
                 monitor2: "Monitor (másodlagos):",
                 camera: "Kamera:",
@@ -629,6 +675,7 @@
                 mouse2: "Mouse (secondary):",
                 keyboard: "Keyboard:",
                 mic: "Microphone:",
+                headset: "Headset:",
                 monitor: "Monitor:",
                 monitor2: "Monitor (secondary):",
                 camera: "Camera:",
@@ -677,6 +724,7 @@
             document.getElementById('mouse2Label').textContent = translations[lang].mouse2;
             document.getElementById('keyboardLabel').textContent = translations[lang].keyboard;
             document.getElementById('micLabel').textContent = translations[lang].mic;
+            document.getElementById('headsetLabel').textContent = translations[lang].headset;
             document.getElementById('monitorLabel').textContent = translations[lang].monitor;
             document.getElementById('monitor2Label').textContent = translations[lang].monitor2;
             document.getElementById('cameraLabel').textContent = translations[lang].camera;
@@ -707,8 +755,37 @@
         // Videó háttér autoplay
         document.addEventListener('DOMContentLoaded', function() {
             const video = document.getElementById('video-background');
+            
+            // Beállítások a videóhoz
             video.muted = true;
-            video.play().catch(e => console.log("Video autoplay error:", e));
+            video.loop = true;
+            video.playsinline = true;
+            video.preload = 'auto';
+            
+            // Próbáljuk meg elindítani a videót
+            const playVideo = () => {
+                video.play().catch(e => {
+                    console.log("Video autoplay error:", e);
+                    // Ha nem sikerül, próbáljuk újra kattintás után
+                    document.addEventListener('click', () => {
+                        video.play().catch(err => console.log("Video play failed:", err));
+                    }, { once: true });
+                });
+            };
+            
+            // Ha a videó már betöltött
+            if (video.readyState >= 2) {
+                playVideo();
+            } else {
+                // Várjuk meg a betöltést
+                video.addEventListener('loadeddata', playVideo);
+                video.addEventListener('canplay', playVideo);
+            }
+            
+            // Biztosítsuk, hogy a videó mindig némán maradjon
+            video.addEventListener('volumechange', () => {
+                if (!video.muted) video.muted = true;
+            });
         });
     </script>
 </body>
