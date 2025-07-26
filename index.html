@@ -3,703 +3,790 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐱 Ultimate Cat Paradise 🐱</title>
+    <title>Hencig</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/HencigYT/Hencig/refs/heads/main/48d0e079b22728cde4e1db2429ed9a57.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(45deg, #667efc, #764ba2, #f093fb, #ff6b6b);
-            background-size: 400% 400%;
-            animation: gradientShift 8s ease infinite;
-            overflow-x: hidden;
-            color: white;
-            min-height: 100vh;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            25% { background-position: 100% 50%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 0% 100%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .floating-cats {
+        /* Loading Screen */
+        .loading-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 1;
+            background: linear-gradient(135deg, #0a1a0a 0%, #1a4a1a 50%, #0a1a0a 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease, visibility 0s linear 1s;
         }
 
-        .floating-cat {
-            position: absolute;
-            font-size: 2rem;
-            animation: float 6s ease-in-out infinite;
-            opacity: 0.7;
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            text-align: center;
-            padding: 50px 20px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 25px;
+        .loading-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            border: 3px solid #4CAF50;
+            animation: pulse 2s ease-in-out infinite;
             margin-bottom: 30px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        h1 {
-            font-size: 4.5rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffa726);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textGlow 3s ease-in-out infinite alternate;
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(76, 175, 80, 0.3);
+            border-top: 3px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
             margin-bottom: 20px;
-            text-shadow: 0 0 30px rgba(255,255,255,0.5);
         }
 
-        @keyframes textGlow {
-            from { filter: drop-shadow(0 0 20px rgba(255,255,255,0.5)); }
-            to { filter: drop-shadow(0 0 40px rgba(255,255,255,0.9)); }
-        }
-
-        .subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            animation: pulse 2s infinite;
+        .loading-text {
+            color: #4CAF50;
+            font-family: 'Arial', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: fadeInOut 2s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.9; }
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.5; }
             50% { opacity: 1; }
         }
 
-        .nav-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
+        /* Main Content Animations */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
-        .nav-btn {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border: none;
-            padding: 18px 35px;
-            border-radius: 50px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            font-size: 1.1rem;
+        @keyframes slideInFromRight {
+            0% {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromBottom {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(76, 175, 80, 0.6);
+            }
+        }
+
+        /* Alapstílusok */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            display: flex;
+            min-height: 100vh;
+            overflow-y: auto;
+            position: relative;
+            background: linear-gradient(135deg, #0a1a0a 0%, #1a4a1a 30%, #0f2f0f 70%, #0a1a0a 100%);
+            opacity: 0;
+            animation: fadeIn 1s ease 2.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Videó háttér */
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0;
+            animation: videoFadeIn 2s ease 3s forwards;
+            filter: hue-rotate(10deg) brightness(0.8) contrast(1.2);
+        }
+
+        @keyframes videoFadeIn {
+            to { opacity: 0.6; }
+        }
+
+        /* Háttér overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(10, 26, 10, 0.6) 0%, rgba(10, 26, 10, 0.9) 100%);
+            z-index: -1;
+        }
+
+        /* Konténer */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 15px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Asztali nézet */
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 320px 1fr;
+                gap: 30px;
+                align-items: start;
+                padding: 20px;
+            }
+            
+            .sidebar {
+                position: sticky;
+                top: 20px;
+                height: auto;
+                overflow-y: visible;
+                display: flex;
+                flex-direction: column;
+                animation: slideInFromLeft 1s ease 2.8s both;
+            }
+            
+            .content {
+                position: relative;
+                animation: slideInFromRight 1s ease 3.2s both;
+            }
+        }
+
+        /* Mobile animations */
+        @media (max-width: 767px) {
+            .sidebar {
+                animation: slideInFromBottom 1s ease 2.8s both;
+            }
+            
+            .content {
+                animation: slideInFromBottom 1s ease 3.2s both;
+            }
+        }
+
+        /* Cím - most már kép */
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+            max-height: 100px;
+            filter: drop-shadow(0 0 15px rgba(76, 175, 80, 0.4));
+            transition: all 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.03);
+            filter: drop-shadow(0 0 25px rgba(76, 175, 80, 0.6));
+        }
+
+        /* Profilkép a platformok alatt */
+        .profile-pic {
+            text-align: center;
+            margin: 15px 0 0 0;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 2px solid #4CAF50;
+            animation: glowPulse 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .profile-pic img:hover {
+            transform: scale(1.02) rotate(1deg);
+            border-color: #8BC34A;
+        }
+
+        /* Platformok fejléc */
+        .platforms-header {
+            font-size: 1.4rem;
+            color: #4CAF50;
+            margin-bottom: 15px;
+            text-align: center;
+            position: relative;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .platforms-header::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4CAF50, transparent);
+        }
+
+        /* Közösségi média gombok */
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 8px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.4));
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(76, 175, 80, 0.3);
+            width: 100%;
+            box-sizing: border-box;
             position: relative;
             overflow: hidden;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
-        .nav-btn::before {
+        .social-links a::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
         }
 
-        .nav-btn:hover::before {
+        .social-links a:hover::before {
             left: 100%;
         }
 
-        .nav-btn:hover {
-            transform: translateY(-8px) scale(1.15);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        .social-links a:hover {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.4), rgba(139, 195, 74, 0.6));
+            transform: translateY(-3px) scale(1.02);
+            border-color: #8BC34A;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
         }
 
-        .section {
-            display: none;
-            background: rgba(255,255,255,0.1);
-            border-radius: 25px;
-            padding: 40px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-            animation: fadeIn 0.6s ease-in;
+        .social-links a:active {
+            transform: translateY(-1px) scale(1.01);
         }
 
-        .section.active {
-            display: block;
+        .social-links img {
+            height: 28px;
+            width: 28px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(50px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+        .social-links a:hover img {
+            transform: rotate(5deg) scale(1.1);
         }
 
-        .premium-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .premium-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.5s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .premium-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-
-        .premium-card:hover::before {
-            opacity: 1;
-            animation: shimmer 1.5s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .premium-card:hover {
-            transform: translateY(-15px) rotateY(5deg) scale(1.05);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-            background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.1));
-        }
-
-        .cat-emoji {
-            font-size: 5rem;
-            margin-bottom: 20px;
-            animation: bounce 3s infinite;
-            transition: all 0.3s ease;
-        }
-
-        .premium-card:hover .cat-emoji {
-            transform: scale(1.2) rotate(10deg);
-            animation: spin 2s infinite linear;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-15px); }
-            60% { transform: translateY(-8px); }
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg) scale(1.2); }
-            to { transform: rotate(360deg) scale(1.2); }
-        }
-
-        .special-link {
-            display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #ffa726);
-            color: white;
-            text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            margin-top: 15px;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-
-        .special-link:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        .game-area {
-            text-align: center;
-            padding: 40px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 20px;
-            margin: 20px 0;
-        }
-
-        .mega-clicker {
-            font-size: 10rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            user-select: none;
-            margin: 30px;
-            display: inline-block;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
-        }
-
-        .mega-clicker:hover {
-            transform: scale(1.15) rotate(5deg);
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
-        }
-
-        .mega-clicker:active {
-            transform: scale(0.95) rotate(-5deg);
-        }
-
-        .score-display {
-            font-size: 2.5rem;
-            margin: 25px 0;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffa726);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .achievement-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: linear-gradient(45deg, #667efc, #764ba2);
-            color: white;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            z-index: 1000;
-            transition: all 0.5s ease;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        }
-
-        .achievement-popup.show {
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .premium-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-
-        .feature-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .virtual-pet-advanced {
-            text-align: center;
-            padding: 40px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 20px;
-        }
-
-        .pet-avatar {
-            font-size: 12rem;
-            margin: 30px 0;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.3));
-        }
-
-        .pet-avatar:hover {
-            transform: scale(1.1) rotate(5deg);
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .stat-card {
-            background: rgba(255,255,255,0.15);
-            border-radius: 15px;
+        /* Specifikációk */
+        .specs {
+            margin: 15px 0;
             padding: 20px;
+            background: linear-gradient(135deg, rgba(20, 40, 20, 0.6), rgba(30, 60, 30, 0.4));
+            border-radius: 12px;
+            border: 2px solid rgba(76, 175, 80, 0.3);
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            background: rgba(255,255,255,0.25);
-            transform: translateY(-5px);
-        }
-
-        .stat-bar {
-            width: 100%;
-            height: 12px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 6px;
-            margin-top: 10px;
-            overflow: hidden;
-        }
-
-        .stat-fill {
-            height: 100%;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffa726);
-            transition: width 0.8s ease;
-            border-radius: 6px;
-        }
-
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-
-        .action-btn {
-            background: linear-gradient(45deg, #667efc, #764ba2);
-            border: none;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .action-btn::before {
+        .specs::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.3);
-            border-radius: 50%;
-            transition: all 0.6s ease;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #4CAF50, transparent);
         }
 
-        .action-btn:hover::before {
-            width: 300px;
-            height: 300px;
+        .specs:hover {
+            transform: translateY(-2px);
+            border-color: #8BC34A;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
         }
 
-        .action-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        }
-
-        .mini-games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-
-        .mini-game {
-            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .mini-game:hover {
-            transform: translateY(-10px) scale(1.02);
-            background: linear-gradient(135df, rgba(255,255,255,0.25), rgba(255,255,255,0.1));
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .secret-section {
-            background: linear-gradient(135deg, rgba(255, 20, 20, 0.1), rgba(20, 20, 255, 0.1));
-            border: 2px solid rgba(255,255,255,0.2);
-            border-radius: 25px;
-            padding: 40px;
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        .mystery-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .mystery-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1));
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.5s ease;
+        .specs h2 {
+            font-size: 1.5rem;
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 1px;
             position: relative;
-            overflow: hidden;
+            padding-bottom: 12px;
         }
 
-        .mystery-card:hover {
-            transform: rotateY(10deg) translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        .specs h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
         }
 
-        .footer {
-            text-align: center;
-            padding: 60px 20px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 25px;
-            margin-top: 40px;
-            backdrop-filter: blur(20px);
+        .specs ul {
+            list-style: none;
+            padding: 0;
         }
 
-        .heart {
-            color: #ff6b6b;
-            animation: heartbeat 2s ease-in-out infinite;
+        .specs li {
+            margin: 10px 0;
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            line-height: 1.5;
+            padding: 6px 0;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            padding-left: 12px;
         }
 
-        @keyframes heartbeat {
-            0%, 50%, 100% { transform: scale(1); }
-            25%, 75% { transform: scale(1.2); }
+        .specs li:hover {
+            color: #fff;
+            border-left-color: #4CAF50;
+            transform: translateX(5px);
         }
 
-        .notification {
+        .specs a {
+            color: #4CAF50;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .specs a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            transition: width 0.3s ease;
+        }
+
+        .specs a:hover {
+            color: #8BC34A;
+            transform: translateX(2px);
+        }
+
+        .specs a:hover::after {
+            width: 100%;
+        }
+
+        /* Nyelvválasztó */
+        .language-switcher {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            transform: translateX(400px);
-            transition: transform 0.5s ease;
-            z-index: 1000;
+            bottom: 25px;
+            left: 25px;
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+            opacity: 0;
+            animation: slideInFromBottom 1s ease 4s both;
         }
 
-        .notification.show {
-            transform: translateX(0);
+        .language-switcher img {
+            width: 36px;
+            height: 27px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: brightness(0.8);
         }
 
+        .language-switcher img:hover {
+            transform: scale(1.15) rotate(5deg);
+            filter: brightness(1);
+        }
+
+        .language-switcher img.active {
+            border-color: #4CAF50;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+            filter: brightness(1);
+        }
+
+        /* Responsive improvements */
         @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            .mega-clicker { font-size: 7rem; }
-            .pet-avatar { font-size: 8rem; }
-            .nav-buttons { gap: 10px; }
-            .nav-btn { padding: 15px 25px; font-size: 1rem; }
-            .container { padding: 15px; }
+            .container {
+                padding: 10px;
+                margin: 0;
+                min-height: 100vh;
+            }
+            
+            .specs {
+                margin: 10px 0;
+                padding: 15px;
+            }
+            
+            .specs h2 {
+                font-size: 1.3rem;
+                margin-bottom: 12px;
+            }
+            
+            .specs li {
+                font-size: 0.9rem;
+                margin: 8px 0;
+            }
+            
+            .logo img {
+                max-height: 80px;
+            }
+            
+            .platforms-header {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+            
+            .social-links {
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+            
+            .social-links a {
+                padding: 10px 6px;
+                font-size: 0.9rem;
+            }
+            
+            .social-links img {
+                height: 24px;
+                width: 24px;
+            }
+            
+            .language-switcher {
+                bottom: 15px;
+                left: 15px;
+            }
+            
+            .language-switcher img {
+                width: 30px;
+                height: 22px;
+            }
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(10, 26, 10, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #4CAF50, #8BC34A);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #8BC34A, #4CAF50);
         }
     </style>
 </head>
 <body>
-    <div class="floating-cats"></div>
-    
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <img src="hencigpfp.png" alt="Hencig" class="loading-logo">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">LOADING...</div>
+    </div>
+
+    <!-- Videó háttér -->
+    <video id="video-background" autoplay muted loop playsinline>
+        <source src="https://www.dropbox.com/scl/fi/aiq5kkr1dthwh46kna1vf/green.mp4?rlkey=4ex8zclwmey65hc5ijy3tu3x4&st=7kmul368&dl=1" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+
+    <!-- Nyelvválasztó -->
+    <div class="language-switcher">
+        <img src="magyar1.png" alt="Magyar" id="huFlag">
+        <img src="angol1.png" alt="English" id="enFlag" class="active">
+    </div>
+
     <div class="container">
-        <header>
-            <h1>🐱 Ultimate Cat Paradise 🐱</h1>
-            <p class="subtitle">A legexkluzívabb "cicás" kollekció a neten! 😉</p>
-            
-            <div class="nav-buttons">
-                <button class="nav-btn" onclick="showSection('home')">🏠 Főoldal</button>
-                <button class="nav-btn" onclick="showSection('premium')">💎 Prémium</button>
-                <button class="nav-btn" onclick="showSection('gallery')">🎨 Kollekció</button>
-                <button class="nav-btn" onclick="showSection('games')">🎮 Játékok</button>
-                <button class="nav-btn" onclick="showSection('pet')">🐾 Virtuális</button>
-                <button class="nav-btn" onclick="showSection('market')">💰 Kereskedés</button>
-                <button class="nav-btn" onclick="showSection('exclusive')">🔥 Exkluzív</button>
-                <button class="nav-btn" onclick="showSection('community')">👥 Közösség</button>
+        <div class="sidebar">
+            <div class="logo">
+                <img src="Hencig.png" alt="Hencig">
             </div>
-        </header>
-
-        <!-- Főoldal -->
-        <div id="home" class="section active">
-            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 40px;">Üdvözöl a Cica Paradicsomban! 🌟</h2>
             
-            <div class="secret-section">
-                <h3 style="font-size: 2rem; margin-bottom: 20px;">🎯 Speciális "Cicás" Ajánlatok</h3>
-                <p style="font-size: 1.2rem; margin-bottom: 25px;">Fedezd fel a legritkább és legértékesebb kollekcióinkat!</p>
-                <a href="https://steamcommunity.com/market/search?appid=730" target="_blank" class="special-link">
-                    🔥 Steam Közösségi Piac
+            <div class="platforms-header" id="platformsHeader">Platformok:</div>
+            <div class="social-links">
+                <a href="https://discord.com/invite/F8pz3SKvc5" target="_blank">
+                    <img src="discord1.png" alt="Discord"> <span class="discord-text">Discord</span>
                 </a>
-                <a href="https://csgoskins.gg/" target="_blank" class="special-link">
-                    💎 CS2 Skin Kereskedés
+                <a href="https://www.youtube.com/channel/UCp7PxfyhJmZxT7meb7AprDg" target="_blank">
+                    <img src="youtube1.png" alt="YouTube"> <span class="youtube-text">YouTube</span>
+                </a>
+                <a href="https://www.twitch.tv/hencig_" target="_blank">
+                    <img src="twitch1.png" alt="Twitch"> <span class="twitch-text">Twitch</span>
+                </a>
+                <a href="https://steamcommunity.com/id/hencig" target="_blank">
+                    <img src="steam1.png" alt="Steam"> <span class="steam-text">Steam</span>
+                </a>
+                <a href="https://paypal.me/BenceSzarvas562?country.x=HU&locale.x=hu_HU" target="_blank">
+                    <img src="támogatás1.png" alt="Támogatás"> <span class="support-text">Támogatás</span>
                 </a>
             </div>
 
-            <div class="premium-gallery">
-                <div class="premium-card" onclick="window.open('https://csgostash.com/', '_blank')">
-                    <div class="cat-emoji">😸</div>
-                    <h3>Golden Cat Collection</h3>
-                    <p>Arany színű exkluzív "cicás" tárgyak</p>
-                    <span class="special-link">Megnézem →</span>
-                </div>
-                <div class="premium-card" onclick="window.open('https://steamcommunity.com/market/search?appid=730&q=ak-47', '_blank')">
-                    <div class="cat-emoji">😺</div>
-                    <h3>Royal Cat Series</h3>
-                    <p>Királyi minőségű kollekciós darabok</p>
-                    <span class="special-link">Részletek →</span>
-                </div>
-                <div class="premium-card" onclick="window.open('https://steamcommunity.com/market/search?appid=730&q=awp', '_blank')">
-                    <div class="cat-emoji">🙀</div>
-                    <h3>Legendary Cats</h3>
-                    <p>Legendás ritkaságú különleges darabok</p>
-                    <span class="special-link">Felfedezem →</span>
-                </div>
-                <div class="premium-card" onclick="window.open('https://steamcommunity.com/market/search?appid=730&q=knife', '_blank')">
-                    <div class="cat-emoji">😻</div>
-                    <h3>Mystic Cat Blades</h3>
-                    <p>Misztikus pengék cicás témával</p>
-                    <span class="special-link">Megtekintés →</span>
-                </div>
+            <!-- Profilkép a platformok alatt -->
+            <div class="profile-pic">
+                <img src="hencigpfp.png" alt="Hencig profil">
             </div>
         </div>
-
-        <!-- Prémium -->
-        <div id="premium" class="section">
-            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 40px;">💎 Prémium Cicás Kollekció</h2>
+        
+        <div class="content">
+            <!-- ESZKÖZÖK -->
+            <div class="specs">
+                <h2 id="devicesTitle">Eszközök</h2>
+                <ul id="devicesList">
+                    <li><strong id="mouseLabel">Egér:</strong> <a href="https://ipon.hu/shop/termek/glorious-model-d-wireless-fekete/1954865?gad_source=1" target="_blank">Glorious Model D Wireless (fekete)</a></li>
+                    <li><strong id="mouse2Label">Egér (másodlagos):</strong> <a href="https://www.bloody.com/en/product.php?pid=10&id=98" target="_blank">Bloody A90</a></li>
+                    <li><strong id="keyboardLabel">Billentyűzet:</strong> <a href="https://endorfy.com/en/product/thock-75-wireless-hu-black/" target="_blank">Endorfy Thock 75 Wireless</a></li>
+                    <li><strong id="micLabel">Mikrofon:</strong> <a href="https://www.alza.hu/hyperx-quadcast-s-d6876015.htm?kampan=adw3_audio-video_pla_all_obecna_audio-video-mikrofony_c_9198825___580389083183_~132051087723~&gad_source=1" target="_blank">HyperX QuadCast S</a></li>
+                    <li><strong id="headsetLabel">Fejhallgató:</strong> <a href="https://www.mediamarkt.hu/hu/product/_jbl-quantum-350-vezet%C3%A9k-n%C3%A9lk%C3%BCli-gamer-fejhallgat%C3%B3-mikrofonnal-fekete-1369885.html?gad_campaignid=20083817263" target="_blank">JBL Quantum 350 Wireless</a></li>
+                    <li><strong id="monitorLabel">Monitor:</strong> <a href="https://oaziscomputer.hu/termek/32130/lg-ultragear-27gr83q-baeu" target="_blank">LG UltraGear 27GR83Q-B</a></li>
+                    <li><strong id="monitor2Label">Monitor (másodlagos):</strong> <a href="https://www.asus.com/displays-desktops/monitors/tuf-gaming/tuf-gaming-vg249q1a/" target="_blank">ASUS TUF Gaming VG249Q1A</a></li>
+                    <li><strong id="cameraLabel">Kamera:</strong> <a href="https://mstore.hu/xiaomi-imilab-w88s-webkamera_55835" target="_blank">Xiaomi IMILAB W88S</a></li>
+                    <li><strong id="deskLabel">Asztal:</strong> <a href="https://huzaro.hu/gamer-iroasztalok/272-huzaro-hero-47-gaming-desk-black-5903796011319.html" target="_blank">Huzaro Hero 4.7</a></li>
+                    <li><strong id="phoneLabel">Telefon:</strong> <a href="https://www.arukereso.hu/mobiltelefon-c3277/xiaomi/redmi-note-12s-256gb-8gb-ram-dual-p952837914/" target="_blank">Xiaomi Redmi Note 12S</a></li>
+                </ul>
+            </div>
             
-            <div class="premium-features">
-                <div class="feature-card" onclick="window.open('https://skinport.com/', '_blank')">
-                    <h3>🔥 Factory New Cats</h3>
-                    <p>Gyári új állapotú prémium cicás tárgyak</p>
-                    <div style="margin-top: 15px;">
-                        <span style="color: #ff6b6b; font-weight: bold;">Skinport →</span>
-                    </div>
-                </div>
-                <div class="feature-card" onclick="window.open('https://cs.money/', '_blank')">
-                    <h3>💰 StatTrak™ Edition</h3>
-                    <p>Számlálós különleges cicás fegyverek</p>
-                    <div style="margin-top: 15px;">
-                        <span style="color: #4ecdc4; font-weight: bold;">CS.Money →</span>
-                    </div>
-                </div>
-                <div class="feature-card" onclick="window.open('https://bitskins.com/', '_blank')">
-                    <h3>🎨 Custom Cat Skins</h3>
-                    <p>Egyedi tervezésű cicás fegyverburkolatok</p>
-                    <div style="margin-top: 15px;">
-                        <span style="color: #ffa726; font-weight: bold;">BitSkins →</span>
-                    </div>
-                </div>
-                <div class="feature-card" onclick="window.open('https://steamcommunity.com/market/search?appid=730&q=dragon', '_blank')">
-                    <div class="cat-emoji" style="font-size: 3rem;">🐉</div>
-                    <h3>Dragon Cat Legends</h3>
-                    <p>Sárkány cicás legendás fegyverek</p>
-                    <div style="margin-top: 15px;">
-                        <span style="color: #96ceb4; font-weight: bold;">Steam Market →</span>
-                    </div>
-                </div>
+            <!-- SZÁMÍTÓGÉP ALKATRÉSZEK -->
+            <div class="specs">
+                <h2 id="partsTitle">Számítógép alkatrészek</h2>
+                <ul id="partsList">
+                    <li><strong id="motherboardLabel">Alaplap:</strong> <a href="https://www.alza.hu/gigabyte-z790-aorus-elite-ax-d7507291.htm" target="_blank">Gigabyte Z790 Aorus Elite AX</a></li>
+                    <li><strong id="cpuLabel">Processzor:</strong> <a href="https://www.alza.hu/intel-core-i7-14700k-d7950854.htm" target="_blank">Intel Core i7-14700K</a></li>
+                    <li><strong id="ramLabel">RAM:</strong> <a href="https://ipon.hu/shop/termek/kingston-fury-32gb-fury-beast-rgb-ddr5-6000mhz-cl40-kit-kf560c40bbak2-32/2013008" target="_blank">Kingston Fury Beast RGB DDR5 32GB 6000MHz</a></li>
+                    <li><strong id="gpuLabel">Videókártya:</strong> <a href="https://m.alza.hu/gainward-geforce-rtx-4070-super-ghost-12gb-gddr6x-d9358302.htm" target="_blank">Gainward GeForce RTX 4070 Super Ghost 12GB</a></li>
+                    <li><strong id="psuLabel">Áramellátó:</strong> <a href="https://www.arukereso.hu/tapegyseg-c3158/be-quiet/700w-bronze-system-power-9-700w-cm-bronze-bn303-p487033422/" target="_blank">Be Quiet! System Power 9 700W CM Bronze</a></li>
+                    <li><strong id="ssdLabel">SSD:</strong> <a href="https://www.alza.hu/kingston-nv2-2tb-d7373901.htm" target="_blank">Kingston NV2 2TB</a></li>
+                    <li><strong id="caseLabel">Gépház:</strong> <a href="https://www.pcx.hu/kolink-observatory-hf-uveg-ablakos-fekete-szamitogephaz-observatory-hf-gb--941901" target="_blank">Kolink Observatory HF</a></li>
+                    <li><strong id="coolerLabel">Processzor hűtő:</strong> <a href="https://ipon.hu/shop/termek/deepcool-ld360-fekete/2261268" target="_blank">DeepCool LD360</a></li>
+                </ul>
             </div>
         </div>
+    </div>
 
-        <!-- Kollekció -->
-        <div id="gallery" class="section">
-            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 40px;">🎨 Teljes Cicás Kollekció</h2>
+    <script>
+        // Nyelvi tartalmak
+        const translations = {
+            hu: {
+                platforms: "Platformok:",
+                discord: "Discord",
+                youtube: "YouTube",
+                twitch: "Twitch",
+                steam: "Steam",
+                support: "Támogatás",
+                devicesTitle: "Eszközök",
+                mouse: "Egér:",
+                mouse2: "Egér (másodlagos):",
+                keyboard: "Billentyűzet:",
+                mic: "Mikrofon:",
+                headset: "Fejhallgató:",
+                monitor: "Monitor:",
+                monitor2: "Monitor (másodlagos):",
+                camera: "Kamera:",
+                desk: "Asztal:",
+                phone: "Telefon:",
+                partsTitle: "Számítógép alkatrészek",
+                motherboard: "Alaplap:",
+                cpu: "Processzor:",
+                ram: "RAM:",
+                gpu: "Videókártya:",
+                psu: "Áramellátó:",
+                ssd: "SSD:",
+                case: "Gépház:",
+                cooler: "Processzor hűtő:"
+            },
+            en: {
+                platforms: "Platforms:",
+                discord: "Discord",
+                youtube: "YouTube",
+                twitch: "Twitch",
+                steam: "Steam",
+                support: "Support",
+                devicesTitle: "Devices",
+                mouse: "Mouse:",
+                mouse2: "Mouse (secondary):",
+                keyboard: "Keyboard:",
+                mic: "Microphone:",
+                headset: "Headset:",
+                monitor: "Monitor:",
+                monitor2: "Monitor (secondary):",
+                camera: "Camera:",
+                desk: "Desk:",
+                phone: "Phone:",
+                partsTitle: "Computer Components",
+                motherboard: "Motherboard:",
+                cpu: "Processor:",
+                ram: "RAM:",
+                gpu: "Graphics card:",
+                psu: "Power supply:",
+                ssd: "SSD:",
+                case: "Case:",
+                cooler: "CPU cooler:"
+            }
+        };
+
+        // Alapértelmezett nyelv beállítása (angol)
+        let currentLanguage = 'en';
+
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 2000);
+        });
+
+        // Nyelv váltás
+        function switchLanguage(lang) {
+            currentLanguage = lang;
             
-            <div class="mystery-cards">
-                <div class="mystery-card" onclick="window.open('https://steamcommunity.com/market/search?appid=730&q=ak-47+redline', '_blank')">
-                    <div class="cat-emoji">🔴</div>
-                    <h3>Red Line Cats</h3>
-                    <p>Piros vonalakkal díszített cicás AK-47</p>
-                </div>
-                <div class="mystery-card" onclick="window.open('https://steamcommunity.com/market/search?appid=730&q=awp+asiimov', '_blank')">
-                    <div class="cat-emoji">🎯</div>
-                    <h3>Asiimov Cat</h3>
-                    <p>Futurisztikus cicás AWP design</p>
-                </div>
-                <div class="mystery-card" onclick="window.open('https://steamcommunity.com/market/search?appid=730&q=m4a4+howl', '_blank')">
-                    <div class="cat-emoji">🐺</div>
-                    <h3>Howling Cat</h3>
-                    <p>Üvöltő cicás M4A4 Howl</p>
-                </div>
-                <div class="mystery-card" onclick="window.open('https://steamcommunity.com/market/search?appid=730&q=butterfly+knife', '_blank')">
-                    <div class="cat-emoji">🦋</div>
-                    <h3>Butterfly Cat</h3>
-                    <p>Pillangó cicás kések kollekciója</p>
-                </div>
-                <div class="mystery-card" onclick="window.open('https://steamcommunity.com/market/search?appid=730&q=karambit', '_blank')">
-                    <div class="cat-emoji">🌙</div>
-                    <h3>Karambit Cats</h3>
-                    <p>Karambit pengék cicás mintákkal</p>
-                </div>
-                <div class="mystery-card" onclick="window.open('https://steamcommunity.com/market/search?appid=730&q=glove', '_blank')">
-                    <div class="cat-emoji">🧤</div>
-                    <h3>Cat Gloves</h3>
-                    <p>Cicás kesztyűk minden típusban</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Játékok -->
-        <div id="games" class="section">
-            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 40px;">🎮 Cicás Casino & Játékok</h2>
+            // Frissítjük az aktív flag stílusát
+            document.getElementById('huFlag').classList.toggle('active', lang === 'hu');
+            document.getElementById('enFlag').classList.toggle('active', lang === 'en');
             
-            <div class="game-area">
-                <h3 style="font-size: 2rem; margin-bottom: 20px;">🎰 Cica Klicker Casino</h3>
-                <p style="margin-bottom: 20px;">Kattints a cicára és gyűjts pontokat ritka skinekért!</p>
-                <div class="mega-clicker" onclick="catClick()">🐱</div>
-                <div class="score-display">Pontok: <span id="click-score">0</span> 💰</div>
-                <div style="margin: 20px 0;">
-                    <a href="https://csgoroll.com/" target="_blank" class="special-link">🎲 CS:GO Roll</a>
-                    <a href="https://csgolucky.com/" target="_blank" class="special-link">🍀 Lucky Skins</a>
-                </div>
-            </div>
+            // Szövegek frissítése
+            document.getElementById('platformsHeader').textContent = translations[lang].platforms;
+            document.querySelector('.discord-text').textContent = translations[lang].discord;
+            document.querySelector('.youtube-text').textContent = translations[lang].youtube;
+            document.querySelector('.twitch-text').textContent = translations[lang].twitch;
+            document.querySelector('.steam-text').textContent = translations[lang].steam;
+            document.querySelector('.support-text').textContent = translations[lang].support;
+            
+            document.getElementById('devicesTitle').textContent = translations[lang].devicesTitle;
+            document.getElementById('mouseLabel').textContent = translations[lang].mouse;
+            document.getElementById('mouse2Label').textContent = translations[lang].mouse2;
+            document.getElementById('keyboardLabel').textContent = translations[lang].keyboard;
+            document.getElementById('micLabel').textContent = translations[lang].mic;
+            document.getElementById('headsetLabel').textContent = translations[lang].headset;
+            document.getElementById('monitorLabel').textContent = translations[lang].monitor;
+            document.getElementById('monitor2Label').textContent = translations[lang].monitor2;
+            document.getElementById('cameraLabel').textContent = translations[lang].camera;
+            document.getElementById('deskLabel').textContent = translations[lang].desk;
+            document.getElementById('phoneLabel').textContent = translations[lang].phone;
+            
+            document.getElementById('partsTitle').textContent = translations[lang].partsTitle;
+            document.getElementById('motherboardLabel').textContent = translations[lang].motherboard;
+            document.getElementById('cpuLabel').textContent = translations[lang].cpu;
+            document.getElementById('ramLabel').textContent = translations[lang].ram;
+            document.getElementById('gpuLabel').textContent = translations[lang].gpu;
+            document.getElementById('psuLabel').textContent = translations[lang].psu;
+            document.getElementById('ssdLabel').textContent = translations[lang].ssd;
+            document.getElementById('caseLabel').textContent = translations[lang].case;
+            document.getElementById('coolerLabel').textContent = translations[lang].cooler;
+        }
 
-            <div class="mini-games-grid">
-                <div class="mini-game">
-                    <h3>🎯 Skin Roulette</h3>
-                    <p>Pörgess és nyerj ritka skineket!</p>
-                    <div style="font-size: 4rem; margin: 20px 0; cursor: pointer;" onclick="spinRoulette()">🎰</div>
-                    <div id="roulette-result">Kattints a pörgetéshez!</div>
-                    <a href="https://csgoempire.com/" target="_blank" class="special-link">Empire →</a>
-                </div>
-                
-                <div class="mini-game">
-                    <h3>🎴 Case Opening</h3>
-                    <p>Nyiss ládákat és szerezz új skineket!</p>
-                    <div style="font-size: 4rem; margin: 20px 0; cursor: pointer;" onclick="openCase()">📦</div>
-                    <div id="case-result">Nyiss egy láda!</div>
-                    <a href="https://hellcase.com/" target="_blank" class="special-link">HellCase →</a>
-                </div>
+        // Oldal betöltésekor ellenőrizzük a preferált nyelvet
+        document.addEventListener('DOMContentLoaded', function() {
+            // Alapértelmezett angol
+            switchLanguage(currentLanguage);
+            
+            // Flag eseményfigyelők
+            document.getElementById('huFlag').addEventListener('click', () => switchLanguage('hu'));
+            document.getElementById('enFlag').addEventListener('click', () => switchLanguage('en'));
+        });
 
-                <div class="mini-game">
-                    <h3>⚔️ Skin Battle</h3>
-                    <p>Küzdj más játékosokkal skinekért!</p>
-                    <div style="font-size: 4rem; margin: 20px 0;">⚔️</div>
-                    <a href="https://csgofast.com/" target="_blank" class="
+        // Videó háttér autoplay
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('video-background');
+            
+            // Beállítások a videóhoz
+            video.muted = true;
+            video.loop = true;
+            video.playsinline = true;
+            video.preload = 'auto';
+            
+            // Próbáljuk meg elindítani a videót
+            const playVideo = () => {
+                video.play().catch(e => {
+                    console.log("Video autoplay error:", e);
+                    // Ha nem sikerül, próbáljuk újra kattintás után
+                    document.addEventListener('click', () => {
+                        video.play().catch(err => console.log("Video play failed:", err));
+                    }, { once: true });
+                });
+            };
+            
+            // Ha a videó már betöltött
+            if (video.readyState >= 2) {
+                playVideo();
+            } else {
+                // Várjuk meg a betöltést
+                video.addEventListener('loadeddata', playVideo);
+                video.addEventListener('canplay', playVideo);
+            }
+            
+            // Biztosítsuk, hogy a videó mindig némán maradjon
+            video.addEventListener('volumechange', () => {
+                if (!video.muted) video.muted = true;
+            });
+        });
+    </script>
+</body>
+</html>
