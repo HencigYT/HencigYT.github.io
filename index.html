@@ -13,7 +13,7 @@
 @keyframes slideInFromLeft {0%{transform:translateX(-100px);opacity:0}100%{transform:translateX(0);opacity:1}}
 @keyframes slideInFromRight {0%{transform:translateX(100px);opacity:0}100%{transform:translateX(0);opacity:1}}
 @keyframes slideInFromBottom {0%{transform:translateY(50px);opacity:0}100%{transform:translateY(0);opacity:1}}
-@keyframes glowPulse {0%,100%{box-shadow:0 0 15px rgba(0,80,0,0.3)}50%{box-shadow:0 0 30px rgba(0,80,0,0.6)}}
+@keyframes glowPulse {0%,100%{box-shadow:0 0 15px rgba(105,255,122,0.3)}50%{box-shadow:0 0 30px rgba(105,255,122,0.6)}}
 
 /* ---------- Alap ---------- */
 html, body {
@@ -24,7 +24,7 @@ html, body {
     font-family:'Arial',sans-serif;
     color:#fff;
     overflow-x:hidden;
-    background: linear-gradient(135deg,#001a00 0%,#003300 30%,#002200 70%,#001100 100%);
+    background-color:#0a1a0a;
 }
 
 /* ---------- Loading ---------- */
@@ -34,7 +34,7 @@ html, body {
     left:0;
     width:100%;
     height:100%;
-    background: linear-gradient(135deg,#001100 0%,#003300 50%,#001100 100%);
+    background: linear-gradient(135deg,#0a1a0a 0%,#1a4a1a 50%,#0a1a0a 100%);
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -50,21 +50,21 @@ html, body {
     width:80px;
     height:80px;
     border-radius:15px;
-    border:3px solid #00b100;
+    border:3px solid #69ff7a;
     animation:pulse 2s ease-in-out infinite;
     margin-bottom:30px;
 }
 .loading-spinner{
     width:60px;
     height:60px;
-    border:3px solid rgba(0,177,0,0.3);
-    border-top:3px solid #00b100;
+    border:3px solid rgba(105,255,122,0.3);
+    border-top:3px solid #69ff7a;
     border-radius:50%;
     animation:spin 1s linear infinite;
     margin-bottom:20px;
 }
 .loading-text{
-    color:#00b100;
+    color:#69ff7a;
     font-size:1.2rem;
     font-weight:300;
     letter-spacing:2px;
@@ -83,7 +83,7 @@ html, body {
     transition: opacity 1s ease;
 }
 #video-background.visible{
-    opacity:1;
+    opacity:0.7;
 }
 .overlay{
     position:fixed;
@@ -91,7 +91,7 @@ html, body {
     left:0;
     width:100%;
     height:100%;
-    background: rgba(0,20,0,0.5);
+    background: rgba(10,26,10,0.3);
     z-index:-1;
 }
 
@@ -114,21 +114,21 @@ html, body {
 .sidebar{animation:slideInFromLeft 1s ease 0.5s both;display:flex;flex-direction:column;gap:15px;position:relative;align-items:center;}
 @media(max-width:767px){.sidebar{animation:slideInFromBottom 1s ease 0.5s both;align-items:center;}}
 .logo{text-align:center;margin-bottom:10px}
-.logo img{max-width:100%;max-height:100px;filter:drop-shadow(0 0 15px rgba(0,120,0,0.4));transition:all 0.3s ease}
-.logo img:hover{transform:scale(1.03);filter:drop-shadow(0 0 25px rgba(0,120,0,0.6))}
+.logo img{max-width:100%;max-height:100px;filter:drop-shadow(0 0 15px rgba(105,255,122,0.4));transition:all 0.3s ease}
+.logo img:hover{transform:scale(1.03);filter:drop-shadow(0 0 25px rgba(105,255,122,0.6))}
 .profile-pic{text-align:center;margin-top:0}
-.profile-pic img{width:100%;max-width:180px;border-radius:12px;border:2px solid #00b100;animation:glowPulse 3s ease-in-out infinite;transition:all 0.3s ease}
-.profile-pic img:hover{transform:scale(1.02) rotate(1deg);border-color:#00d400}
-.profile-bio{text-align:center;color:#e0e0e0;font-size:0.95rem;padding:10px 5px;line-height:1.4;max-width:280px;margin-top:10px;transition:all 0.3s ease}
+.profile-pic img{width:100%;max-width:180px;border-radius:12px;border:2px solid #69ff7a;animation:glowPulse 3s ease-in-out infinite;transition:all 0.3s ease}
+.profile-pic img:hover{transform:scale(1.02) rotate(1deg);border-color:#a4ffaf}
+.profile-bio{text-align:center;color:#bfffbc;font-size:0.95rem;padding:10px 5px;line-height:1.4;max-width:280px;margin-top:10px;transition:all 0.3s ease}
 
 /* ---------- Platformok ---------- */
-.platforms-header{text-align:center;font-size:1.4rem;color:#00b100;margin:15px 0 10px 0;font-weight:300;letter-spacing:1px;position:relative}
-.platforms-header::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:60%;height:2px;background:linear-gradient(90deg, transparent, #00b100, transparent)}
+.platforms-header{text-align:center;font-size:1.4rem;color:#69ff7a;margin:15px 0 10px 0;font-weight:300;letter-spacing:1px;position:relative}
+.platforms-header::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:60%;height:2px;background:linear-gradient(90deg, transparent, #69ff7a, transparent)}
 .social-links{display:flex;flex-direction:column;gap:10px;margin-bottom:15px;width:100%}
-.social-links a{text-decoration:none;font-size:1rem;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 8px;border-radius:10px;background:linear-gradient(135deg, rgba(0,80,0,0.2), rgba(0,100,0,0.4));transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);border:2px solid rgba(0,100,0,0.3);width:100%;overflow:hidden;font-weight:500;letter-spacing:0.5px;position:relative}
-.social-links a::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);transition:left 0.5s ease}
+.social-links a{text-decoration:none;font-size:1rem;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 8px;border-radius:10px;background:rgba(0,40,0,0.4);transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);border:1px solid rgba(105,255,122,0.4);width:100%;overflow:hidden;font-weight:500;letter-spacing:0.5px;position:relative;backdrop-filter:blur(10px)}
+.social-links a::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg, transparent, rgba(105,255,122,0.2), transparent);transition:left 0.5s ease}
 .social-links a:hover::before{left:100%}
-.social-links a:hover{background:linear-gradient(135deg, rgba(0,120,0,0.4), rgba(0,150,0,0.6));transform:translateY(-3px) scale(1.02);border-color:#00d400;box-shadow:0 8px 25px rgba(0,120,0,0.3)}
+.social-links a:hover{background:rgba(0,70,0,0.6);transform:translateY(-3px) scale(1.02);border-color:#69ff7a;box-shadow:0 8px 25px rgba(105,255,122,0.3)}
 .social-links a:active{transform:translateY(-1px) scale(1.01)}
 .social-links img{height:28px;width:28px;object-fit:contain;transition:transform 0.3s ease}
 .social-links a:hover img{transform:rotate(5deg) scale(1.1)}
@@ -138,22 +138,22 @@ html, body {
 @media(max-width:767px){.content{animation:slideInFromBottom 1s ease 0.7s both;max-height:calc(100vh - 400px);overflow-y:auto;width:100%;max-width:380px;}}
 
 /* ---------- Specifikációk ---------- */
-.specs{padding:20px;background:linear-gradient(135deg, rgba(0,40,0,0.6), rgba(0,60,0,0.4));border-radius:12px;border:2px solid rgba(0,100,0,0.3);backdrop-filter:blur(10px);transition:all 0.3s ease;position:relative;overflow:hidden}
-.specs h2{font-size:1.5rem;color:#00b100;margin-bottom:15px;font-weight:300;letter-spacing:1px;position:relative;padding-bottom:12px}
-.specs h2::after{content:'';position:absolute;bottom:0;left:0;width:50px;height:2px;background:linear-gradient(90deg,#00b100,#00d400)}
+.specs{padding:20px;background:rgba(0,40,0,0.4);border-radius:10px;border:1px solid rgba(105,255,122,0.4);backdrop-filter:blur(10px);transition:all 0.3s ease;position:relative;overflow:hidden}
+.specs h2{font-size:1.5rem;color:#69ff7a;margin-bottom:15px;font-weight:300;letter-spacing:1px;position:relative;padding-bottom:12px}
+.specs h2::after{content:'';position:absolute;bottom:0;left:0;width:50px;height:2px;background:linear-gradient(90deg,#69ff7a,#a4ffaf)}
 .specs ul{list-style:none;padding:0;margin:0}
-.specs li{margin:10px 0;font-size:0.95rem;color:#e0e0e0;line-height:1.5;padding:6px 0;padding-left:12px;border-left:3px solid transparent;transition:all 0.3s ease}
-.specs li:hover{color:#fff;border-left-color:#00b100;transform:translateX(5px)}
-.specs a{color:#00b100;text-decoration:none;transition:all 0.3s ease;position:relative}
-.specs a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:linear-gradient(90deg,#00b100,#00d400);transition:width 0.3s ease}
-.specs a:hover{color:#00d400;transform:translateX(2px)}
+.specs li{margin:10px 0;font-size:0.95rem;color:#bfffbc;line-height:1.5;padding:6px 0;padding-left:12px;border-left:3px solid transparent;transition:all 0.3s ease}
+.specs li:hover{color:#fff;border-left-color:#69ff7a;transform:translateX(5px)}
+.specs a{color:#69ff7a;text-decoration:none;transition:all 0.3s ease;position:relative}
+.specs a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:linear-gradient(90deg,#69ff7a,#a4ffaf);transition:width 0.3s ease}
+.specs a:hover{color:#a4ffaf;transform:translateX(2px)}
 .specs a:hover::after{width:100%}
 
 /* ---------- Nyelvválasztó ---------- */
 .language-switcher{position:fixed;bottom:25px;left:25px;display:flex;gap:15px;z-index:10;}
 .language-switcher img{width:36px;height:27px;cursor:pointer;border:3px solid transparent;border-radius:8px;transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);filter:brightness(0.8)}
 .language-switcher img:hover{transform:scale(1.15) rotate(5deg);filter:brightness(1)}
-.language-switcher img.active{border-color:#00b100;box-shadow:0 0 15px rgba(0,120,0,0.6);filter:brightness(1)}
+.language-switcher img.active{border-color:#69ff7a;box-shadow:0 0 15px rgba(105,255,122,0.6);filter:brightness(1)}
 </style>
 </head>
 <body>
@@ -166,7 +166,7 @@ html, body {
 </div>
 
 <!-- Videó háttér -->
-<video id="video-background" autoplay muted loop playsinline>
+<video id="video-background" autoplay muted loop playsinline preload="auto">
     <source src="https://www.dropbox.com/scl/fi/d19sixyllzmm7r8m08gib/green.mp4?rlkey=4xnhq8dmde1d2rjttr0km4gfa&st=vxdgunnf&dl=1" type="video/mp4">
 </video>
 <div class="overlay"></div>
@@ -343,57 +343,65 @@ document.addEventListener('DOMContentLoaded',function(){
     const video=document.getElementById('video-background');
     
     let hasLoaded = false;
+    let maxTimeout = null;
     
     function hideLoading(){
         if(hasLoaded) return;
         hasLoaded = true;
+        
+        // Töröljük a max timeout-ot ha van
+        if(maxTimeout) clearTimeout(maxTimeout);
+        
         loading.classList.add('hidden');
         video.classList.add('visible');
+        
+        console.log('Loading screen hidden, video visible');
     }
     
     // Videó lejátszás biztosítása
     function playVideo(){
         video.play().catch(err => {
-            console.log('Autoplay prevented, waiting for user interaction');
-            document.addEventListener('click', () => {
+            console.log('Autoplay prevented:', err);
+            // Ha autoplay nem megy, user interakciónál próbáljuk újra
+            document.addEventListener('click', function playOnClick() {
                 video.play().catch(() => {});
-            }, {once: true});
+                document.removeEventListener('click', playOnClick);
+            });
         });
     }
     
-    // Többszörös eseményfigyelő
+    // Eseményfigyelők a videó betöltésére
     video.addEventListener('loadeddata', () => {
-        hideLoading();
-        playVideo();
-    });
-    video.addEventListener('canplay', () => {
-        hideLoading();
-        playVideo();
-    });
-    video.addEventListener('canplaythrough', () => {
+        console.log('Video loadeddata event');
         hideLoading();
         playVideo();
     });
     
-    // Ha már betöltött
+    video.addEventListener('canplay', () => {
+        console.log('Video canplay event');
+        hideLoading();
+        playVideo();
+    });
+    
+    video.addEventListener('canplaythrough', () => {
+        console.log('Video canplaythrough event');
+        hideLoading();
+        playVideo();
+    });
+    
+    // Ha a videó már betöltött mikor a script fut
     if(video.readyState >= 2){
+        console.log('Video already loaded, readyState:', video.readyState);
         hideLoading();
         playVideo();
     }
     
-    // Biztonsági időzítő
-    setTimeout(() => {
-        if(!hasLoaded){
-            hideLoading();
-            playVideo();
-        }
+    // Maximum 3 másodperc várakozás (csak ha nem töltött be előbb)
+    maxTimeout = setTimeout(() => {
+        console.log('Max timeout reached (3s)');
+        hideLoading();
+        playVideo();
     }, 3000);
-    
-    // Videó tulajdonságok beállítása
-    video.muted = true;
-    video.loop = true;
-    video.playsInline = true;
-    video.preload = 'auto';
 });
 </script>
 
