@@ -6,6 +6,125 @@
     <title>Hencig</title>
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/HencigYT/Hencig/refs/heads/main/48d0e079b22728cde4e1db2429ed9a57.png">
     <style>
+        /* Alapstílusok */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            background: linear-gradient(135deg, #0a1a0a 0%, #1a4a1a 30%, #0f2f0f 70%, #0a1a0a 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        /* Logo és profil */
+        .logo img {
+            max-width: 150px;
+            filter: drop-shadow(0 0 15px rgba(76, 175, 80, 0.4));
+        }
+
+        .profile-pic {
+            margin: 20px 0;
+        }
+
+        .profile-pic img {
+            width: 150px;
+            height: 150px;
+            border-radius: 12px;
+            border: 2px solid #4CAF50;
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(76, 175, 80, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(76, 175, 80, 0.6); }
+        }
+
+        .about {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1rem;
+            max-width: 600px;
+        }
+
+        /* Platformok */
+        .platforms-header {
+            font-size: 1.4rem;
+            color: #4CAF50;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(76,175,80,0.2), rgba(76,175,80,0.4));
+            border: 2px solid rgba(76,175,80,0.3);
+            font-weight: 500;
+        }
+
+        .social-links img {
+            height: 24px;
+            width: 24px;
+        }
+
+        /* Specs (eszközök és alkatrészek) */
+        .specs {
+            margin: 15px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(20,40,20,0.6), rgba(30,60,30,0.4));
+            border-radius: 12px;
+            border: 2px solid rgba(76,175,80,0.3);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .specs h2 {
+            font-size: 1.5rem;
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .specs ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .specs li {
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+
+        .specs a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
         /* Loading Screen */
         .loading-screen {
             position: fixed;
@@ -33,17 +152,17 @@
             border-radius: 15px;
             border: 3px solid #4CAF50;
             animation: pulse 2s ease-in-out infinite;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .loading-spinner {
             width: 60px;
             height: 60px;
-            border: 3px solid rgba(76, 175, 80, 0.3);
+            border: 3px solid rgba(76,175,80,0.3);
             border-top: 3px solid #4CAF50;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .loading-text {
@@ -52,11 +171,10 @@
             font-size: 1.2rem;
             font-weight: 300;
             letter-spacing: 2px;
-            animation: fadeInOut 2s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
+            0%,100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.1); opacity: 0.8; }
         }
 
@@ -64,48 +182,6 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        /* Main Content Animations */
-        @keyframes slideInFromLeft {
-            0% { transform: translateX(-100px); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes slideInFromRight {
-            0% { transform: translateX(100px); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes slideInFromBottom {
-            0% { transform: translateY(50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { box-shadow: 0 0 15px rgba(76, 175, 80, 0.3); }
-            50% { box-shadow: 0 0 30px rgba(76, 175, 80, 0.6); }
-        }
-
-        /* Alapstílusok */
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            color: #fff;
-            display: flex;
-            min-height: 100vh;
-            overflow-y: auto;
-            position: relative;
-            background: linear-gradient(135deg, #0a1a0a 0%, #1a4a1a 30%, #0f2f0f 70%, #0a1a0a 100%);
-            opacity: 0;
-            animation: fadeIn 1s ease 2.5s forwards;
-        }
-
-        @keyframes fadeIn { to { opacity: 1; } }
 
         /* Videó háttér */
         #video-background {
@@ -116,113 +192,48 @@
             height: 100%;
             object-fit: cover;
             z-index: -2;
-            opacity: 0;
-            animation: videoFadeIn 2s ease 3s forwards;
+            opacity: 0.6;
             filter: hue-rotate(10deg) brightness(0.8) contrast(1.2);
         }
 
-        @keyframes videoFadeIn { to { opacity: 0.6; } }
-
-        /* Háttér overlay */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(10, 26, 10, 0.6) 0%, rgba(10, 26, 10, 0.9) 100%);
+            background: radial-gradient(circle at center, rgba(10,26,10,0.6) 0%, rgba(10,26,10,0.9) 100%);
             z-index: -1;
         }
 
-        /* Konténer */
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            padding: 15px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-
-        /* Asztali nézet */
-        @media (min-width: 768px) {
-            .container { grid-template-columns: 320px 1fr; gap: 30px; align-items: start; padding: 20px; }
-            .sidebar { position: sticky; top: 20px; height: auto; overflow-y: visible; display: flex; flex-direction: column; animation: slideInFromLeft 1s ease 2.8s both; }
-            .content { position: relative; animation: slideInFromRight 1s ease 3.2s both; }
-        }
-
-        /* Mobile animations */
-        @media (max-width: 767px) {
-            .sidebar { animation: slideInFromBottom 1s ease 2.8s both; }
-            .content { animation: slideInFromBottom 1s ease 3.2s both; }
-        }
-
-        /* Cím - kép */
-        .logo { text-align: center; margin-bottom: 20px; position: relative; }
-        .logo img { max-width: 100%; height: auto; max-height: 100px; filter: drop-shadow(0 0 15px rgba(76, 175, 80, 0.4)); transition: all 0.3s ease; }
-        .logo img:hover { transform: scale(1.03); filter: drop-shadow(0 0 25px rgba(76, 175, 80, 0.6)); }
-
-        /* Profilkép a platformok alatt */
-        .profile-pic { text-align: center; margin: 15px 0 0 0; }
-        .profile-pic img { width: 100%; max-width: 100%; height: auto; border-radius: 12px; border: 2px solid #4CAF50; animation: glowPulse 3s ease-in-out infinite; transition: all 0.3s ease; }
-        .profile-pic img:hover { transform: scale(1.02) rotate(1deg); border-color: #8BC34A; }
-
-        /* Bemutatkozás szekció */
-        .about {
-            margin: 15px 0;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(20, 40, 20, 0.6), rgba(30, 60, 30, 0.4));
-            border-radius: 12px;
-            border: 2px solid rgba(76, 175, 80, 0.3);
-            backdrop-filter: blur(10px);
-            color: #e0e0e0;
-            font-size: 1rem;
-            line-height: 1.5;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        /* Platformok fejléc */
-        .platforms-header { font-size: 1.4rem; color: #4CAF50; margin-bottom: 15px; text-align: center; position: relative; font-weight: 300; letter-spacing: 1px; }
-        .platforms-header::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: linear-gradient(90deg, transparent, #4CAF50, transparent); }
-
-        /* Közösségi média gombok */
-        .social-links { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; width: 100%; }
-        .social-links a { text-decoration: none; font-size: 1rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 8px; border-radius: 10px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.4)); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 2px solid rgba(76, 175, 80, 0.3); width: 100%; box-sizing: border-box; position: relative; overflow: hidden; font-weight: 500; letter-spacing: 0.5px; }
-        .social-links a::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transition: left 0.5s ease; }
-        .social-links a:hover::before { left: 100%; }
-        .social-links a:hover { background: linear-gradient(135deg, rgba(76, 175, 80, 0.4), rgba(139, 195, 74, 0.6)); transform: translateY(-3px) scale(1.02); border-color: #8BC34A; box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3); }
-        .social-links a:active { transform: translateY(-1px) scale(1.01); }
-        .social-links img { height: 28px; width: 28px; object-fit: contain; transition: transform 0.3s ease; }
-        .social-links a:hover img { transform: rotate(5deg) scale(1.1); }
-
-        /* Specifikációk */
-        .specs { margin: 15px 0; padding: 20px; background: linear-gradient(135deg, rgba(20, 40, 20, 0.6), rgba(30, 60, 30, 0.4)); border-radius: 12px; border: 2px solid rgba(76, 175, 80, 0.3); backdrop-filter: blur(10px); transition: all 0.3s ease; position: relative; overflow: hidden; }
-        .specs::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #4CAF50, transparent); }
-        .specs:hover { transform: translateY(-2px); border-color: #8BC34A; box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2); }
-        .specs h2 { font-size: 1.5rem; color: #4CAF50; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; position: relative; padding-bottom: 12px; }
-        .specs h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 50px; height: 2px; background: linear-gradient(90deg, #4CAF50, #8BC34A); }
-        .specs ul { list-style: none; padding: 0; }
-        .specs li { margin: 10px 0; font-size: 0.95rem; color: #e0e0e0; line-height: 1.5; padding: 6px 0; transition: all 0.3s ease; border-left: 3px solid transparent; padding-left: 12px; }
-        .specs li:hover { color: #fff; border-left-color: #4CAF50; transform: translateX(5px); }
-        .specs a { color: #4CAF50; text-decoration: none; transition: all 0.3s ease; position: relative; }
-        .specs a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #4CAF50, #8BC34A); transition: width 0.3s ease; }
-        .specs a:hover { color: #8BC34A; transform: translateX(2px); }
-        .specs a:hover::after { width: 100%; }
-
         /* Nyelvválasztó */
-        .language-switcher { position: fixed; bottom: 25px; left: 25px; display: flex; gap: 15px; z-index: 10; opacity: 0; animation: slideInFromBottom 1s ease 4s both; }
-        .language-switcher img { width: 36px; height: 27px; cursor: pointer; border: 3px solid transparent; border-radius: 8px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); filter: brightness(0.8); }
-        .language-switcher img:hover { transform: scale(1.15) rotate(5deg); filter: brightness(1); }
-        .language-switcher img.active { border-color: #4CAF50; box-shadow: 0 0 15px rgba(76, 175, 80, 0.6); filter: brightness(1); }
+        .language-switcher {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
 
-        /* Scrollbar styling */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(10, 26, 10, 0.5); }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #4CAF50, #8BC34A); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #8BC34A, #4CAF50); }
+        .language-switcher img {
+            width: 36px;
+            height: 27px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            border-radius: 8px;
+            transition: all 0.4s ease;
+        }
+
+        .language-switcher img.active {
+            border-color: #4CAF50;
+            box-shadow: 0 0 15px rgba(76,175,80,0.6);
+        }
+
+        /* Reszponzív */
+        @media (max-width: 768px) {
+            .specs { width: 90%; }
+        }
     </style>
 </head>
 <body>
@@ -246,73 +257,90 @@
     </div>
 
     <div class="container">
-        <div class="sidebar">
-            <div class="logo">
-                <img src="Hencig.png" alt="Hencig">
-            </div>
-            
-            <div class="platforms-header" id="platformsHeader">Platformok:</div>
-            <div class="social-links">
-                <a href="https://discord.com/invite/F8pz3SKvc5" target="_blank"><img src="discord1.png" alt="Discord"> <span class="discord-text">Discord</span></a>
-                <a href="https://www.youtube.com/channel/UCp7PxfyhJmZxT7meb7AprDg" target="_blank"><img src="youtube1.png" alt="YouTube"> <span class="youtube-text">YouTube</span></a>
-                <a href="https://www.twitch.tv/hencig_" target="_blank"><img src="twitch1.png" alt="Twitch"> <span class="twitch-text">Twitch</span></a>
-                <a href="https://steamcommunity.com/id/hencig" target="_blank"><img src="steam1.png" alt="Steam"> <span class="steam-text">Steam</span></a>
-                <a href="https://paypal.me/BenceSzarvas562?country.x=HU&locale.x=hu_HU" target="_blank"><img src="támogatás1.png" alt="Támogatás"> <span class="support-text">Támogatás</span></a>
-            </div>
-
-            <!-- Profilkép -->
-            <div class="profile-pic">
-                <img src="hencigpfp.png" alt="Hencig profil">
-            </div>
-
-            <!-- Bemutatkozás -->
-            <div class="about">
-                Itt írd meg a bemutatkozásodat.
-            </div>
+        <div class="logo">
+            <img src="Hencig.png" alt="Hencig">
         </div>
-        
-        <div class="content">
-            <!-- Eszközök és komponensek itt maradnak változatlanul -->
-            <div class="specs">
-                <h2 id="devicesTitle">Eszközök</h2>
-                <ul id="devicesList">
-                    <li><strong id="mouseLabel">Egér:</strong> <a href="https://ipon.hu/shop/termek/glorious-model-d-wireless-fekete/1954865?gad_source=1" target="_blank">Glorious Model D Wireless (fekete)</a></li>
-                    <li><strong id="mouse2Label">Egér (másodlagos):</strong> <a href="https://www.bloody.com/en/product.php?pid=10&id=98" target="_blank">Bloody A90</a></li>
-                    <li><strong id="keyboardLabel">Billentyűzet:</strong> <a href="https://endorfy.com/en/product/thock-75-wireless-hu-black/" target="_blank">Endorfy Thock 75 Wireless</a></li>
-                    <li><strong id="micLabel">Mikrofon:</strong> <a href="https://www.alza.hu/hyperx-quadcast-s-d6876015.htm?kampan=adw3_audio-video_pla_all_obecna_audio-video-mikrofony_c_9198825___580389083183_~132051087723~&gad_source=1" target="_blank">HyperX QuadCast S</a></li>
-                    <li><strong id="headsetLabel">Fejhallgató:</strong> <a href="https://www.mediamarkt.hu/hu/product/_jbl-quantum-350-vezet%C3%A9k-n%C3%A9lk%C3%BCli-gamer-fejhallgat%C3%B3-mikrofonnal-fekete-1369885.html?gad_campaignid=20083817263" target="_blank">JBL Quantum 350 Wireless</a></li>
-                    <li><strong id="monitorLabel">Monitor:</strong> <a href="https://oaziscomputer.hu/termek/32130/lg-ultragear-27gr83q-baeu" target="_blank">LG UltraGear 27GR83Q-B</a></li>
-                    <li><strong id="monitor2Label">Monitor (másodlagos):</strong> <a href="https://www.asus.com/displays-desktops/monitors/tuf-gaming/tuf-gaming-vg249q1a/" target="_blank">ASUS TUF Gaming VG249Q1A</a></li>
-                    <li><strong id="cameraLabel">Kamera:</strong> <a href="https://mstore.hu/xiaomi-imilab-w88s-webkamera_55835" target="_blank">Xiaomi IMILAB W88S</a></li>
-                    <li><strong id="deskLabel">Asztal:</strong> <a href="https://huzaro.hu/gamer-iroasztalok/272-huzaro-hero-47-gaming-desk-black-5903796011319.html" target="_blank">Huzaro Hero 4.7</a></li>
-                    <li><strong id="phoneLabel">Telefon:</strong> <a href="https://www.arukereso.hu/mobiltelefon-c3277/xiaomi/redmi-note-12s-256gb-8gb-ram-dual-p952837914/" target="_blank">Xiaomi Redmi Note 12S</a></li>
-                </ul>
-            </div>
-            <div class="specs">
-                <h2 id="partsTitle">Számítógép alkatrészek</h2>
-                <ul id="partsList">
-                    <li><strong id="motherboardLabel">Alaplap:</strong> <a href="https://www.alza.hu/gigabyte-z790-aorus-elite-ax-d7507291.htm" target="_blank">Gigabyte Z790 Aorus Elite AX</a></li>
-                    <li><strong id="cpuLabel">Processzor:</strong> <a href="https://www.alza.hu/intel-core-i7-14700k-d7950854.htm" target="_blank">Intel Core i7-14700K</a></li>
-                    <li><strong id="ramLabel">RAM:</strong> <a href="https://ipon.hu/shop/termek/kingston-fury-32gb-fury-beast-rgb-ddr5-6000mhz-cl40-kit-kf560c40bbak2-32/2013008" target="_blank">Kingston Fury Beast RGB DDR5 32GB 6000MHz</a></li>
-                    <li><strong id="gpuLabel">Videókártya:</strong> <a href="https://m.alza.hu/gainward-geforce-rtx-4070-super-ghost-12gb-gddr6x-d9358302.htm" target="_blank">Gainward GeForce RTX 4070 Super Ghost 12GB</a></li>
-                    <li><strong id="psuLabel">Áramellátó:</strong> <a href="https://www.arukereso.hu/tapegyseg-c3158/be-quiet/700w-bronze-system-power-9-700w-cm-bronze-bn303-p487033422/" target="_blank">Be Quiet! System Power 9 700W CM Bronze</a></li>
-                    <li><strong id="ssdLabel">SSD:</strong> <a href="https://www.alza.hu/kingston-nv2-2tb-d7373901.htm" target="_blank">Kingston NV2 2TB</a></li>
-                    <li><strong id="caseLabel">Gépház:</strong> <a href="https://www.pcx.hu/kolink-observatory-hf-uveg-ablakos-fekete-szamitogephaz-observatory-hf-gb--941901" target="_blank">Kolink Observatory HF</a></li>
-                    <li><strong id="coolerLabel">Processzor hűtő:</strong> <a href="https://ipon.hu/shop/termek/deepcool-ld360-fekete/2261268" target="_blank">DeepCool LD360</a></li>
-                </ul>
-            </div>
+
+        <div class="profile-pic">
+            <img src="hencigpfp.png" alt="Hencig profil">
+        </div>
+
+        <div class="about">
+            Itt írd meg a bemutatkozásodat.
+        </div>
+
+        <div class="platforms-header" id="platformsHeader">Platformok:</div>
+        <div class="social-links">
+            <a href="https://discord.com/invite/F8pz3SKvc5" target="_blank">
+                <img src="discord1.png" alt="Discord"> <span class="discord-text">Discord</span>
+            </a>
+            <a href="https://www.youtube.com/channel/UCp7PxfyhJmZxT7meb7AprDg" target="_blank">
+                <img src="youtube1.png" alt="YouTube"> <span class="youtube-text">YouTube</span>
+            </a>
+            <a href="https://www.twitch.tv/hencig_" target="_blank">
+                <img src="twitch1.png" alt="Twitch"> <span class="twitch-text">Twitch</span>
+            </a>
+            <a href="https://steamcommunity.com/id/hencig" target="_blank">
+                <img src="steam1.png" alt="Steam"> <span class="steam-text">Steam</span>
+            </a>
+            <a href="https://paypal.me/BenceSzarvas562?country.x=HU&locale.x=hu_HU" target="_blank">
+                <img src="támogatás1.png" alt="Támogatás"> <span class="support-text">Támogatás</span>
+            </a>
+        </div>
+
+        <!-- Eszközök és számítógép alkatrészek -->
+        <div class="specs">
+            <h2 id="devicesTitle">Eszközök</h2>
+            <ul id="devicesList">
+                <li><strong id="mouseLabel">Egér:</strong> Glorious Model D Wireless</li>
+                <li><strong id="keyboardLabel">Billentyűzet:</strong> Endorfy Thock 75 Wireless</li>
+            </ul>
+        </div>
+
+        <div class="specs">
+            <h2 id="partsTitle">Számítógép alkatrészek</h2>
+            <ul id="partsList">
+                <li><strong id="motherboardLabel">Alaplap:</strong> Gigabyte Z790 Aorus Elite AX</li>
+                <li><strong id="cpuLabel">Processzor:</strong> Intel Core i7-14700K</li>
+            </ul>
         </div>
     </div>
 
     <script>
+        // Nyelvi tartalmak
         const translations = {
-            hu: { platforms: "Platformok:", discord: "Discord", youtube: "YouTube", twitch: "Twitch", steam: "Steam", support: "Támogatás", devicesTitle: "Eszközök", mouse: "Egér:", mouse2: "Egér (másodlagos):", keyboard: "Billentyűzet:", mic: "Mikrofon:", headset: "Fejhallgató:", monitor: "Monitor:", monitor2: "Monitor (másodlagos):", camera: "Kamera:", desk: "Asztal:", phone: "Telefon:", partsTitle: "Számítógép alkatrészek", motherboard: "Alaplap:", cpu: "Processzor:", ram: "RAM:", gpu: "Videókártya:", psu: "Áramellátó:", ssd: "SSD:", case: "Gépház:", cooler: "Processzor hűtő:"},
-            en: { platforms: "Platforms:", discord: "Discord", youtube: "YouTube", twitch: "Twitch", steam: "Steam", support: "Support", devicesTitle: "Devices", mouse: "Mouse:", mouse2: "Mouse (secondary):", keyboard: "Keyboard:", mic: "Microphone:", headset: "Headset:", monitor: "Monitor:", monitor2: "Monitor (secondary):", camera: "Camera:", desk: "Desk:", phone: "Phone:", partsTitle: "Computer Components", motherboard: "Motherboard:", cpu: "Processor:", ram: "RAM:", gpu: "Graphics card:", psu: "Power supply:", ssd: "SSD:", case: "Case:", cooler: "CPU cooler:"}
+            hu: {
+                platforms: "Platformok:",
+                discord: "Discord",
+                youtube: "YouTube",
+                twitch: "Twitch",
+                steam: "Steam",
+                support: "Támogatás",
+                devicesTitle: "Eszközök",
+                mouse: "Egér:",
+                keyboard: "Billentyűzet:",
+                partsTitle: "Számítógép alkatrészek",
+                motherboard: "Alaplap:",
+                cpu: "Processzor:"
+            },
+            en: {
+                platforms: "Platforms:",
+                discord: "Discord",
+                youtube: "YouTube",
+                twitch: "Twitch",
+                steam: "Steam",
+                support: "Support",
+                devicesTitle: "Devices",
+                mouse: "Mouse:",
+                keyboard: "Keyboard:",
+                partsTitle: "Computer Components",
+                motherboard: "Motherboard:",
+                cpu: "Processor:"
+            }
         };
 
         let currentLanguage = 'en';
 
-        // Loading screen eltűntetése, amikor minden betöltődött
         window.addEventListener('load', () => {
             document.getElementById('loadingScreen').classList.add('hidden');
         });
@@ -329,24 +357,10 @@
             document.querySelector('.support-text').textContent = translations[lang].support;
             document.getElementById('devicesTitle').textContent = translations[lang].devicesTitle;
             document.getElementById('mouseLabel').textContent = translations[lang].mouse;
-            document.getElementById('mouse2Label').textContent = translations[lang].mouse2;
             document.getElementById('keyboardLabel').textContent = translations[lang].keyboard;
-            document.getElementById('micLabel').textContent = translations[lang].mic;
-            document.getElementById('headsetLabel').textContent = translations[lang].headset;
-            document.getElementById('monitorLabel').textContent = translations[lang].monitor;
-            document.getElementById('monitor2Label').textContent = translations[lang].monitor2;
-            document.getElementById('cameraLabel').textContent = translations[lang].camera;
-            document.getElementById('deskLabel').textContent = translations[lang].desk;
-            document.getElementById('phoneLabel').textContent = translations[lang].phone;
             document.getElementById('partsTitle').textContent = translations[lang].partsTitle;
             document.getElementById('motherboardLabel').textContent = translations[lang].motherboard;
             document.getElementById('cpuLabel').textContent = translations[lang].cpu;
-            document.getElementById('ramLabel').textContent = translations[lang].ram;
-            document.getElementById('gpuLabel').textContent = translations[lang].gpu;
-            document.getElementById('psuLabel').textContent = translations[lang].psu;
-            document.getElementById('ssdLabel').textContent = translations[lang].ssd;
-            document.getElementById('caseLabel').textContent = translations[lang].case;
-            document.getElementById('coolerLabel').textContent = translations[lang].cooler;
         }
 
         document.getElementById('huFlag').addEventListener('click', () => switchLanguage('hu'));
