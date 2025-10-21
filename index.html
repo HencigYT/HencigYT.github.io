@@ -166,8 +166,8 @@ html, body {
 </div>
 
 <!-- Videó háttér -->
-<video id="video-background" autoplay muted loop playsinline preload="auto">
-    <source src="https://www.dropbox.com/scl/fi/d19sixyllzmm7r8m08gib/green.mp4?rlkey=4xnhq8dmde1d2rjttr0km4gfa&st=vxdgunnf&dl=1" type="video/mp4">
+<video id="video-background" muted loop playsinline preload="auto">
+    <source src="https://www.dropbox.com/scl/fi/d19sixyllzmm7r8m08gib/green.mp4?rlkey=4xnhq8dmde1d2rjttr0km4gfa&st=vxdgunnf&raw=1" type="video/mp4">
 </video>
 <div class="overlay"></div>
 
@@ -234,8 +234,71 @@ html, body {
 
 <script>
 // ---------- Nyelvváltó ----------
-const translations={hu:{platforms:"Platformok:",discord:"Discord",youtube:"YouTube",twitch:"Twitch",steam:"Steam",support:"Támogatás",devicesTitle:"Eszközök",mouse:"Egér:",mouse2:"Egér (másodlagos):",keyboard:"Billentyűzet:",mic:"Mikrofon:",headset:"Fejhallgató:",monitor:"Monitor:",monitor2:"Monitor (másodlagos):",camera:"Kamera:",desk:"Asztal:",chair:"Szék:",phone:"Telefon:",partsTitle:"Számítógép alkatrészek",motherboard:"Alaplap:",cpu:"Processzor:",ram:"RAM:",gpu:"Videókártya:",psu:"Áramellátó:",ssd:"SSD:",case:"Gépház:",cooler:"Processzor hűtő:",profileBio:"Szia, én Hencig vagyok, videojátékokkal és technológiával foglalkozom."},en:{platforms:"Platforms:",discord:"Discord",youtube:"YouTube",twitch:"Twitch",steam:"Steam",support:"Support",devicesTitle:"Devices",mouse:"Mouse:",mouse2:"Mouse (secondary):",keyboard:"Keyboard:",mic:"Microphone:",headset:"Headset:",monitor:"Monitor:",monitor2:"Monitor (secondary):",camera:"Camera:",desk:"Desk:",chair:"Chair:",phone:"Phone:",partsTitle:"Computer Components",motherboard:"Motherboard:",cpu:"Processor:",ram:"RAM:",gpu:"Graphics card:",psu:"Power supply:",ssd:"SSD:",case:"Case:",cooler:"CPU cooler:",profileBio:"Hi, I'm Hencig, I deal with gaming and technology."}}
+const translations={
+    hu:{
+        platforms:"Platformok:",
+        discord:"Discord",
+        youtube:"YouTube",
+        twitch:"Twitch",
+        steam:"Steam",
+        support:"Támogatás",
+        devicesTitle:"Eszközök",
+        mouse:"Egér:",
+        mouse2:"Egér (másodlagos):",
+        keyboard:"Billentyűzet:",
+        mic:"Mikrofon:",
+        headset:"Fejhallgató:",
+        monitor:"Monitor:",
+        monitor2:"Monitor (másodlagos):",
+        camera:"Kamera:",
+        desk:"Asztal:",
+        chair:"Szék:",
+        phone:"Telefon:",
+        partsTitle:"Számítógép alkatrészek",
+        motherboard:"Alaplap:",
+        cpu:"Processzor:",
+        ram:"RAM:",
+        gpu:"Videókártya:",
+        psu:"Áramellátó:",
+        ssd:"SSD:",
+        case:"Gépház:",
+        cooler:"Processzor hűtő:",
+        profileBio:"Szia, én Hencig vagyok, videojátékokkal és technológiával foglalkozom."
+    },
+    en:{
+        platforms:"Platforms:",
+        discord:"Discord",
+        youtube:"YouTube",
+        twitch:"Twitch",
+        steam:"Steam",
+        support:"Support",
+        devicesTitle:"Devices",
+        mouse:"Mouse:",
+        mouse2:"Mouse (secondary):",
+        keyboard:"Keyboard:",
+        mic:"Microphone:",
+        headset:"Headset:",
+        monitor:"Monitor:",
+        monitor2:"Monitor (secondary):",
+        camera:"Camera:",
+        desk:"Desk:",
+        chair:"Chair:",
+        phone:"Phone:",
+        partsTitle:"Computer Components",
+        motherboard:"Motherboard:",
+        cpu:"Processor:",
+        ram:"RAM:",
+        gpu:"Graphics card:",
+        psu:"Power supply:",
+        ssd:"SSD:",
+        case:"Case:",
+        cooler:"CPU cooler:",
+        profileBio:"Hi, I'm Hencig, I deal with gaming and technology."
+    }
+}
+
 let currentLanguage='en';
+
 function switchLanguage(lang){
     currentLanguage=lang;
     document.getElementById('huFlag').classList.toggle('active',lang==='hu');
@@ -269,34 +332,76 @@ function switchLanguage(lang){
     document.getElementById('coolerLabel').textContent=translations[lang].cooler;
     document.getElementById('profileBio').textContent=translations[lang].profileBio;
 }
+
 document.addEventListener('DOMContentLoaded',function(){
     switchLanguage(currentLanguage);
+    
     document.getElementById('huFlag').addEventListener('click',()=>switchLanguage('hu'));
     document.getElementById('enFlag').addEventListener('click',()=>switchLanguage('en'));
+
     const loading=document.getElementById('loadingScreen');
     const video=document.getElementById('video-background');
+    
     let hasLoaded = false;
     let maxTimeout = null;
+    
     function hideLoading(){
         if(hasLoaded) return;
         hasLoaded = true;
+        
+        // Töröljük a max timeout-ot ha van
         if(maxTimeout) clearTimeout(maxTimeout);
+        
         loading.classList.add('hidden');
         video.classList.add('visible');
+        
+        console.log('Loading screen hidden, video visible');
     }
+    
+    // Videó lejátszás biztosítása
     function playVideo(){
         video.play().catch(err => {
+            console.log('Autoplay prevented:', err);
+            // Ha autoplay nem megy, user interakciónál próbáljuk újra
             document.addEventListener('click', function playOnClick() {
                 video.play().catch(() => {});
                 document.removeEventListener('click', playOnClick);
             });
         });
     }
-    video.addEventListener('loadeddata', hideLoading);
-    video.addEventListener('canplay', hideLoading);
-    video.addEventListener('canplaythrough', hideLoading);
-    if(video.readyState >= 2){ hideLoading(); }
-    maxTimeout = setTimeout(hideLoading, 3000);
+    
+    // Eseményfigyelők a videó betöltésére
+    video.addEventListener('loadeddata', () => {
+        console.log('Video loadeddata event');
+        hideLoading();
+        playVideo();
+    });
+    
+    video.addEventListener('canplay', () => {
+        console.log('Video canplay event');
+        hideLoading();
+        playVideo();
+    });
+    
+    video.addEventListener('canplaythrough', () => {
+        console.log('Video canplaythrough event');
+        hideLoading();
+        playVideo();
+    });
+    
+    // Ha a videó már betöltött mikor a script fut
+    if(video.readyState >= 2){
+        console.log('Video already loaded, readyState:', video.readyState);
+        hideLoading();
+        playVideo();
+    }
+    
+    // Maximum 3 másodperc várakozás (csak ha nem töltött be előbb)
+    maxTimeout = setTimeout(() => {
+        console.log('Max timeout reached (3s)');
+        hideLoading();
+        playVideo();
+    }, 3000);
 });
 </script>
 
