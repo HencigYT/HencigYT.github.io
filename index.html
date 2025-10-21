@@ -167,7 +167,7 @@ html, body {
 
 <!-- Videó háttér -->
 <video id="video-background" muted autoplay loop playsinline preload="auto">
-    <source src="https://raw.githubusercontent.com/HencigYT/Hencig/main/green.mp4" type="video/mp4">
+    <source src="https://www.dropbox.com/scl/fi/eregohxlptuwtmksxnqdm/green.mp4?rlkey=y3cbjajwwj4si76u772yagq0l&st=8dj83vqv&dl=1" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 <div class="overlay"></div>
@@ -182,11 +182,11 @@ document.addEventListener('DOMContentLoaded', function() {
         video.classList.add('visible');
     }
 
-    // Ha a videó betöltődik
+    // Videó betöltésekor
     video.addEventListener('canplaythrough', () => {
         showVideo();
         video.play().catch(() => {
-            // Ha autoplay blokkolva, kattintásra próbáljuk újra
+            // Ha az autoplay blokkolva van, kattintásra próbáljuk újra
             document.addEventListener('click', function playOnClick() {
                 video.play().catch(() => {});
                 document.removeEventListener('click', playOnClick);
