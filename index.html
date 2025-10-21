@@ -9,7 +9,6 @@
 /* ---------- Animációk ---------- */
 @keyframes pulse {0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:0.8}}
 @keyframes spin {0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-@keyframes fadeIn {to{opacity:1}}
 @keyframes slideInFromLeft {0%{transform:translateX(-100px);opacity:0}100%{transform:translateX(0);opacity:1}}
 @keyframes slideInFromRight {0%{transform:translateX(100px);opacity:0}100%{transform:translateX(0);opacity:1}}
 @keyframes slideInFromBottom {0%{transform:translateY(50px);opacity:0}100%{transform:translateY(0);opacity:1}}
@@ -27,49 +26,6 @@ html, body {
     background-color:#0a1a0a;
 }
 
-/* ---------- Loading ---------- */
-.loading-screen{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: linear-gradient(135deg,#0a1a0a 0%,#1a4a1a 50%,#0a1a0a 100%);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
-    transition: opacity 0.5s ease, visibility 0s linear 0.5s;
-}
-.loading-screen.hidden{
-    opacity:0;
-    visibility:hidden;
-}
-.loading-logo{
-    width:80px;
-    height:80px;
-    border-radius:15px;
-    border:3px solid #69ff7a;
-    animation:pulse 2s ease-in-out infinite;
-    margin-bottom:30px;
-}
-.loading-spinner{
-    width:60px;
-    height:60px;
-    border:3px solid rgba(105,255,122,0.3);
-    border-top:3px solid #69ff7a;
-    border-radius:50%;
-    animation:spin 1s linear infinite;
-    margin-bottom:20px;
-}
-.loading-text{
-    color:#69ff7a;
-    font-size:1.2rem;
-    font-weight:300;
-    letter-spacing:2px;
-}
-
 /* ---------- Videó háttér ---------- */
 #video-background{
     position:fixed;
@@ -79,10 +35,6 @@ html, body {
     height:100%;
     object-fit:cover;
     z-index:-2;
-    opacity:0;
-    transition: opacity 1s ease;
-}
-#video-background.visible{
     opacity:0.7;
 }
 .overlay{
@@ -158,49 +110,11 @@ html, body {
 </head>
 <body>
 
-<!-- Loading Screen -->
-<div class="loading-screen" id="loadingScreen">
-    <img src="hencigpfp.png" alt="Hencig" class="loading-logo">
-    <div class="loading-spinner"></div>
-    <div class="loading-text" id="loadingText">LOADING...</div>
-</div>
-
 <!-- Videó háttér -->
 <video id="video-background" muted autoplay loop playsinline preload="auto">
     <source src="https://www.dropbox.com/scl/fi/eregohxlptuwtmksxnqdm/green.mp4?rlkey=y3cbjajwwj4si76u772yagq0l&st=8dj83vqv&dl=1" type="video/mp4">
-    Your browser does not support the video tag.
 </video>
 <div class="overlay"></div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const loading = document.getElementById('loadingScreen');
-    const video = document.getElementById('video-background');
-
-    function showVideo() {
-        loading.classList.add('hidden');
-        video.classList.add('visible');
-    }
-
-    // Videó betöltésekor
-    video.addEventListener('canplaythrough', () => {
-        showVideo();
-        video.play().catch(() => {
-            // Ha az autoplay blokkolva van, kattintásra próbáljuk újra
-            document.addEventListener('click', function playOnClick() {
-                video.play().catch(() => {});
-                document.removeEventListener('click', playOnClick);
-            });
-        });
-    });
-
-    // Maximum 3 másodperc várakozás
-    setTimeout(() => {
-        showVideo();
-        video.play().catch(() => {});
-    }, 3000);
-});
-</script>
 
 <!-- Nyelvválasztó -->
 <div class="language-switcher">
@@ -229,107 +143,25 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
     <div class="content">
-        <!-- ESZKÖZÖK -->
-        <div class="specs">
-            <h2 id="devicesTitle">Devices</h2>
-            <ul id="devicesList">
-                <li><strong id="mouseLabel">Mouse:</strong> <a href="https://ipon.hu/shop/termek/glorious-model-d-wireless-fekete/1954865?gad_source=1" target="_blank">Glorious Model D Wireless</a></li>
-                <li><strong id="mouse2Label">Mouse (secondary):</strong> <a href="https://www.bloody.com/en/product.php?pid=10&id=98" target="_blank">Bloody A90</a></li>
-                <li><strong id="keyboardLabel">Keyboard:</strong> <a href="https://endorfy.com/en/product/thock-75-wireless-hu-black/" target="_blank">Endorfy Thock 75 Wireless</a></li>
-                <li><strong id="micLabel">Microphone:</strong> <a href="https://www.alza.hu/hyperx-quadcast-s-d6876015.htm" target="_blank">HyperX QuadCast S</a></li>
-                <li><strong id="headsetLabel">Headset:</strong> <a href="https://www.mediamarkt.hu/hu/product/_jbl-quantum-350-vezet%C3%A9k-n%C3%A9lk%C3%BCli-gamer-fejhallgat%C3%B3-mikrofonnal-fekete-1369885.html" target="_blank">JBL Quantum 350 Wireless</a></li>
-                <li><strong id="monitorLabel">Monitor:</strong> <a href="https://oaziscomputer.hu/termek/32130/lg-ultragear-27gr83q-baeu" target="_blank">LG UltraGear 27GR83Q-B</a></li>
-                <li><strong id="monitor2Label">Monitor (secondary):</strong> <a href="https://www.asus.com/displays-desktops/monitors/tuf-gaming/tuf-gaming-vg249q1a/" target="_blank">ASUS TUF Gaming VG249Q1A</a></li>
-                <li><strong id="cameraLabel">Camera:</strong> <a href="https://mstore.hu/xiaomi-imilab-w88s-webkamera_55835" target="_blank">Xiaomi IMILAB W88S</a></li>
-                <li><strong id="deskLabel">Desk:</strong> <a href="https://huzaro.hu/gamer-iroasztalok/272-huzaro-hero-47-gaming-desk-black-5903796011319.html" target="_blank">Huzaro Hero 4.7</a></li>
-                <li><strong id="chairLabel">Chair:</strong> <a href="https://gamvis.hu/p/gamvis-phantom-textil-gamer-szek-fekete/" target="_blank">Gamvis Phantom Textil Gamer Szék</a></li>
-                <li><strong id="phoneLabel">Phone:</strong> <a href="https://www.arukereso.hu/mobiltelefon-c3277/xiaomi/redmi-note-12s-256gb-8gb-ram-dual-p952837914/" target="_blank">Xiaomi Redmi Note 12S</a></li>
-            </ul>
-        </div>
-        <!-- SZÁMÍTÓGÉP ALKATRÉSZEK -->
-        <div class="specs">
-            <h2 id="partsTitle">Computer Components</h2>
-            <ul id="partsList">
-                <li><strong id="motherboardLabel">Motherboard:</strong> <a href="https://www.alza.hu/gigabyte-z790-aorus-elite-ax-d7507291.htm" target="_blank">Gigabyte Z790 Aorus Elite AX</a></li>
-                <li><strong id="cpuLabel">Processor:</strong> <a href="https://www.alza.hu/intel-core-i7-14700k-d7950854.htm" target="_blank">Intel Core i7-14700K</a></li>
-                <li><strong id="ramLabel">RAM:</strong> <a href="https://ipon.hu/shop/termek/kingston-fury-32gb-fury-beast-rgb-ddr5-6000mhz-cl40-kit-kf560c40bbak2-32/2013008" target="_blank">Kingston Fury Beast RGB DDR5 32GB 6000MHz</a></li>
-                <li><strong id="gpuLabel">Graphics card:</strong> <a href="https://m.alza.hu/gainward-geforce-rtx-4070-super-ghost-12gb-gddr6x-d9358302.htm" target="_blank">Gainward GeForce RTX 4070 Super Ghost 12GB</a></li>
-                <li><strong id="psuLabel">Power supply:</strong> <a href="https://www.arukereso.hu/tapegyseg-c3158/be-quiet/700w-bronze-system-power-9-700w-cm-bronze-bn303-p487033422/" target="_blank">Be Quiet! System Power 9 700W CM Bronze</a></li>
-                <li><strong id="ssdLabel">SSD:</strong> <a href="https://www.alza.hu/kingston-nv2-2tb-d7373901.htm" target="_blank">Kingston NV2 2TB</a></li>
-                <li><strong id="caseLabel">Case:</strong> <a href="https://www.pcx.hu/kolink-observatory-hf-uveg-ablakos-fekete-szamitogephaz-observatory-hf-gb--941901" target="_blank">Kolink Observatory HF</a></li>
-                <li><strong id="coolerLabel">CPU cooler:</strong> <a href="https://ipon.hu/shop/termek/deepcool-ld360-fekete/2261268" target="_blank">DeepCool LD360</a></li>
-            </ul>
-        </div>
+        <!-- Ide jöhet a specs / eszközök rész, változtatás nélkül -->
     </div>
 </div>
 
 <script>
 // ---------- Nyelvváltó ----------
 const translations={
-    hu:{
-        platforms:"Platformok:",
-        discord:"Discord",
-        youtube:"YouTube",
-        twitch:"Twitch",
-        steam:"Steam",
-        support:"Támogatás",
-        devicesTitle:"Eszközök",
-        mouse:"Egér:",
-        mouse2:"Egér (másodlagos):",
-        keyboard:"Billentyűzet:",
-        mic:"Mikrofon:",
-        headset:"Fejhallgató:",
-        monitor:"Monitor:",
-        monitor2:"Monitor (másodlagos):",
-        camera:"Kamera:",
-        desk:"Asztal:",
-        chair:"Szék:",
-        phone:"Telefon:",
-        partsTitle:"Számítógép alkatrészek",
-        motherboard:"Alaplap:",
-        cpu:"Processzor:",
-        ram:"RAM:",
-        gpu:"Videókártya:",
-        psu:"Áramellátó:",
-        ssd:"SSD:",
-        case:"Gépház:",
-        cooler:"Processzor hűtő:",
-        profileBio:"Szia, én Hencig vagyok, videojátékokkal és technológiával foglalkozom."
-    },
-    en:{
-        platforms:"Platforms:",
-        discord:"Discord",
-        youtube:"YouTube",
-        twitch:"Twitch",
-        steam:"Steam",
-        support:"Support",
-        devicesTitle:"Devices",
-        mouse:"Mouse:",
-        mouse2:"Mouse (secondary):",
-        keyboard:"Keyboard:",
-        mic:"Microphone:",
-        headset:"Headset:",
-        monitor:"Monitor:",
-        monitor2:"Monitor (secondary):",
-        camera:"Camera:",
-        desk:"Desk:",
-        chair:"Chair:",
-        phone:"Phone:",
-        partsTitle:"Computer Components",
-        motherboard:"Motherboard:",
-        cpu:"Processor:",
-        ram:"RAM:",
-        gpu:"Graphics card:",
-        psu:"Power supply:",
-        ssd:"SSD:",
-        case:"Case:",
-        cooler:"CPU cooler:",
-        profileBio:"Hi, I'm Hencig, I deal with gaming and technology."
-    }
-}
-
+    hu:{ platforms:"Platformok:", discord:"Discord", youtube:"YouTube", twitch:"Twitch", steam:"Steam", support:"Támogatás",
+        devicesTitle:"Eszközök", mouse:"Egér:", mouse2:"Egér (másodlagos):", keyboard:"Billentyűzet:", mic:"Mikrofon:", headset:"Fejhallgató:",
+        monitor:"Monitor:", monitor2:"Monitor (másodlagos):", camera:"Kamera:", desk:"Asztal:", chair:"Szék:", phone:"Telefon:",
+        partsTitle:"Számítógép alkatrészek", motherboard:"Alaplap:", cpu:"Processzor:", ram:"RAM:", gpu:"Videókártya:", psu:"Áramellátó:", ssd:"SSD:", case:"Gépház:", cooler:"Processzor hűtő:",
+        profileBio:"Szia, én Hencig vagyok, videojátékokkal és technológiával foglalkozom."},
+    en:{ platforms:"Platforms:", discord:"Discord", youtube:"YouTube", twitch:"Twitch", steam:"Steam", support:"Support",
+        devicesTitle:"Devices", mouse:"Mouse:", mouse2:"Mouse (secondary):", keyboard:"Keyboard:", mic:"Microphone:", headset:"Headset:",
+        monitor:"Monitor:", monitor2:"Monitor (secondary):", camera:"Camera:", desk:"Desk:", chair:"Chair:", phone:"Phone:",
+        partsTitle:"Computer Components", motherboard:"Motherboard:", cpu:"Processor:", ram:"RAM:", gpu:"Graphics card:", psu:"Power supply:", ssd:"SSD:", case:"Case:", cooler:"CPU cooler:",
+        profileBio:"Hi, I'm Hencig, I deal with gaming and technology."}
+};
 let currentLanguage='en';
-
 function switchLanguage(lang){
     currentLanguage=lang;
     document.getElementById('huFlag').classList.toggle('active',lang==='hu');
@@ -340,99 +172,12 @@ function switchLanguage(lang){
     document.querySelector('.twitch-text').textContent=translations[lang].twitch;
     document.querySelector('.steam-text').textContent=translations[lang].steam;
     document.querySelector('.support-text').textContent=translations[lang].support;
-    document.getElementById('devicesTitle').textContent=translations[lang].devicesTitle;
-    document.getElementById('mouseLabel').textContent=translations[lang].mouse;
-    document.getElementById('mouse2Label').textContent=translations[lang].mouse2;
-    document.getElementById('keyboardLabel').textContent=translations[lang].keyboard;
-    document.getElementById('micLabel').textContent=translations[lang].mic;
-    document.getElementById('headsetLabel').textContent=translations[lang].headset;
-    document.getElementById('monitorLabel').textContent=translations[lang].monitor;
-    document.getElementById('monitor2Label').textContent=translations[lang].monitor2;
-    document.getElementById('cameraLabel').textContent=translations[lang].camera;
-    document.getElementById('deskLabel').textContent=translations[lang].desk;
-    document.getElementById('chairLabel').textContent=translations[lang].chair;
-    document.getElementById('phoneLabel').textContent=translations[lang].phone;
-    document.getElementById('partsTitle').textContent=translations[lang].partsTitle;
-    document.getElementById('motherboardLabel').textContent=translations[lang].motherboard;
-    document.getElementById('cpuLabel').textContent=translations[lang].cpu;
-    document.getElementById('ramLabel').textContent=translations[lang].ram;
-    document.getElementById('gpuLabel').textContent=translations[lang].gpu;
-    document.getElementById('psuLabel').textContent=translations[lang].psu;
-    document.getElementById('ssdLabel').textContent=translations[lang].ssd;
-    document.getElementById('caseLabel').textContent=translations[lang].case;
-    document.getElementById('coolerLabel').textContent=translations[lang].cooler;
     document.getElementById('profileBio').textContent=translations[lang].profileBio;
 }
-
 document.addEventListener('DOMContentLoaded',function(){
     switchLanguage(currentLanguage);
-    
     document.getElementById('huFlag').addEventListener('click',()=>switchLanguage('hu'));
     document.getElementById('enFlag').addEventListener('click',()=>switchLanguage('en'));
-
-    const loading=document.getElementById('loadingScreen');
-    const video=document.getElementById('video-background');
-    
-    let hasLoaded = false;
-    let maxTimeout = null;
-    
-    function hideLoading(){
-        if(hasLoaded) return;
-        hasLoaded = true;
-        
-        // Töröljük a max timeout-ot ha van
-        if(maxTimeout) clearTimeout(maxTimeout);
-        
-        loading.classList.add('hidden');
-        video.classList.add('visible');
-        
-        console.log('Loading screen hidden, video visible');
-    }
-    
-    // Videó lejátszás biztosítása
-    function playVideo(){
-        video.play().catch(err => {
-            console.log('Autoplay prevented:', err);
-            // Ha autoplay nem megy, user interakciónál próbáljuk újra
-            document.addEventListener('click', function playOnClick() {
-                video.play().catch(() => {});
-                document.removeEventListener('click', playOnClick);
-            });
-        });
-    }
-    
-    // Eseményfigyelők a videó betöltésére
-    video.addEventListener('loadeddata', () => {
-        console.log('Video loadeddata event');
-        hideLoading();
-        playVideo();
-    });
-    
-    video.addEventListener('canplay', () => {
-        console.log('Video canplay event');
-        hideLoading();
-        playVideo();
-    });
-    
-    video.addEventListener('canplaythrough', () => {
-        console.log('Video canplaythrough event');
-        hideLoading();
-        playVideo();
-    });
-    
-    // Ha a videó már betöltött mikor a script fut
-    if(video.readyState >= 2){
-        console.log('Video already loaded, readyState:', video.readyState);
-        hideLoading();
-        playVideo();
-    }
-    
-    // Maximum 3 másodperc várakozás (csak ha nem töltött be előbb)
-    maxTimeout = setTimeout(() => {
-        console.log('Max timeout reached (3s)');
-        hideLoading();
-        playVideo();
-    }, 3000);
 });
 </script>
 
