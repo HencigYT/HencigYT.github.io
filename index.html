@@ -1,175 +1,221 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hencig</title>
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/HencigYT/Hencig/refs/heads/main/48d0e079b22728cde4e1db2429ed9a57.png">
-    <style>
-        /* Alapstílusok */
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #0a1a0a, #1a4a1a);
-            color: #fff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hencig</title>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/HencigYT/Hencig/refs/heads/main/48d0e079b22728cde4e1db2429ed9a57.png">
+<style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background: #0a1a0a;
+        color: #fff;
+        overflow-x: hidden;
+    }
 
+    /* Videó háttér */
+    #video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+        filter: brightness(0.6) contrast(1.2);
+    }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 26, 10, 0.8);
+        z-index: -1;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    h2 {
+        color: #4CAF50;
+        font-weight: 300;
+        letter-spacing: 1px;
+        border-bottom: 2px solid #4CAF50;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        margin: 8px 0;
+        font-size: 1rem;
+    }
+
+    li a {
+        color: #8BC34A;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    li a:hover {
+        color: #4CAF50;
+        text-decoration: underline;
+    }
+
+    .profile-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .profile-section img {
+        width: 200px;
+        max-width: 90%;
+        border-radius: 12px;
+        border: 2px solid #4CAF50;
+        transition: transform 0.3s;
+    }
+
+    .profile-section img:hover {
+        transform: scale(1.05);
+    }
+
+    .bio {
+        max-width: 600px;
+    }
+
+    .platforms {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .platforms a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 15px;
+        border-radius: 12px;
+        background: rgba(76, 175, 80, 0.2);
+        color: #fff;
+        text-decoration: none;
+        width: 220px;
+        transition: all 0.3s ease;
+    }
+
+    .platforms a:hover {
+        background: rgba(139, 195, 74, 0.4);
+        transform: translateY(-2px);
+    }
+
+    .specs {
+        background: rgba(20, 40, 20, 0.7);
+        border-radius: 12px;
+        padding: 15px;
+        border: 2px solid rgba(76,175,80,0.3);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .specs:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(76,175,80,0.4);
+    }
+
+    /* Responsive */
+    @media (min-width: 768px) {
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            flex-direction: row;
+            gap: 30px;
         }
-
-        h2 {
-            color: #4CAF50;
-            font-weight: 300;
-            letter-spacing: 1px;
-            border-bottom: 2px solid #4CAF50;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
+        .sidebar {
+            flex: 1;
         }
-
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .main-content {
+            flex: 2;
         }
+    }
 
-        li {
-            margin: 8px 0;
-            font-size: 1rem;
-        }
-
-        li a {
-            color: #8BC34A;
-            text-decoration: none;
-        }
-
-        li a:hover {
-            text-decoration: underline;
-        }
-
-        .profile-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .profile-section img {
-            width: 200px;
-            max-width: 90%;
-            border-radius: 12px;
-            border: 2px solid #4CAF50;
-        }
-
-        .bio {
-            text-align: center;
-            max-width: 600px;
-        }
-
-        .platforms {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-        }
-
+    @media (max-width: 767px) {
         .platforms a {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 15px;
-            border-radius: 10px;
-            background: rgba(76, 175, 80, 0.2);
-            color: #fff;
-            text-decoration: none;
-            width: 200px;
-            justify-content: center;
-            transition: all 0.3s ease;
+            width: 100%;
         }
-
-        .platforms a:hover {
-            background: rgba(139, 195, 74, 0.4);
-        }
-
-        .specs {
-            background: rgba(20, 40, 20, 0.7);
-            border-radius: 12px;
-            padding: 15px;
-        }
-
-        /* Responsive */
-        @media (min-width: 768px) {
-            .container {
-                flex-direction: row;
-                gap: 30px;
-            }
-            .sidebar {
-                flex: 1;
-            }
-            .main-content {
-                flex: 2;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .platforms a {
-                width: 100%;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar profile-section">
-            <img src="hencigpfp.png" alt="Hencig profil">
-            <div class="bio">
-                <p>Szia! Hencig vagyok, streamer és tech rajongó. Itt megtalálod az eszközeimet és a gépem specifikációit.</p>
-            </div>
-            <div class="platforms">
-                <a href="https://discord.com/invite/F8pz3SKvc5" target="_blank">Discord</a>
-                <a href="https://www.youtube.com/channel/UCp7PxfyhJmZxT7meb7AprDg" target="_blank">YouTube</a>
-                <a href="https://www.twitch.tv/hencig_" target="_blank">Twitch</a>
-                <a href="https://steamcommunity.com/id/hencig" target="_blank">Steam</a>
-                <a href="https://paypal.me/BenceSzarvas562?country.x=HU&locale.x=hu_HU" target="_blank">Támogatás</a>
-            </div>
+
+<video id="video-background" autoplay muted loop playsinline>
+    <source src="https://www.dropbox.com/scl/fi/aiq5kkr1dthwh46kna1vf/green.mp4?rlkey=4ex8zclwmey65hc5ijy3tu3x4&st=7kmul368&dl=1" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<div class="container">
+    <!-- Profil és platformok -->
+    <div class="sidebar profile-section">
+        <img src="hencigpfp.png" alt="Hencig profil">
+        <div class="bio">
+            <p>Szia! Hencig vagyok, streamer és tech rajongó. Itt megtalálod az eszközeimet és a gépem specifikációit.</p>
         </div>
-
-        <div class="main-content">
-            <div class="specs">
-                <h2>Eszközök</h2>
-                <ul>
-                    <li>Egér: <a href="https://ipon.hu/shop/termek/glorious-model-d-wireless-fekete/1954865?gad_source=1" target="_blank">Glorious Model D Wireless</a></li>
-                    <li>Egér (másodlagos): <a href="https://www.bloody.com/en/product.php?pid=10&id=98" target="_blank">Bloody A90</a></li>
-                    <li>Billentyűzet: <a href="https://endorfy.com/en/product/thock-75-wireless-hu-black/" target="_blank">Endorfy Thock 75 Wireless</a></li>
-                    <li>Mikrofon: <a href="https://www.alza.hu/hyperx-quadcast-s-d6876015.htm" target="_blank">HyperX QuadCast S</a></li>
-                    <li>Fejhallgató: <a href="https://www.mediamarkt.hu/hu/product/_jbl-quantum-350-vezet%C3%A9k-n%C3%A9lk%C3%BCli-gamer-fejhallgat%C3%B3-mikrofonnal-fekete-1369885.html" target="_blank">JBL Quantum 350 Wireless</a></li>
-                    <li>Monitor: <a href="https://oaziscomputer.hu/termek/32130/lg-ultragear-27gr83q-baeu" target="_blank">LG UltraGear 27GR83Q-B</a></li>
-                    <li>Monitor (másodlagos): <a href="https://www.asus.com/displays-desktops/monitors/tuf-gaming/tuf-gaming-vg249q1a/" target="_blank">ASUS TUF Gaming VG249Q1A</a></li>
-                    <li>Kamera: <a href="https://mstore.hu/xiaomi-imilab-w88s-webkamera_55835" target="_blank">Xiaomi IMILAB W88S</a></li>
-                    <li>Asztal: <a href="https://gamvis.hu/p/gamvis-phantom-textil-gamer-szek-fekete/" target="_blank">Gamvis Phantom Textil Gamer Szék</a></li>
-                    <li>Telefon: <a href="https://www.arukereso.hu/mobiltelefon-c3277/xiaomi/redmi-note-12s-256gb-8gb-ram-dual-p952837914/" target="_blank">Xiaomi Redmi Note 12S</a></li>
-                </ul>
-            </div>
-
-            <div class="specs">
-                <h2>Számítógép alkatrészek</h2>
-                <ul>
-                    <li>Alaplap: <a href="https://www.alza.hu/gigabyte-z790-aorus-elite-ax-d7507291.htm" target="_blank">Gigabyte Z790 Aorus Elite AX</a></li>
-                    <li>Processzor: <a href="https://www.alza.hu/intel-core-i7-14700k-d7950854.htm" target="_blank">Intel Core i7-14700K</a></li>
-                    <li>RAM: <a href="https://ipon.hu/shop/termek/kingston-fury-32gb-fury-beast-rgb-ddr5-6000mhz-cl40-kit-kf560c40bbak2-32/2013008" target="_blank">Kingston Fury Beast RGB DDR5 32GB 6000MHz</a></li>
-                    <li>Videókártya: <a href="https://m.alza.hu/gainward-geforce-rtx-4070-super-ghost-12gb-gddr6x-d9358302.htm" target="_blank">Gainward GeForce RTX 4070 Super Ghost 12GB</a></li>
-                    <li>Áramellátó: <a href="https://www.arukereso.hu/tapegyseg-c3158/be-quiet/700w-bronze-system-power-9-700w-cm-bronze-bn303-p487033422/" target="_blank">Be Quiet! System Power 9 700W CM Bronze</a></li>
-                    <li>SSD: <a href="https://www.alza.hu/kingston-nv2-2tb-d7373901.htm" target="_blank">Kingston NV2 2TB</a></li>
-                    <li>Gépház: <a href="https://www.pcx.hu/kolink-observatory-hf-uveg-ablakos-fekete-szamitogephaz-observatory-hf-gb--941901" target="_blank">Kolink Observatory HF</a></li>
-                    <li>Processzor hűtő: <a href="https://ipon.hu/shop/termek/deepcool-ld360-fekete/2261268" target="_blank">DeepCool LD360</a></li>
-                </ul>
-            </div>
+        <div class="platforms">
+            <a href="https://discord.com/invite/F8pz3SKvc5" target="_blank">Discord</a>
+            <a href="https://www.youtube.com/channel/UCp7PxfyhJmZxT7meb7AprDg" target="_blank">YouTube</a>
+            <a href="https://www.twitch.tv/hencig_" target="_blank">Twitch</a>
+            <a href="https://steamcommunity.com/id/hencig" target="_blank">Steam</a>
+            <a href="https://paypal.me/BenceSzarvas562?country.x=HU&locale.x=hu_HU" target="_blank">Támogatás</a>
         </div>
     </div>
+
+    <!-- Eszközök és alkatrészek -->
+    <div class="main-content">
+        <div class="specs">
+            <h2>Eszközök</h2>
+            <ul>
+                <li>Egér: <a href="https://ipon.hu/shop/termek/glorious-model-d-wireless-fekete/1954865?gad_source=1" target="_blank">Glorious Model D Wireless</a></li>
+                <li>Egér (másodlagos): <a href="https://www.bloody.com/en/product.php?pid=10&id=98" target="_blank">Bloody A90</a></li>
+                <li>Billentyűzet: <a href="https://endorfy.com/en/product/thock-75-wireless-hu-black/" target="_blank">Endorfy Thock 75 Wireless</a></li>
+                <li>Mikrofon: <a href="https://www.alza.hu/hyperx-quadcast-s-d6876015.htm" target="_blank">HyperX QuadCast S</a></li>
+                <li>Fejhallgató: <a href="https://www.mediamarkt.hu/hu/product/_jbl-quantum-350-vezet%C3%A9k-n%C3%A9lk%C3%BCli-gamer-fejhallgat%C3%B3-mikrofonnal-fekete-1369885.html" target="_blank">JBL Quantum 350 Wireless</a></li>
+                <li>Monitor: <a href="https://oaziscomputer.hu/termek/32130/lg-ultragear-27gr83q-baeu" target="_blank">LG UltraGear 27GR83Q-B</a></li>
+                <li>Monitor (másodlagos): <a href="https://www.asus.com/displays-desktops/monitors/tuf-gaming/tuf-gaming-vg249q1a/" target="_blank">ASUS TUF Gaming VG249Q1A</a></li>
+                <li>Kamera: <a href="https://mstore.hu/xiaomi-imilab-w88s-webkamera_55835" target="_blank">Xiaomi IMILAB W88S</a></li>
+                <li>Asztal: <a href="https://huzaro.hu/gamer-iroasztalok/272-huzaro-hero-47-gaming-desk-black-5903796011319.html" target="_blank">Huzaro Hero 4.7</a></li>
+                <li>Szék: <a href="https://gamvis.hu/p/gamvis-phantom-textil-gamer-szek-fekete/" target="_blank">Gamvis Phantom Textil Gamer Szék</a></li>
+                <li>Telefon: <a href="https://www.arukereso.hu/mobiltelefon-c3277/xiaomi/redmi-note-12s-256gb-8gb-ram-dual-p952837914/" target="_blank">Xiaomi Redmi Note 12S</a></li>
+            </ul>
+        </div>
+
+        <div class="specs">
+            <h2>Számítógép alkatrészek</h2>
+            <ul>
+                <li>Alaplap: <a href="https://www.alza.hu/gigabyte-z790-aorus-elite-ax-d7507291.htm" target="_blank">Gigabyte Z790 Aorus Elite AX</a></li>
+                <li>Processzor: <a href="https://www.alza.hu/intel-core-i7-14700k-d7950854.htm" target="_blank">Intel Core i7-14700K</a></li>
+                <li>RAM: <a href="https://ipon.hu/shop/termek/kingston-fury-32gb-fury-beast-rgb-ddr5-6000mhz-cl40-kit-kf560c40bbak2-32/2013008" target="_blank">Kingston Fury Beast RGB DDR5 32GB 6000MHz</a></li>
+                <li>Videókártya: <a href="https://m.alza.hu/gainward-geforce-rtx-4070-super-ghost-12gb-gddr6x-d9358302.htm" target="_blank">Gainward GeForce RTX 4070 Super Ghost 12GB</a></li>
+                <li>Áramellátó: <a href="https://www.arukereso.hu/tapegyseg-c3158/be-quiet/700w-bronze-system-power-9-700w-cm-bronze-bn303-p487033422/" target="_blank">Be Quiet! System Power 9 700W CM Bronze</a></li>
+                <li>SSD: <a href="https://www.alza.hu/kingston-nv2-2tb-d7373901.htm" target="_blank">Kingston NV2 2TB</a></li>
+                <li>Gépház: <a href="https://www.pcx.hu/kolink-observatory-hf-uveg-ablakos-fekete-szamitogephaz-observatory-hf-gb--941901" target="_blank">Kolink Observatory HF</a></li>
+                <li>Processzor hűtő: <a href="https://ipon.hu/shop/termek/deepcool-ld360-fekete/2261268" target="_blank">DeepCool LD360</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
