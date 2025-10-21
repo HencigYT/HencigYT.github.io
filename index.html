@@ -18,29 +18,11 @@
 @keyframes videoFadeIn {to{opacity:0.6}}
 
 /* ---------- Alap ---------- */
-html, body {
-  margin:0;
-  padding:0;
-  width:100%;
-  height:100%;
-  font-family:'Arial',sans-serif;
-  color:#fff;
-  overflow:hidden; /* teljesen tiltsuk a görgetést */
-  background:linear-gradient(135deg,#0a1a0a 0%,#1a4a1a 30%,#0f2f0f 70%,#0a1a0a 100%);
-  opacity:0;
-  animation:fadeIn 1s ease 2.5s forwards;
-  display:flex;
-  flex-direction:column;
-}
+html, body {margin:0;padding:0;width:100%;height:100%;font-family:'Arial',sans-serif;color:#fff;overflow-x:hidden;background:linear-gradient(135deg,#0a1a0a 0%,#1a4a1a 30%,#0f2f0f 70%,#0a1a0a 100%);opacity:0;animation:fadeIn 1s ease 2.5s forwards;}
+body {display:flex;flex-direction:column;}
 
 /* ---------- Loading ---------- */
-.loading-screen{
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  background:linear-gradient(135deg,#0a1a0a 0%,#1a4a1a 50%,#0a1a0a 100%);
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
-  z-index:9999;
-  transition:opacity 1s ease,visibility 0s linear 1s;
-}
+.loading-screen{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#0a1a0a 0%,#1a4a1a 50%,#0a1a0a 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;transition:opacity 1s ease,visibility 0s linear 1s}
 .loading-screen.hidden{opacity:0;visibility:hidden}
 .loading-logo{width:80px;height:80px;border-radius:15px;border:3px solid #4CAF50;animation:pulse 2s ease-in-out infinite;margin-bottom:30px}
 .loading-spinner{width:60px;height:60px;border:3px solid rgba(76,175,80,0.3);border-top:3px solid #4CAF50;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:20px}
@@ -51,61 +33,42 @@ html, body {
 .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at center, rgba(10,26,10,0.6) 0%, rgba(10,26,10,0.9) 100%);z-index:-1}
 
 /* ---------- Container ---------- */
-.container{
-  display:flex;
-  flex-direction:column;
-  width:100%;
-  height:100%;
-}
-@media(min-width:768px){
-  .container{flex-direction:row;}
-}
+.container{max-width:1200px;width:100%;padding:15px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:20px;min-height:100vh;box-sizing:border-box;align-items:start;}
+@media(min-width:768px){.container{grid-template-columns:320px 1fr;gap:30px;}}
 
 /* ---------- Sidebar ---------- */
-.sidebar{
-  flex:0 0 auto;
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-  padding:15px;
-  box-sizing:border-box;
-  animation:slideInFromLeft 1s ease 2.8s both;
-}
-@media(max-width:767px){
-  .sidebar{animation:slideInFromBottom 1s ease 2.8s both;}
-}
+.sidebar{animation:slideInFromLeft 1s ease 2.8s both;display:flex;flex-direction:column;gap:15px;position:relative;align-items:center;}
+@media(max-width:767px){.sidebar{animation:slideInFromBottom 1s ease 2.8s both;align-items:center;}}
 
-/* ---------- Content ---------- */
-.content{
-  flex:1 1 auto;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-  overflow-y:auto;
-  padding:15px;
-  animation:slideInFromRight 1s ease 3.2s both;
-}
-@media(max-width:767px){.content{animation:slideInFromBottom 1s ease 3.2s both;}}
-
-/* ---------- Profile ---------- */
 .logo{text-align:center;margin-bottom:10px}
 .logo img{max-width:100%;max-height:100px;filter:drop-shadow(0 0 15px rgba(76,175,80,0.4));transition:all 0.3s ease}
 .logo img:hover{transform:scale(1.03);filter:drop-shadow(0 0 25px rgba(76,175,80,0.6))}
+
 .profile-pic{text-align:center;margin-top:0}
 .profile-pic img{width:100%;max-width:180px;border-radius:12px;border:2px solid #4CAF50;animation:glowPulse 3s ease-in-out infinite;transition:all 0.3s ease}
 .profile-pic img:hover{transform:scale(1.02) rotate(1deg);border-color:#8BC34A}
+
 .profile-bio{text-align:center;color:#e0e0e0;font-size:0.95rem;padding:10px 5px;line-height:1.4;max-width:280px;margin-top:10px;transition:all 0.3s ease;}
 
 /* ---------- Platformok ---------- */
 .platforms-header{text-align:center;font-size:1.4rem;color:#4CAF50;margin:15px 0 10px 0;font-weight:300;letter-spacing:1px;position:relative}
 .platforms-header::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:60%;height:2px;background:linear-gradient(90deg, transparent, #4CAF50, transparent)}
+
 .social-links{display:flex;flex-direction:column;gap:10px;margin-bottom:15px;width:100%}
-.social-links a{text-decoration:none;font-size:1rem;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 8px;border-radius:10px;background:linear-gradient(135deg, rgba(76,175,80,0.2), rgba(76,175,80,0.4));transition:all 0.4s; border:2px solid rgba(76,175,80,0.3); width:100%;overflow:hidden;font-weight:500;letter-spacing:0.5px;position:relative}
+.social-links a{text-decoration:none;font-size:1rem;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 8px;border-radius:10px;background:linear-gradient(135deg, rgba(76,175,80,0.2), rgba(76,175,80,0.4));transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);border:2px solid rgba(76,175,80,0.3);width:100%;overflow:hidden;font-weight:500;letter-spacing:0.5px;position:relative}
+.social-links a::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);transition:left 0.5s ease}
+.social-links a:hover::before{left:100%}
 .social-links a:hover{background:linear-gradient(135deg, rgba(76,175,80,0.4), rgba(139,195,74,0.6));transform:translateY(-3px) scale(1.02);border-color:#8BC34A;box-shadow:0 8px 25px rgba(76,175,80,0.3)}
+.social-links a:active{transform:translateY(-1px) scale(1.01)}
 .social-links img{height:28px;width:28px;object-fit:contain;transition:transform 0.3s ease}
 .social-links a:hover img{transform:rotate(5deg) scale(1.1)}
 
+/* ---------- Content ---------- */
+.content{animation:slideInFromRight 1s ease 3.2s both;display:flex;flex-direction:column;gap:20px;}
+@media(max-width:767px){.content{animation:slideInFromBottom 1s ease 3.2s both;max-height:calc(100vh - 400px);overflow-y:auto;width:100%;max-width:380px;}}
+
 /* ---------- Specifikációk ---------- */
-.specs{padding:20px;background:linear-gradient(135deg, rgba(20,40,20,0.6), rgba(30,60,30,0.4));border-radius:12px;border:2px solid rgba(76,175,80,0.3);backdrop-filter:blur(10px);transition:all 0.3s ease;position:relative;overflow:hidden;width:100%;box-sizing:border-box;max-width:380px;margin-bottom:15px;}
+.specs{padding:20px;background:linear-gradient(135deg, rgba(20,40,20,0.6), rgba(30,60,30,0.4));border-radius:12px;border:2px solid rgba(76,175,80,0.3);backdrop-filter:blur(10px);transition:all 0.3s ease;position:relative;overflow:hidden}
 .specs h2{font-size:1.5rem;color:#4CAF50;margin-bottom:15px;font-weight:300;letter-spacing:1px;position:relative;padding-bottom:12px}
 .specs h2::after{content:'';position:absolute;bottom:0;left:0;width:50px;height:2px;background:linear-gradient(90deg,#4CAF50,#8BC34A)}
 .specs ul{list-style:none;padding:0;margin:0}
@@ -118,9 +81,24 @@ html, body {
 
 /* ---------- Nyelvválasztó ---------- */
 .language-switcher{position:fixed;bottom:25px;left:25px;display:flex;gap:15px;z-index:10;opacity:0;animation:slideInFromBottom 1s ease 4s both}
-.language-switcher img{width:36px;height:27px;cursor:pointer;border:3px solid transparent;border-radius:8px;transition:all 0.4s;filter:brightness(0.8)}
+.language-switcher img{width:36px;height:27px;cursor:pointer;border:3px solid transparent;border-radius:8px;transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);filter:brightness(0.8)}
 .language-switcher img:hover{transform:scale(1.15) rotate(5deg);filter:brightness(1)}
 .language-switcher img.active{border-color:#4CAF50;box-shadow:0 0 15px rgba(76,175,80,0.6);filter:brightness(1)}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:rgba(10,26,10,0.5)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#4CAF50,#8BC34A);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#8BC34A,#4CAF50)}
+
+/* ---------- Mobil optimalizálás teljes ---------- */
+@media(max-width:767px){
+    html, body {height:100%;overflow-x:hidden;overflow-y:auto;}
+    .container{flex-direction:column;align-items:center;min-height:100vh;}
+    .sidebar, .content{width:100%;max-width:380px;}
+    .content{max-height:calc(100vh - 400px);overflow-y:auto;}
+    .specs{max-height:calc(50vh);overflow-y:auto;}
+}
 </style>
 </head>
 <body>
@@ -166,6 +144,7 @@ html, body {
     </div>
 
     <div class="content">
+        <!-- ESZKÖZÖK -->
         <div class="specs">
             <h2 id="devicesTitle">Eszközök</h2>
             <ul id="devicesList">
@@ -183,6 +162,7 @@ html, body {
             </ul>
         </div>
 
+        <!-- SZÁMÍTÓGÉP ALKATRÉSZEK -->
         <div class="specs">
             <h2 id="partsTitle">Számítógép alkatrészek</h2>
             <ul id="partsList">
@@ -200,7 +180,7 @@ html, body {
 </div>
 
 <script>
-// ---------- Nyelvváltó ----------
+// ---------- Nyelvváltó ---------- 
 const translations={hu:{platforms:"Platformok:",discord:"Discord",youtube:"YouTube",twitch:"Twitch",steam:"Steam",support:"Támogatás",devicesTitle:"Eszközök",mouse:"Egér:",mouse2:"Egér (másodlagos):",keyboard:"Billentyűzet:",mic:"Mikrofon:",headset:"Fejhallgató:",monitor:"Monitor:",monitor2:"Monitor (másodlagos):",camera:"Kamera:",desk:"Asztal:",chair:"Szék:",phone:"Telefon:",partsTitle:"Számítógép alkatrészek",motherboard:"Alaplap:",cpu:"Processzor:",ram:"RAM:",gpu:"Videókártya:",psu:"Áramellátó:",ssd:"SSD:",case:"Gépház:",cooler:"Processzor hűtő:"},en:{platforms:"Platforms:",discord:"Discord",youtube:"YouTube",twitch:"Twitch",steam:"Steam",support:"Support",devicesTitle:"Devices",mouse:"Mouse:",mouse2:"Mouse (secondary):",keyboard:"Keyboard:",mic:"Microphone:",headset:"Headset:",monitor:"Monitor:",monitor2:"Monitor (secondary):",camera:"Camera:",desk:"Desk:",chair:"Chair:",phone:"Phone:",partsTitle:"Computer Components",motherboard:"Motherboard:",cpu:"Processor:",ram:"RAM:",gpu:"Graphics card:",psu:"Power supply:",ssd:"SSD:",case:"Case:",cooler:"CPU cooler:"}}
 let currentLanguage='en';
 function switchLanguage(lang){
